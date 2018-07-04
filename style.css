@@ -1,0 +1,37 @@
+/*
+Theme Name: ADeanKelly Theme
+Theme URI: https://adeankelly.com
+Github Theme URI: https://github.com/SuperIndieIO/ADeanKelly-Theme
+Author: A. Dean Kelly
+Description: The Theme for ADeanKelly.com
+Version: 0.01
+License: N/A
+Tags: ADeanKelly
+Text Domain: ADeanKelly
+*/
+
+/*Standard HTML Elements*/
+html, body {
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+a {
+    color: #212121;
+}
+header {
+    max-height: 72px;
+    margin: 16px auto 16px auto;
+    }
+footer {
+    width: 100%;
+    margin: 32px 0;
+    }
+
+/*Universal Classes*/
+.img-background {
+    background: no-repeat center;
+    background-size: cover;
+    }
