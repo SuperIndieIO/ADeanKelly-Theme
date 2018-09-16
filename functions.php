@@ -1,18 +1,18 @@
 <?php
 
 add_theme_support( 'post-thumbnails' );
-add_image_size( 'post-xlarge', 1296, 0, false );
+add_image_size( 'post-xlarge', 1280, 0, false );
 add_image_size( 'post-large', 960, 0, false );
 add_image_size( 'post-medium', 640, 0, false );
 add_image_size( 'post-small', 480, 0, false );
 add_image_size( 'post-amp', 1280, 720, true );
 
-add_image_size( '16/9-xlarge', 1296, 729, true );
+add_image_size( '16/9-xlarge', 1280, 720, true );
 add_image_size( '16/9-large', 960, 540, true );
 add_image_size( '16/9-medium', 640, 360, true );
 add_image_size( '16/9-small', 480, 270, true );
 
-add_image_size( '8/3-xlarge', 1296, 486, true );
+add_image_size( '8/3-xlarge', 1280, 480, true );
 add_image_size( '8/3-large', 960, 360, true );
 add_image_size( '8/3-medium', 640, 240, true );
 add_image_size( '8/3-small', 480, 180, true );
@@ -27,21 +27,21 @@ function ADKThemeSettings($wp_customize) {
 	
 	//Add Header Section
 	$wp_customize->add_section('ADKThemeHeadCode', array(
-		'title' => 'Head Code - ADK Theme',
+		'title' => 'Head Code [ADK Theme]',
 		'description' => '',
 		'priority' => 1,
 	));
 	
 	//Add Schema.org Section
 	$wp_customize->add_section('ADKThemeDesign', array(
-		'title' => 'Design Info - ADK Theme',
+		'title' => 'Design Info [ADK Theme]',
 		'description' => '',
 		'priority' => 2,
 	));
 	
 	//Add Ad Unit Section
 	$wp_customize->add_section('ADKThemeAdUnits', array(
-		'title' => 'Ad Units - ADK Theme',
+		'title' => 'Ad Units [ADK Theme]',
 		'description' => '',
 		'priority' => 3,
 	));
@@ -130,13 +130,13 @@ function ADKThemeSettings($wp_customize) {
 	$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'ADKThemeDesign-Header',
 		array(
 			'label' => 'Upload Header',
-			'description' => 'Upload a 360x72 Sized Image',
+			'description' => 'Upload a 640x128 Sized Image',
 			'section' => 'ADKThemeDesign',
 			'settings' => 'ADKThemeDesign-Header',
 			'flex_width'  => false, // Allow any width, making the specified value recommended. False by default.
     		'flex_height' => true, // Require the resulting image to be exactly as tall as the height attribute (default).
-    		'width'       => 360,
-    		'height'      => 72,
+    		'width'       => 640,
+    		'height'      => 128,
 			'button_labels' => array( 
          		'select' => __( 'Select Header' ),
          		'change' => __( 'Change Header' ),
@@ -180,6 +180,7 @@ function ADKThemeSettings($wp_customize) {
 	}
 add_action('customize_register', 'ADKThemeSettings');
 
+//Add Archive to Theme
 function wp_archive( $template ){
     if( is_front_page() && is_paged() ){
         $template = locate_template(array('archive.php','index.php'));
@@ -188,6 +189,7 @@ function wp_archive( $template ){
     }
 add_action('template_include','wp_archive');
 
+//Add Twitter, Facebook, and Adsense Information to contacts section in Admin
 function ADKContacts( $contactmethods ) {
     // Add Twitter
     $contactmethods['twitter'] = 'Twitter';
@@ -201,5 +203,57 @@ function ADKContacts( $contactmethods ) {
     return $contactmethods;
 }
 add_filter('user_contactmethods','ADKContacts', 10, 1);
+
+function ADKMetaBoxMarkup($object) {
+	
+	//NONCE to protect the site
+	wp_nonce_field(basename(__FILE__), 'meta-box-nonce');
+	
+	//Begin HTML Markup for Custom Meta Boxes
+	?>
+		<div class='tabs-panel'>
+		<p>Featured Image Location</p>
+		<?php $value = get_post_meta($object->ID, "featured-image", true); ?>
+		<?php if ($value=='top') : ?>
+			<input type="radio" name="featured-image" value="top" checked <?php checked( $value, "top" ); ?>> Top<br>
+			<input type="radio" name="featured-image" value="side" <?php checked( $value, "side" ); ?>> Side<br>
+		<?php elseif ($value=='side') : ?>
+			<input type="radio" name="featured-image" value="top" <?php checked( $value, "top" ); ?>> Top<br>
+			<input type="radio" name="featured-image" value="side" checked <?php checked( $value, "side" ); ?>> Side<br>
+		<?php endif; ?>
+		</div>
+		<?php
+}
+
+function ADKCustomMetaBox() {
+	//Load Settings MetaBox
+    add_meta_box("ADK-MetaBox", "ADK Meta Box", "ADKMetaBoxMarkup", "post", "side", "low", null);
+}
+
+function ADKSaveMetaBox() {
+	if (!isset($_POST["meta-box-nonce"]) || !wp_verify_nonce($_POST["meta-box-nonce"], basename(__FILE__)))
+        return $post_id;
+
+    if(!current_user_can("edit_post", $post_id))
+        return $post_id;
+
+    if(defined("DOING_AUTOSAVE") && DOING_AUTOSAVE)
+        return $post_id;
+
+    $slug = "post";
+    if($slug != $post->post_type)
+        return $post_id;
+
+    $value = "";
+
+    if(isset($_POST["featured-image"]))
+    {
+        $value = $_POST["featured-image"];
+    }   
+    update_post_meta($post_id, "featured-image", $value);
+}
+
+add_action("save_post", "ADKSaveMetaBox", 10, 3);
+add_action("add_meta_boxes", "ADKCustomMetaBox");
 
 ?>

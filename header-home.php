@@ -1,14 +1,14 @@
 <?php ?>
 <!DOCTYPE html>
-
+<html>
 <head>
 	<!--Styles-->
-	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style.css'/>
-	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style-home.css'/>
+	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style.css?r=<?php echo time(); ?>'/>
+	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style-home.css?r=<?php echo time(); ?>'/>
     <link href="https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Roboto:400, 900" rel="stylesheet">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 	
-	<link rel="icon" type="image/png" href="'.get_bloginfo( 'wpurl' ).'/images/favicon.png">
+	<link rel="icon" type="image/png" href="<?php echo get_bloginfo( 'wpurl' ); ?>/images/favicon.png">
 	<?php if ( get_theme_mod( 'ADKThemeDesign-ThemeColorHex' ) ) : ?>
     	<meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
 	<?php endif; ?>
@@ -40,8 +40,10 @@
 	<meta name='twitter:title' content='<?php echo get_bloginfo('name'); ?>'>
 	<meta name='twitter:image' content='<?php echo get_bloginfo("description"); ?>'>
 	
+	<?php if ( get_theme_mod( 'ADKThemeAdUnits-Adsense' ) ) : ?>
 	<!--Adsense Code-->
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<?php endif; ?>
 	
 	<!--Schema.org JSON Markup-->
 	<script type="application/ld+json">
@@ -55,14 +57,27 @@
 	<?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>
 	
 	<!--Set Top Level Site CSS-->
-	<style type='text/css'>
 	<?php if ( get_theme_mod( 'ADKThemeDesign-BackgroundHex' ) ) : ?>
+	<style type='text/css'>
 		html, body {
 			background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
 		}
-		<?php else : ?>
+	</style>
+	<?php else : ?>
+	<style type='text/css'>
 		html, body {
 			background-color: #E4E4E4;
 		}
-		<?php endif; ?>
 	</style>
+	<?php endif; ?>
+</head>
+<body>
+	<header>
+		<a href='<?php echo esc_url( home_url( "/" ) ); ?>'>
+			<?php if ( get_theme_mod( 'ADKThemeDesign-Header' )) : 
+				// This is getting the image / url
+				$headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); ?>
+			<img class='ADK-LogoImg' src='<?php echo wp_get_attachment_url( $headerlogo ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' />
+			<?php endif; ?>
+		</a>
+	</header>
