@@ -1,11 +1,7 @@
-<?php ?>
-<!DOCTYPE html>
-<html>
-<head>
 	<!--Styles-->
 	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style.css?r=<?php echo time(); ?>'/>
 	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style-home.css?r=<?php echo time(); ?>'/>
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Open+Sans|Roboto:400, 900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 	
 	<link rel="icon" type="image/png" href="<?php echo get_bloginfo( 'wpurl' ); ?>/images/favicon.png">
@@ -70,14 +66,3 @@
 		}
 	</style>
 	<?php endif; ?>
-</head>
-<body>
-	<header>
-		<a href='<?php echo esc_url( home_url( "/" ) ); ?>'>
-			<?php if ( get_theme_mod( 'ADKThemeDesign-Header' )) : 
-				// This is getting the image / url
-				$headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); ?>
-			<img class='ADK-LogoImg' src='<?php echo wp_get_attachment_url( $headerlogo ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' />
-			<?php endif; ?>
-		</a>
-	</header>

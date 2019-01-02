@@ -1,4 +1,19 @@
-<?php get_header('home'); ?>
+<?php ?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<?php get_header('home'); ?>
+	</head>
+<body>
+	<header>
+		<a href='<?php echo esc_url( home_url( "/" ) ); ?>'>
+			<?php if ( get_theme_mod( 'ADKThemeDesign-Header' )) : 
+				// This is getting the image / url
+				$headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); ?>
+			<img class='ADK-LogoImg' src='<?php echo wp_get_attachment_url( $headerlogo ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' />
+			<?php endif; ?>
+		</a>
+	</header>
 <main>
 	<?php $postnumber = 0; ?>
 	<?php $classname = array('ADK-8x3Article', 'ADK-7x10Article', 'ADK-7x10Article', 'ADK-7x10Article', ); ?>
@@ -31,3 +46,5 @@
 	<?php endwhile; endif; ?>
 </main>
 <?php get_footer('home'); ?>
+	</body>
+</html>
