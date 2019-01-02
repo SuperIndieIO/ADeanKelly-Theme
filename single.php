@@ -37,19 +37,19 @@
 		<!--Social media sharing link-->
 		<div id='ADK-PostSocialMedia'>
 		<a href="http://twitter.com/share" onclick="TrackSocialShare('Twitter');" target='_blank'>
-			<img src='<?php echo get_template_directory_uri(); ?>/social-icons/twitter.svg' class='social-image' alt='Twitter Logo' /></a>
+			<img src='<?php bloginfo('template_url'); ?>/social-icons/twitter.svg' class='social-image' alt='Twitter Logo' /></a>
 
 		<a href='https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>' onclick="TrackSocialShare('Facebook');" target='_blank'>
-			<img src='<?php echo get_template_directory_uri(); ?>/social-icons/facebook.svg' class='social-image' alt='Facebook Logo' /></a>
+			<img src='<?php bloginfo('template_url'); ?>/social-icons/facebook.svg' class='social-image' alt='Facebook Logo' /></a>
 
 		<a href='https://plus.google.com/share?url=<?php the_permalink(); ?>' onclick="TrackSocialShare('Google Plus');" target='_blank'>
-			<img src='<?php echo get_template_directory_uri(); ?>/social-icons/google_plus.svg' class='social-image' alt='Google Plus Logo' /></a>
+			<img src='<?php bloginfo('template_url'); ?>/social-icons/google_plus.svg' class='social-image' alt='Google Plus Logo' /></a>
 
 		<a href='http://tumblr.com/widgets/share/tool?canonicalUrl=<?php echo get_the_permalink(); ?>' onclick="TrackSocialShare('Tumblr');" target='_blank'>
-			<img src='<?php echo get_template_directory_uri(); ?>/social-icons/tumblr.svg' class='social-image' alt='Tumblr Logo' /></a>
+			<img src='<?php bloginfo('template_url'); ?>/social-icons/tumblr.svg' class='social-image' alt='Tumblr Logo' /></a>
 
 		<a href='http://www.reddit.com/submit?url=<?php echo get_the_permalink(); ?>&title=<?php echo get_the_title(); ?>' onclick="TrackSocialShare('Reddit');" target='_blank'>
-			<img src='<?php echo get_template_directory_uri(); ?>/social-icons/reddit.svg' class='social-image' alt='Reddit Logo' /></a>
+			<img src='<?php bloginfo('template_url'); ?>/social-icons/reddit.svg' class='social-image' alt='Reddit Logo' /></a>
 		</div>
 		<!--Category related articles-->
 		<div id='ADK-RelatedCategory'>

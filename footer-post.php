@@ -62,12 +62,12 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
 	
 	<!--Bot Detection Script-->
-	<script src='<?php echo get_template_directory_uri(); ?>/js/batman.min.js'></script>
+	<script src='<?php bloginfo('template_url'); ?>/js/batman.min.js'></script>
 	<script>
 		botDetect.onUser(function() {
 		  console.log('User is not a bot');
 		  var script = document.createElement('script');
-		  script.src = '<?php echo get_template_directory_uri(); ?>/js/in-article.js';
+		  script.src = '<?php bloginfo('template_url'); ?>/js/in-article.js';
 		  document.getElementsByTagName("head")[0].appendChild(script);
 		});
 	</script>

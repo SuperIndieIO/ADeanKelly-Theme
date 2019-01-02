@@ -1,6 +1,6 @@
     <!--Styles-->
-	<link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style.css?r=<?php echo time(); ?>'/>
-    <link rel="stylesheet"  type="text/css" href='<?php echo get_template_directory_uri(); ?>/style-post.css'/>
+	<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css?r=<?php echo time(); ?>'/>
+    <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style-post.css'/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>   
 	
@@ -82,7 +82,7 @@
             "name": "Otaku Voice Logo",
             "width": "64",
             "height": "64",
-            "url": "<?php echo get_template_directory_uri(); ?>/img/ov-logo-64.png"
+            "url": "<?php bloginfo('template_url'); ?>/img/ov-logo-64.png"
         	},
 		"sameas" : [
 			"https://twitter.com/OtakuVoice",
