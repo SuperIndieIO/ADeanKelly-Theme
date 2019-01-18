@@ -9,6 +9,7 @@ html, body {
 }
 main {
     display: grid;
+	grid-auto-flow: row dense;
 }
 footer {
 	margin: 32px 0 0 0;
@@ -40,6 +41,9 @@ article > iframe {
     border-color: initial;
     border-image: initial;
 }
+aside {
+	grid-row: span 2;
+}
 blockquote {
     border-left: 8px solid #424242;
     padding: 0 0 0 16px;
@@ -51,46 +55,42 @@ blockquote {
 /*Header Styles*/
 
 /* Main Post Styles */
-#ADK-Post {
+picture > img {
     width: 100%;
     border-radius: 4px;
-    }
-#ADK-PostImage {
-    display: block;
-    width: 100%;
-    border-radius: 4px;
+	display: block;
     object-fit: cover;
     }
-#ADK-PostHeadline {
+article > h1 {
     margin: 12px 0 4px 0;
     color: #333333;
-    font-size: 3em;
+    font-size: 2.5em;
     font-family: 'Roboto:900', sans-serif;
     line-height: 1em;
     vertical-align: bottom;
     }
-#ADK-PostSubHeadline {
+article > h2 {
     margin: 8px 0;
     color: #757575;
     font-style: italic;
     font-size: 24px;
     font-family: 'Roboto', sans-serif;
     }
-#ADK-PostAuthor {
+section#post-author {
     margin: 8px 0;
     padding: 6px 0;
     color: #757575;
     font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     border-top: #757575 1px solid;
     border-bottom: #757575 1px solid;
     }
-#ADK-PostAuthor > a {
+section#post-author > a {
     color: #484848;
     text-decoration: none;
     }
-#ADK-PostDate {
+time#post-date {
     float: right;
     }
 article > h3 {
@@ -102,10 +102,10 @@ article > h4, h5, h6 {
 article > a {
     color: #212121;
     }
-artcile > a:visited {
+article > a:visited {
 	color: #424242;
 }
-#ADK-PostSocialMedia {
+section#social-media {
     display: inline-block;
     padding: 8px 0 1px 0;
     margin: 8px 0 16px 0;
@@ -115,11 +115,16 @@ artcile > a:visited {
     text-align: center;
     }
 
+.loaded {
+	margin: 8px 0;
+}
+
 /*Social Media Classes*/
-.social-image {
+.social-image-share {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
+	border-radius: 50%;
     margin: 0 6px;
     }
 .social-image-follow {
@@ -129,11 +134,6 @@ artcile > a:visited {
     margin: 0 6px;
     border-radius: 50%;
     }
-
-.sticky {
-    position: sticky;
-    top: 16px;
-}
 
 /*Footer IDs */
 #ADK-FooterLogo {
@@ -159,74 +159,94 @@ artcile > a:visited {
     }
 
 /*The Otaku Project Related and Sidebar Posts*/
-#ADK-RelatedCategory {
+.related-category {
     display: grid;
     margin: 0;
     grid-column-gap: 16px;
     grid-row-gap: 16px;
     overflow: auto;
 }
-.ADK-Sidebar {
+.related-tag {
     display: grid;
     grid-gap: 16px 16px;
     }
-.ADK-SidebarSection {
-    position: relative;
-    padding-bottom: 56.25%;
-    border-radius: 4px;
-    }
-.ADK-SidebarSectionTitle {
-    display: inline-block;
-    margin: 0 0 16px 0;
-    color: #484848;
-    float: left;
-    font-size: 2em;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    }
-.ADK-SidebarOther {
-    width: 100%;
-    margin: 16px auto 16px auto;
-    }
-.ADK-SidebarOther > iframe {
-    width: 100%;
-    border-width: 0;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
+
+/*Sidebar Figure Styles*/
+figure {
+	width: 100%;
+	margin: 0;
+	color: #ffffff;
+	font-size: 16px;
+	position: relative;
+	overflow: hidden;
+	text-align: left;
+	border-radius: 4px;
 }
-.ADK-PostSmall { 
-    padding-top: 56.25%;
-    position: relative;
-    border-radius: 4px;
-    }
-.ADK-PostSmallSidebar { 
-    padding-top: 56.25%;
-    position: relative;
-    border-radius: 4px;
-    }
-.ADK-PostSmallImage {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    object-fit: cover;
-    border-radius: 4px;
+figure * {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.55s ease;
+	transition: all 0.55s ease;
 }
-.ADK-PostSmallText {
-    width: calc(100% - 16px);
-    margin: 0;
-    padding: 8px;
-    background-color: rgba( 13, 13, 13, .75);
-    border-radius: 0 0 4px 4px;
-    position: absolute;
-    bottom: 0;
-    color: #f6f6f6;
-    border-radius: 0 0 4px 4px;
-    font-family: 'Roboto:900', sans-serif;
-    font-size: 1em;
-    overflow: hidden;
-    }
+figure img {
+	max-width: 100%;
+	height: 100%;
+	vertical-align: top;
+	position: relative; 
+	object-fit: cover;
+}
+figure figcaption {
+	width: 100%;
+	padding: 12px;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+}
+figure figcaption::before {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #700877;
+	content: '';
+	background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+	background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+	background: linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+	opacity: 0.70;
+	z-index: -1;
+}
+figure h3 {
+	display: inline-block;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-size: 1em;
+	font-weight: 700;
+	color: #fff;
+	letter-spacing: -0.4px;
+	margin: 0;
+}
+figure p {
+	max-height: 3.2em;
+	font-size: 0.8em;
+	font-family: 'Noto Sans', Arial, sans-serif;
+	line-height: 1.6em;
+	margin: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+figure a {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	z-index: 1;
+}
+figure:hover img {
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
 
 /*Embed-Container*/
 .embed-container {
@@ -245,68 +265,65 @@ artcile > a:visited {
     height: 100%; 
 }
 
-/*Universal Sub Classes*/
-.img-background {
-    background: no-repeat center;
-    background-size: cover;
-    }
-
-@media(max-width: 479px) { .sidebar-responsive { max-width: 320px; max-height: 250px;} }
-@media(min-width: 480px) { .sidebar-responsive { max-width: 468px; max-height: 250px; } }
-@media(min-width: 960px) { .sidebar-responsive {max-width: 728px; } }
-@media(min-width: 1056px) { .sidebar-responsive { max-width: 300px; max-height: 250px; } }
-
-@media only screen and (min-width: 1296px) {
+@media only screen and (min-width: 1280px) {
     main {
-        grid-template-columns: 1fr 16px 960px 32px 320px 16px 1fr;
+        grid-template-columns: 1fr 16px 784px 16px 320px 16px 1fr;
     }
     main > * {
         grid-column: 3;
-    }
-    main > #ADK-Post {
-        grid-column: 2 / 7;
     }
     article {
         grid-template-columns: 1fr;
     }
     aside {
         grid-column: 5;
-		grid-row: 1;
     }
     aside > * {
         margin: 16px 0;
     }
-    #ADK-RelatedCategory {
+	aside > div:nth-last-child(2) {
+		position: sticky;
+		top: 16px;
+	}
+	aside > div:last-child {
+		position: sticky;
+		top: 408px;
+	}
+    .related-category {
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .ADK-Sidebar {
+    .related-tag {
         grid-template-columns: 1fr;
     }
 }
-@media only screen and (min-width: 1056px) and (max-width: 1295px) { 
+@media only screen and (min-width: 1056px) and (max-width: 1280px) { 
     main {
         grid-template-columns: 16px 16px 1fr 32px 320px 16px 16px;
     }
     main > * {
         grid-column: 3;
     }
-    main > #ADK-Post {
-        grid-column: 2 / 7;
-    }
     article {
         grid-template-columns: 1fr;
     }
     aside {
         grid-column: 5;
-		grid-row: 1;
     }
     aside > * {
         margin: 16px 0;
     }
-    #ADK-RelatedCategory {
+	aside > div:nth-last-child(2) {
+		position: sticky;
+		top: 16px;
+	}
+	aside > div:last-child {
+		position: sticky;
+		top: 408px;
+	}
+    .related-category {
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .ADK-Sidebar {
+    .related-tag {
         grid-template-columns: 1fr;
     }
 }
@@ -332,19 +349,12 @@ artcile > a:visited {
     aside > * {
         margin: 16px 32px;
     }
-    #ADK-RelatedCategory {
+    .related-category {
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .ADK-Sidebar {
+    .related-tag {
         grid-template-columns: 1fr 1fr;
-        grid-gap: 16px 16px;
-    }
-    .ADK-SidebarOther {
-        width: calc(100% - 64px);
-        margin: 16px 32px;
-    }
-    .ADK-PostSmallSidebar {
-        padding-top: 37.5%;
+        grid-gap: 16px;
     }
 }
 @media only screen and (max-width: 639px) { 
@@ -369,55 +379,11 @@ artcile > a:visited {
     aside > * {
         margin: 16px;
     }
-    #ADK-PostHeadline {
-        font-size: 2em;
-    }
-	#ADK-PostSubHeadline {
-		font-size: 1.25em;
-	}
-    #ADK-RelatedCategory {
+    .related-category {
         grid-template-columns: 1fr;
     }
-    .ADK-Sidebar {
+    .related-tag {
         grid-template-columns: 1fr;
-        grid-gap: 16px 16px;
+        grid-gap: 16px;
     }
-    .ADK-PostSmall {
-        padding-top: 28.125%;
-    }
-    .ADK-PostSmallSidebar {
-        padding-top: 28.125%;
-    }
-    .ADK-SidebarOther {
-        width: calc(100% - 32px);
-    }
-	.in-article {
-		max-width: 320px;
-	}
-}
-@media only screen and (max-width: 420px) { 
-    #ADK-Otaku {
-        margin: 0 16px 0 0;
-        line-height: 72px;
-        vertical-align: middle;
-        text-align: right;
-        grid-column: 2;
-        font-family: 'Comfortaa', cursive;
-        font-size: 2em;
-    }
-    #ADK-Voice {
-        margin: 0 0 0 16px;
-        line-height: 72px;
-        vertical-align: middle;
-        text-align: left;
-        font-family: 'Comfortaa', cursive;
-        font-size: 2em;
-    }
-    #ADK-LogoLarge {
-        display: block;
-        grid-column: 3;
-    }
-	#ADK-PostDate {
-		float: left;
-	}
 }

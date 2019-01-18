@@ -1,17 +1,25 @@
     <!--Styles-->
+	<style type='text/css'>
+		:root {
+			--text-bgc-alpha: <?php echo get_theme_mod("ADKThemeDesign-TextBackgroundColorAlpha"); ?>;
+			--text-bgc-beta: <?php echo get_theme_mod("ADKThemeDesign-TextBackgroundColorBeta"); ?>;
+			--text-bgc-omega: <?php echo get_theme_mod("ADKThemeDesign-TextBackgroundColorOmega"); ?>;
+		}
+		html, body {
+			background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
+		}
+	</style>
 	<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css?r=<?php echo time(); ?>'/>
     <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style-post.css'/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>   
 	
 	<link rel="shortcut icon" type="image/png" href="<?php echo get_bloginfo( 'wpurl' ); ?>/images/favicon.png">
-	<?php if ( get_theme_mod( 'ADKThemeDesign-ThemeColorHex' ) ) : ?>
-    	<meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
-	<?php endif; ?>
+    <meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
     
     <!--Meta Info-->
     <?php the_post(); ?><!--Gather Post Excerpt Information for Meta Tags-->  
-    <?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'post-large' ); ?> 
+    <?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postx' ); ?> 
     <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
     <meta name='title' content='<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>'>
     <meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
@@ -95,18 +103,3 @@
 	
 	<!--Custom Theme Code-->
 	<?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>
-	
-		<!--Set Top Level Site CSS-->
-	<?php if ( get_theme_mod( 'ADKThemeDesign-BackgroundHex' ) ) : ?>
-	<style type='text/css'>
-		html, body {
-			background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
-		}
-	</style>
-	<?php else : ?>
-	<style type='text/css'>
-		html, body {
-			background-color: #E4E4E4;
-		}
-	</style>
-	<?php endif; ?>

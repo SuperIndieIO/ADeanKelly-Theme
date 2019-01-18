@@ -27,7 +27,7 @@ $( document ).ready(function() {
   		//Check the paragraph number against the Fibonacci Sequence and load a unique ad unit
   		if (CurrentParagraph == fibonacci(n) && CurrentParagraph != 3 && CurrentParagraph < TotalParagraphs) {
   		  slot(); //Get the slot name
-  			var TheAdUnit = "<!-- /205549772/OtakuVoice/InArticle --><div id='"+SlotName+"' class='leaderboard-adunit' style='text-align:center;'></div>"; //Create <DIV> for ad unit
+  			var TheAdUnit = "<!-- "+ GlobalInArticle +" --><div id='"+SlotName+"' class='leaderboard-adunit' style='text-align:center;'></div>"; //Create <DIV> for ad unit
   			$(this).after(TheAdUnit); //Insert <DIV> after Ad Unit
   			n++; //Increment Fibonacci after ad unit insertion
   			AdUnitNum++; //Increment the ad unit number
@@ -54,7 +54,9 @@ $( document ).ready(function() {
 			  if( ((WindowBottom + 100) >= CurrentLeaderboardHeight && (WindowTop - 100) <= CurrentLeaderboardHeight) && !$(this).hasClass('loaded')) {
 				  $(this).addClass('loaded'); //Set class of ad unit as loaded
           googletag.cmd.push(function() {
-            var AMSlot = googletag.defineSlot('/205549772/OtakuVoice/InArticle', [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentLeaderboard).setTargeting('slot', j + 1 ).addService(googletag.pubads());
+			
+			var inarticlemapping = googletag.sizeMapping().addSize([1145, 0], [[468, 66], [728, 90]]).addSize([1056, 0], [[468, 66]]).addSize([760, 0], [[468, 66], [728, 90]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
+            var AMSlot = googletag.defineSlot( GlobalInArticle, [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentLeaderboard).defineSizeMapping(inarticlemapping).setTargeting('slot', j + 1 ).addService(googletag.pubads());
 
             // Display has to be called before
             // refresh and after the slot div is in the page.

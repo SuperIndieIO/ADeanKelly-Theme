@@ -1,26 +1,25 @@
 <?php
 
 add_theme_support( 'post-thumbnails' );
-add_image_size( 'post-xlarge', 1280, 0, false );
-add_image_size( 'post-large', 960, 0, false );
-add_image_size( 'post-medium', 640, 0, false );
-add_image_size( 'post-small', 480, 0, false );
-add_image_size( 'post-amp', 1280, 720, true );
+add_image_size( 'postx', 1280, 0, false );
+add_image_size( 'postl', 960, 0, false );
+add_image_size( 'postm', 640, 0, false );
+add_image_size( 'posts', 480, 0, false );
 
-add_image_size( '16/9-xlarge', 1280, 720, true );
-add_image_size( '16/9-large', 960, 540, true );
-add_image_size( '16/9-medium', 640, 360, true );
-add_image_size( '16/9-small', 480, 270, true );
+add_image_size( '16/9x', 1280, 720, true );
+add_image_size( '16/9l', 960, 540, true );
+add_image_size( '16/9m', 640, 360, true );
+add_image_size( '16/9s', 480, 270, true );
 
-add_image_size( '8/3-xlarge', 1280, 480, true );
-add_image_size( '8/3-large', 960, 360, true );
-add_image_size( '8/3-medium', 640, 240, true );
-add_image_size( '8/3-small', 480, 180, true );
+add_image_size( '8/3x', 1280, 480, true );
+add_image_size( '8/3l', 960, 360, true );
+add_image_size( '8/3m', 640, 240, true );
+add_image_size( '8/3s', 480, 180, true );
 
-add_image_size( '32/9-xlarge', 1280, 360, true );
-add_image_size( '32/9-large', 960, 270, true );
-add_image_size( '32/9-medium', 640, 180, true );
-add_image_size( '32/9-small', 480, 135, true );
+add_image_size( '32/9x', 1280, 360, true );
+add_image_size( '32/9l', 960, 270, true );
+add_image_size( '32/9m', 640, 180, true );
+add_image_size( '32/9s', 480, 135, true );
 
 //Customizer Theme Settings
 function ADKThemeSettings($wp_customize) {
@@ -63,9 +62,23 @@ function ADKThemeSettings($wp_customize) {
       		'transport' => 'refresh',
       		'sanitize_callback' => 'sanitize_hex_color'));
 	$wp_customize->add_setting('ADKThemeDesign-Header');
+	$wp_customize->add_setting('ADKThemeDesign-TextBackgroundColorAlpha',
+		array(
+      		'default' => '#0F2027',
+      		'transport' => 'refresh',
+      		'sanitize_callback' => 'sanitize_hex_color'));
+	$wp_customize->add_setting('ADKThemeDesign-TextBackgroundColorBeta',
+		array(
+      		'default' => '#203A43',
+      		'transport' => 'refresh',
+      		'sanitize_callback' => 'sanitize_hex_color'));
+	$wp_customize->add_setting('ADKThemeDesign-TextBackgroundColorOmega',
+		array(
+      		'default' => '#2c5364',
+      		'transport' => 'refresh',
+      		'sanitize_callback' => 'sanitize_hex_color'));
 	
 	//Add Ad Unit Settings to the Customizer
-	$wp_customize->add_setting('ADKThemeAdUnits-Adsense');
 	$wp_customize->add_setting('ADKThemeAdUnits-InArticle');
 	$wp_customize->add_setting('ADKThemeAdUnits-Sidebar');
 
@@ -125,11 +138,44 @@ function ADKThemeSettings($wp_customize) {
 			'input_attrs' => array(
          		'placeholder' => __( '#E4E4E4' ),),
 		) ) );
+	//Add Control to Change the First Color of Text on Images
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeDesign-TextBackgroundColorAlpha',
+		array(
+			'type' => 'text',
+			'label' => 'Text Background Color Alpha',
+			'description' => 'Set Hex Value of the Background Color for Text on Images',
+			'section' => 'ADKThemeDesign',
+			'settings' => 'ADKThemeDesign-TextBackgroundColorAlpha',
+			'input_attrs' => array(
+         		'placeholder' => __( '#0F2027' ),),
+		) ) );
+	//Add Control to Change the Second Color of Text on Images
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeDesign-TextBackgroundColorBeta',
+		array(
+			'type' => 'text',
+			'label' => 'Text Background Color Beta',
+			'description' => 'Set Hex Value of the Background Color for Text on Images',
+			'section' => 'ADKThemeDesign',
+			'settings' => 'ADKThemeDesign-TextBackgroundColorBeta',
+			'input_attrs' => array(
+         		'placeholder' => __( '#203A43' ),),
+		) ) );
+	//Add Control to Change the Last Color of Text on Images
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeDesign-TextBackgroundColorOmega',
+		array(
+			'type' => 'text',
+			'label' => 'Text Background Color Omega',
+			'description' => 'Set Hex Value of the Background Color for Text on Images',
+			'section' => 'ADKThemeDesign',
+			'settings' => 'ADKThemeDesign-TextBackgroundColorOmega',
+			'input_attrs' => array(
+         		'placeholder' => __( '#2c5364' ),),
+		) ) );
 	
 	// Add a control to upload the logo
 	$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'ADKThemeDesign-Header',
 		array(
-			'label' => 'Upload Header',
+			'label' => 'Upload Header Image',
 			'description' => 'Upload a 640x128 Sized Image',
 			'section' => 'ADKThemeDesign',
 			'settings' => 'ADKThemeDesign-Header',
@@ -148,33 +194,28 @@ function ADKThemeSettings($wp_customize) {
       		)
 		) ) );
 	
-	//Add Control to Activate Adsense and Ad Units
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdUnits-Adsense',
-		array(
-			'type' => 'checkbox',
-			'label' => 'Activate Adsense Advertising',
-			'section' => 'ADKThemeAdUnits',
-			'settings' => 'ADKThemeAdUnits-Adsense',
-		) ) );
-	
 	//Add Control to In-Article Ad Units
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdUnits-InArticle',
 		array(
-			'type' => 'textarea',
+			'type' => 'text',
 			'label' => 'In-Article Ad Units',
 			'description' => 'Adsense In-Article Ad Unit',
 			'section' => 'ADKThemeAdUnits',
 			'settings' => 'ADKThemeAdUnits-InArticle',
+			'input_attrs' => array(
+         		'placeholder' => __( '/12345/TopLevelAdUnit/LowerLevelAdUnit' ),),
 		) ) );
 	
 	//Add Control to In-Article Ad Units
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdUnits-Sidebar',
 		array(
-			'type' => 'textarea',
+			'type' => 'text',
 			'label' => 'Sidebar Ad Units',
 			'description' => 'Adsense In-Sidebar Ad Unit',
 			'section' => 'ADKThemeAdUnits',
 			'settings' => 'ADKThemeAdUnits-Sidebar',
+			'input_attrs' => array(
+         		'placeholder' => __( '/12345/TopLevelAdUnit/LowerLevelAdUnit' ),),
 		) ) );
 
 	}

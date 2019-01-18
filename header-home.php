@@ -1,13 +1,21 @@
 	<!--Styles-->
+	<style type='text/css'>
+		:root {
+			--text-bgc-alpha: <?php echo get_theme_mod("ADKThemeDesign-TextBackgroundColorAlpha"); ?>;
+			--text-bgc-beta: <?php echo get_theme_mod("ADKThemeDesign-TextBackgroundColorBeta"); ?>;
+			--text-bgc-omega: <?php echo get_theme_mod("ADKThemeDesign-TextBackgroundColorOmega"); ?>;
+		}
+		html, body {
+			background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
+		}
+	</style>
 	<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css?r=<?php echo time(); ?>'/>
 	<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style-home.css?r=<?php echo time(); ?>'/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
     <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 	
 	<link rel="icon" type="image/png" href="<?php echo get_bloginfo( 'wpurl' ); ?>/images/favicon.png">
-	<?php if ( get_theme_mod( 'ADKThemeDesign-ThemeColorHex' ) ) : ?>
-    	<meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
-	<?php endif; ?>
+    <meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
 
 	<!--Meta Info-->
     <title><?php echo get_bloginfo('name'); ?></title>
@@ -17,12 +25,8 @@
 	<meta http-equiv="content-language" content="en-us">
 	
 	<!--Meta Verification-->
-	<?php if ( get_theme_mod( 'ADKThemeHeadCode-GoogleMeta' ) ) : ?>
-		<meta name="google-site-verification" content="<?php echo get_theme_mod("ADKThemeHeadCode-GoogleMeta"); ?>"/>
-	<?php endif; ?>
-	<?php if ( get_theme_mod( 'ADKThemeHeadCode-MicrosoftMeta' ) ) : ?>
-		<meta name="msvalidate.01" content="<?php echo get_theme_mod("ADKThemeHeadCode-MicrosoftMeta"); ?>"/>
-	<?php endif; ?>
+	<meta name="google-site-verification" content="<?php echo get_theme_mod("ADKThemeHeadCode-GoogleMeta"); ?>"/>
+	<meta name="msvalidate.01" content="<?php echo get_theme_mod("ADKThemeHeadCode-MicrosoftMeta"); ?>"/>
 	
 	<!--Facebook Meta Info-->
 	<meta property='og:title' content='<?php echo get_bloginfo('name'); ?>'/>
@@ -37,8 +41,8 @@
 	<meta name='twitter:image' content='<?php echo get_bloginfo("description"); ?>'>
 	
 	<?php if ( get_theme_mod( 'ADKThemeAdUnits-Adsense' ) ) : ?>
-	<!--Adsense Code-->
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!--Adsense Code-->
+    	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<?php endif; ?>
 	
 	<!--Schema.org JSON Markup-->
@@ -51,18 +55,3 @@
 	
 	<!--Custom Theme Code-->
 	<?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>
-	
-	<!--Set Top Level Site CSS-->
-	<?php if ( get_theme_mod( 'ADKThemeDesign-BackgroundHex' ) ) : ?>
-	<style type='text/css'>
-		html, body {
-			background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
-		}
-	</style>
-	<?php else : ?>
-	<style type='text/css'>
-		html, body {
-			background-color: #E4E4E4;
-		}
-	</style>
-	<?php endif; ?>
