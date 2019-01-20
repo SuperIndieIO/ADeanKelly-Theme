@@ -41,9 +41,6 @@ article > iframe {
     border-color: initial;
     border-image: initial;
 }
-aside {
-	grid-row: span 2;
-}
 blockquote {
     border-left: 8px solid #424242;
     padding: 0 0 0 16px;
@@ -265,7 +262,7 @@ figure:hover img {
     height: 100%; 
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1153px) {
     main {
         grid-template-columns: 1fr 16px 784px 16px 320px 16px 1fr;
     }
@@ -277,6 +274,7 @@ figure:hover img {
     }
     aside {
         grid-column: 5;
+		grid-row: span 2;
     }
     aside > * {
         margin: 16px 0;
@@ -295,39 +293,12 @@ figure:hover img {
     .related-tag {
         grid-template-columns: 1fr;
     }
-}
-@media only screen and (min-width: 1056px) and (max-width: 1280px) { 
-    main {
-        grid-template-columns: 16px 16px 1fr 32px 320px 16px 16px;
-    }
-    main > * {
-        grid-column: 3;
-    }
-    article {
-        grid-template-columns: 1fr;
-    }
-    aside {
-        grid-column: 5;
-    }
-    aside > * {
-        margin: 16px 0;
-    }
-	aside > div:nth-last-child(2) {
-		position: sticky;
-		top: 16px;
+	
+	nav.footer-nav {
+		grid-template-columns: 1fr 1120px 1fr;
 	}
-	aside > div:last-child {
-		position: sticky;
-		top: 408px;
-	}
-    .related-category {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-    .related-tag {
-        grid-template-columns: 1fr;
-    }
 }
-@media only screen and (min-width: 640px) and (max-width: 1055px) { 
+@media only screen and (min-width: 641px) and (max-width: 1152px) { 
     main {
         grid-template-columns: 1fr;
     }
@@ -335,7 +306,7 @@ figure:hover img {
         grid-column: 1;
     }
     article {
-        grid-template-columns: 16px 16px 1fr 16px 16px;
+        grid-template-columns: 16px 1fr minmax(auto, 784px) 1fr 16px;
     }
     article > * {
         grid-column: 3;
@@ -344,10 +315,12 @@ figure:hover img {
         grid-column: 2 / 5;
     }
     aside {
-        grid-column: 1;
+		display: grid;
+        grid-template-columns: 16px 1fr minmax(auto, 784px) 1fr 16px;
+		grid-row-gap: 16px;
     }
     aside > * {
-        margin: 16px 32px;
+		grid-column: 3;
     }
     .related-category {
         grid-template-columns: 1fr 1fr 1fr;
@@ -356,8 +329,12 @@ figure:hover img {
         grid-template-columns: 1fr 1fr;
         grid-gap: 16px;
     }
+	
+	nav.footer-nav {
+		grid-template-columns: minmax(16px, 1fr) minmax(auto, 784px) minmax(16px, 1fr);
+	}	
 }
-@media only screen and (max-width: 639px) { 
+@media only screen and (max-width: 640px) { 
     main {
         grid-template-columns: 1fr;
     }
@@ -386,4 +363,8 @@ figure:hover img {
         grid-template-columns: 1fr;
         grid-gap: 16px;
     }
+	
+	nav.footer-nav {
+		grid-template-columns: 16px 1fr 16px;
+	}
 }

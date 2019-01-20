@@ -124,6 +124,9 @@ figure:hover img {
 	.ADK-MidArticle {
 		grid-column: span 2;
 	}
+	nav.footer-nav {
+		grid-template-columns: 1fr 1280px 1fr;
+	}
 }
 @media only screen and (min-width: 641px) and (max-width: 1280px) {
 	main {
@@ -136,10 +139,16 @@ figure:hover img {
 	.ADK-MidArticle {
 		grid-column: span 2;
 	}
+	nav.footer-nav {
+		grid-template-columns: 16px 1fr 16px;
+	}
 }
 @media only screen and (max-width: 640px) {
 	main {
 		margin: 0 16px;
 		grid-template-columns: 1fr;
+	}
+	nav.footer-nav {
+		grid-template-columns: 16px 1fr 16px;
 	}
 }

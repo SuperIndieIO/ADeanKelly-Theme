@@ -13,19 +13,16 @@
 	</header>
 	<main>
 		<!--Wordpress Loop Code-->
-		<?php $post = get_the_ID(); $primary = $post; ?>
-			<?php $xdesktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postx' ); ?>
-			<?php $sdesktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postl' ); ?>
-			<?php $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postm' ); ?>
-			<?php $small = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'posts' ); ?>
-		<picture>
-			<source media='(max-width: 479px)' srcset='<?php echo $mobile[0] ?>'>
-			<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $tablet[0] ?>'>
-			<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $sdesktop[0] ?>'>
-			<source media='(min-width: 960px)' srcset='<?php echo $xdesktop[0] ?>'>
-			<img src='<?php echo $xdesktop[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
-		</picture>
+		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id(); $thumbarray = array('postx','postl','postm','posts'); $i = 0; ?>
+			<?php foreach ($thumbarray as $imgsize) { $imgnum[$i] = wp_get_attachment_url($thumbid, $imgsize); $i++; } ?>
 		<article>
+			<picture>
+				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[3] ?>'>
+				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[2] ?>'>
+				<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
+				<source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>
+				<img src='<?php echo $imgnum[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
+			</picture>
 			<h1><?php echo get_the_title(); ?></h1>
 			<h2><?php echo(get_the_excerpt()); ?></h2>
 			<section id='post-author'>
@@ -58,15 +55,13 @@
 				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post), 'category__not_in' => 'Featured' ) ); ?>
 				<?php if( $related ) foreach( $related as $post ) {?>
 				<?php $post = get_the_ID(); ?>
-				<?php $desktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' ); ?>
-				<?php $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '32/9m' ); ?>
-				<?php $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '32/9s' ); ?>
+				<?php $large = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
+				<?php $small = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3m' ); ?>
 				<figure> 
 							<!--<img class='ADK-PostSmallImage' src='<?php echo $thumb[0] ?>'/>-->
 							<picture>
-								<source media='(max-width: 479px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $mobile[0] ?>'>
-								<source media='(min-width: 480px) and (max-width: 639px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $tablet[0] ?>'>
-								<source media='(min-width: 640px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $desktop[0] ?>'>
+								<source media='(max-width: 640px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $small[0] ?>'>
+								<source media='(min-width: 641px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $large[0] ?>'>
 								<img src='<?php echo $desktop[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt; ?>'>
 							</picture>
 							<figcaption>
@@ -106,8 +101,8 @@
 
 					<figure>
 						<picture>
-							<source media="(max-width: 479px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $mobile[0] ?>'>
-							<source media="(min-width: 480px) and (max-width: 959px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $tablet[0] ?>'>
+							<source media="(max-width: 640px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $mobile[0] ?>'>
+							<source media="(min-width: 641px) and (max-width: 959px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $tablet[0] ?>'>
 							<source media="(min-width: 960px)" srcset='<?php echo $desktop[0] ?>'>
 							<img src='<?php echo $thumb[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
 						</picture>
@@ -130,6 +125,7 @@
 	</main>
 	<footer>
 		<?php get_footer('post'); ?>
+		<?php get_footer(); ?>
 	</footer>
 </body>
 </html>

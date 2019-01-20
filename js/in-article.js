@@ -55,7 +55,7 @@ $( document ).ready(function() {
 				  $(this).addClass('loaded'); //Set class of ad unit as loaded
           googletag.cmd.push(function() {
 			
-			var inarticlemapping = googletag.sizeMapping().addSize([1145, 0], [[468, 66], [728, 90]]).addSize([1056, 0], [[468, 66]]).addSize([760, 0], [[468, 66], [728, 90]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
+			var inarticlemapping = googletag.sizeMapping().addSize([760, 0], [[468, 66], [728, 90]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
             var AMSlot = googletag.defineSlot( GlobalInArticle, [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentLeaderboard).defineSizeMapping(inarticlemapping).setTargeting('slot', j + 1 ).addService(googletag.pubads());
 
             // Display has to be called before

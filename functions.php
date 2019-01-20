@@ -1,5 +1,11 @@
 <?php
 
+add_theme_support( 'menus' );
+function register_footer_menu() {
+  register_nav_menu('footer',__( 'Footer Menu' ));
+}
+add_action( 'init', 'register_footer_menu' );
+
 add_theme_support( 'post-thumbnails' );
 add_image_size( 'postx', 1280, 0, false );
 add_image_size( 'postl', 960, 0, false );
