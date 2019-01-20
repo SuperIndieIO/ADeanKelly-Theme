@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php get_header('home'); ?>
+		<?php get_header('archive'); ?>
 	</head>
 	<body>
 		<header>
@@ -41,6 +41,7 @@
 			</figure>
 			<?php $postnumber++ ?>
 		<?php endwhile; endif; ?>
+			
 		</main>
 		<section id='page-nav'><?php numeric_posts_nav(); ?></section>
 		<footer>

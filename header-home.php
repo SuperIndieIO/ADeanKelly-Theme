@@ -40,11 +40,6 @@
 	<meta name='twitter:title' content='<?php echo get_bloginfo('name'); ?>'>
 	<meta name='twitter:image' content='<?php echo get_bloginfo("description"); ?>'>
 	
-	<?php if ( get_theme_mod( 'ADKThemeAdUnits-Adsense' ) ) : ?>
-		<!--Adsense Code-->
-    	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<?php endif; ?>
-	
 	<!--Schema.org JSON Markup-->
 	<script type="application/ld+json">
 	{
