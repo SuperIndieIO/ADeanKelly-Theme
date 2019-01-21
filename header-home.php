@@ -44,7 +44,23 @@
 	<script type="application/ld+json">
 	{
 		"@context" : "http://schema.org",
-		"@type" : "Blog"
+		"@type" : "Blog",
+		"publisher" : {
+	  		"@type" : "Organization",
+    		"name" : "<?php echo get_bloginfo('name'); ?>",
+			"url" : "<?php echo esc_url( home_url( '/' ) ); ?>",
+			"logo" : {
+            	"@type": "ImageObject",
+            	"name": "<?php echo get_bloginfo('name'); ?> Logo",
+            	"width": "64",
+            	"height": "64",
+            	"url": "<?php bloginfo('template_url'); ?>/img/ov-logo-64.png"
+        		},
+				"sameas" : [
+					"https://twitter.com/",
+					"https://facebook.com/",
+					]
+			}
 	}
 	</script>
 	
