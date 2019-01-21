@@ -14,8 +14,8 @@ $( document ).ready(function() {
     var blocked = false; //Announce that ad blocking is false
     
     var CurrentParagraph = 1; //Check the location of the first ad unit
-	  var n = 2; //Set the starting point of the Fibonacci Sequence
-	  var AdUnitNum = 0; //Set the starting number of ad units
+	var n = 2; //Set the starting point of the Fibonacci Sequence
+	var AdUnitNum = 0; //Set the starting number of ad units
   	var LoadedAdUnits = 0; //Set the starting number of loaded ad units
 
     var SlotNum = 1; //Set the slot number for the ad unit starting at 1
@@ -53,16 +53,16 @@ $( document ).ready(function() {
 
 			  if( ((WindowBottom + 100) >= CurrentLeaderboardHeight && (WindowTop - 100) <= CurrentLeaderboardHeight) && !$(this).hasClass('loaded')) {
 				  $(this).addClass('loaded'); //Set class of ad unit as loaded
-          googletag.cmd.push(function() {
+          			googletag.cmd.push(function() {
 			
-			var inarticlemapping = googletag.sizeMapping().addSize([760, 0], [[468, 66], [728, 90]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
-            var AMSlot = googletag.defineSlot( GlobalInArticle, [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentLeaderboard).defineSizeMapping(inarticlemapping).setTargeting('slot', j + 1 ).addService(googletag.pubads());
+					var inarticlemapping = googletag.sizeMapping().addSize([760, 0], [[468, 66], [728, 90]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
+            		var AMSlot = googletag.defineSlot( GlobalInArticle, [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentLeaderboard).defineSizeMapping(inarticlemapping).setTargeting('slot', j + 1 ).addService(googletag.pubads());
 
-            // Display has to be called before
-            // refresh and after the slot div is in the page.
-            googletag.display(CurrentLeaderboard);
-            googletag.pubads().refresh([AMSlot]);
-          });
+					// Display has to be called before
+					// refresh and after the slot div is in the page.
+					googletag.display(CurrentLeaderboard);
+					googletag.pubads().refresh([AMSlot]);
+				  });
 				LoadedAdUnits++; //Increment total ad load number
 
 				if( LoadedAdUnits == AdUnitNum ) {clearInterval(CheckView); } //If there are not more units to be loaded, end the interval

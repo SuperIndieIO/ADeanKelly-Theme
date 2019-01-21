@@ -73,7 +73,7 @@
 			</section>
 		</article>
 		<aside>
-			<div class='ADK-SidebarOther'></div>
+			<div class='sidebar-advertising'></div>
 			<div class='related-tag'>
 					<?php wp_reset_query(); ?>
 					<?php //for use in the loop, list 2 post titles related to first tag on current post
@@ -120,7 +120,7 @@
 					wp_reset_query(); // to use the original query again
 					?>
 				</div>
-			<div class='ADK-SidebarOther'></div>
+			<div class='sidebar-advertising'></div>
 		</aside>
 	</main>
 	<footer>

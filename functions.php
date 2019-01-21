@@ -51,6 +51,13 @@ function ADKThemeSettings($wp_customize) {
 		'priority' => 3,
 	));
 	
+	//Add Social Media Section
+	$wp_customize->add_section('ADKThemeSocialMedia', array(
+		'title' => 'Social Media [ADK Theme]',
+		'description' => '',
+		'priority' => 4,
+	));
+	
 	//Add Head Settings to the Customizer
 	$wp_customize->add_setting('ADKThemeHeadCode-GoogleMeta');
 	$wp_customize->add_setting('ADKThemeHeadCode-MicrosoftMeta');
@@ -87,6 +94,10 @@ function ADKThemeSettings($wp_customize) {
 	//Add Ad Unit Settings to the Customizer
 	$wp_customize->add_setting('ADKThemeAdUnits-InArticle');
 	$wp_customize->add_setting('ADKThemeAdUnits-Sidebar');
+	
+	//Add Social Media Settings to the Customizer
+	$wp_customize->add_setting('ADKThemeSocialMedia-Twitter');
+	$wp_customize->add_setting('ADKThemeSocialMedia-Facebook');
 
 
 
@@ -222,6 +233,26 @@ function ADKThemeSettings($wp_customize) {
 			'settings' => 'ADKThemeAdUnits-Sidebar',
 			'input_attrs' => array(
          		'placeholder' => __( '/12345/TopLevelAdUnit/LowerLevelAdUnit' ),),
+		) ) );
+	
+	//Add Twitter Social Media
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeSocialMedia-Twitter',
+		array(
+			'type' => 'text',
+			'label' => 'Facebook',
+			'description' => 'Twitter Account',
+			'section' => 'ADKThemeSocialMedia',
+			'settings' => 'ADKThemeSocialMedia-Twitter',
+		) ) );
+	
+	//Add Facebook Social Media
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeSocialMedia-Facebook',
+		array(
+			'type' => 'text',
+			'label' => 'Facebook',
+			'description' => 'Facebook Account',
+			'section' => 'ADKThemeSocialMedia',
+			'settings' => 'ADKThemeSocialMedia-Facebook',
 		) ) );
 
 	}
