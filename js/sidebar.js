@@ -4,14 +4,14 @@ $( document ).ready(function() {
     //Read Page for Advertising Space
     var Sidebar = $('aside').find('.sidebar-advertising').length; //Advertising Location Space
 	
-	var AdUnitNum = 0;
+	var AdUnitNum = 1;
 	var LoadedAdUnits = 0;
-	var PositionName = ["Top","Mid","Bottom"]
+	var PositionName = ["top","mid","bottom"]
 	
 	var AdUnit = "<ins class='adsbygoogle' style='display: block;' data-ad-client='ca-pub-8642963533812241' data-ad-slot='9190203971' data-ad-format='rectangle'></ins>"
 
     $('aside > .sidebar-advertising').each(function(i) {
-		var TheAdUnit = "<!-- "+ GlobalSidebar +" --><div id='"+PositionName[AdUnitNum]+"' class='rectangle-adunit' style='text-align:center;'></div>";
+		var TheAdUnit = "<!-- "+ GlobalSidebar +" --><div id='Sidebar-" + AdUnitNum + "' class='rectangle-adunit' style='text-align:center;'></div>";
         $(this).html(TheAdUnit);
 		AdUnitNum++
         //console.log(i);
@@ -31,13 +31,15 @@ $( document ).ready(function() {
 				$(this).addClass('loaded');
 				googletag.cmd.push(function() {
 			
-					var sidebarmapping = googletag.sizeMapping().addSize([760, 0], [[300, 250],[336, 280]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
-            		var AMSlot = googletag.defineSlot( GlobalSidebar, [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentRectangle).defineSizeMapping(sidebarmapping).setTargeting('position', PositionName[j] ).addService(googletag.pubads());
-
+					console.log('Loading Google Ad Units');
+					var sidebarmapping = googletag.sizeMapping().addSize([760, 0], [[300, 250], [336, 280]]).addSize([480, 0], [[468, 66]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
+            		var AMPosition = googletag.defineSlot( GlobalSidebar, [[320, 50], [468, 60], [728, 90], [970, 90], [320, 100], [300, 250], [970, 250]], CurrentRectangle).defineSizeMapping(sidebarmapping).setTargeting('position', PositionName[j] ).addService(googletag.pubads());
+					console.log(AMPosition);
+					
 					// Display has to be called before
 					// refresh and after the slot div is in the page.
 					googletag.display(CurrentRectangle);
-					googletag.pubads().refresh([AMSlot]);
+					googletag.pubads().refresh([AMPosition]);
 				  });
 				LoadedAdUnits++; //Increment total ad load number
 
