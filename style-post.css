@@ -109,7 +109,7 @@ section#social-media {
     text-align: center;
     }
 
-.loaded {
+.leaderboard-unit {
 	margin: 8px 0;
 }
 
@@ -120,36 +120,6 @@ section#social-media {
     height: 36px;
 	border-radius: 50%;
     margin: 0 6px;
-    }
-.social-image-follow {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    margin: 0 6px;
-    border-radius: 50%;
-    }
-
-/*Footer IDs */
-#ADK-FooterLogo {
-    display: block;
-    margin: 0 auto;
-    }
-#ADK-FooterSocialIcons {
-    display: inline-block;
-    padding: 8px 0 1px 0;
-    width: 100%;
-    text-align: center;
-    }
-#ADK-FooterInfo {
-    display: table;
-    margin: 8px auto;
-    }
-#ADK-FooterInfo > a {
-    display: inline-table;
-    margin: 0 8px;
-    color: #484848;
-    text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
     }
 
 /*The Otaku Project Related and Sidebar Posts*/
@@ -274,7 +244,7 @@ figure:hover img {
 		grid-row: span 2;
     }
     aside > * {
-        margin: 16px 0;
+        margin: 0 0 16px;
     }
 	aside > div:nth-last-child(2) {
 		position: sticky;
@@ -283,6 +253,7 @@ figure:hover img {
 	aside > div:last-child {
 		position: sticky;
 		top: 408px;
+		margin: 0;
 	}
     .related-category {
         grid-template-columns: 1fr 1fr 1fr;
@@ -291,7 +262,7 @@ figure:hover img {
         grid-template-columns: 1fr;
     }
 	
-	nav.footer-nav {
+	footer {
 		grid-template-columns: 1fr 1120px 1fr;
 	}
 }
@@ -327,7 +298,7 @@ figure:hover img {
         grid-gap: 16px;
     }
 	
-	nav.footer-nav {
+	footer {
 		grid-template-columns: minmax(16px, 1fr) minmax(auto, 784px) minmax(16px, 1fr);
 	}	
 }
@@ -361,7 +332,7 @@ figure:hover img {
         grid-gap: 16px;
     }
 	
-	nav.footer-nav {
+	footer {
 		grid-template-columns: 16px 1fr 16px;
 	}
 }

@@ -128,7 +128,7 @@ section#page-nav {
 	.ADK-MidArticle {
 		grid-column: span 2;
 	}
-	nav.footer-nav {
+	footer {
 		grid-template-columns: 1fr 1280px 1fr;
 	}
 }
@@ -143,7 +143,7 @@ section#page-nav {
 	.ADK-MidArticle {
 		grid-column: span 2;
 	}
-	nav.footer-nav {
+	footer {
 		grid-template-columns: 16px 1fr 16px;
 	}
 }
@@ -152,7 +152,7 @@ section#page-nav {
 		margin: 0 16px;
 		grid-template-columns: 1fr;
 	}
-	nav.footer-nav {
+	footer {
 		grid-template-columns: 16px 1fr 16px;
 	}
 }
