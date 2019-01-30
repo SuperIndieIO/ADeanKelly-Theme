@@ -31,7 +31,7 @@ $( document ).ready(function() {
 				$(this).addClass('loaded');
 				googletag.cmd.push(function() {
 			
-					var sidebarmapping = googletag.sizeMapping().addSize([1153, 0], [[320, 100], [300, 250], [336, 280]]).addSize([760, 0], [[468, 60],[728, 90]]).addSize([480, 0],[[320, 50], [468, 60], [320, 100]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250], [336, 280]]).build();
+					var sidebarmapping = googletag.sizeMapping().addSize([1153, 0], [[300, 250], [336, 280]]).addSize([760, 0], [[468, 60],[728, 90]]).addSize([480, 0],[[320, 50], [468, 60], [320, 100]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250], [336, 280]]).build();
             		var AMPosition = googletag.defineSlot( GlobalSidebar, [[320, 50], [468, 60], [728, 90], [320, 100], [300, 250], [336, 280]], CurrentRectangle).defineSizeMapping(sidebarmapping).setTargeting('position', PositionName[j] ).addService(googletag.pubads());
 					
 					// Display has to be called before

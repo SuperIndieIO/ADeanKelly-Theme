@@ -286,6 +286,7 @@ figure:hover img {
 		display: grid;
         grid-template-columns: 16px 1fr minmax(auto, 784px) 1fr 16px;
 		grid-row-gap: 16px;
+		margin-top: 16px;
     }
     aside > * {
 		grid-column: 3;
