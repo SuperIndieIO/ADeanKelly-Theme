@@ -2,6 +2,10 @@
 main {
 	display: grid;
 	grid-auto-flow: row dense;
+    grid-template-columns: minmax(8px, 1fr) minmax(auto, 760px) minmax(8px, 1fr);
+}
+main > * {
+    grid-column: 2;
 }
 footer {
 	margin: 32px 0 0 0;
@@ -231,12 +235,6 @@ figure:hover img {
 	height: 100%;
 }
 @media only screen and (min-width: 1153px) {
-	main {
-		grid-template-columns: 1fr 16px 784px 16px 320px 16px 1fr;
-	}
-	main > * {
-		grid-column: 3;
-	}
 	article {
 		grid-template-columns: 1fr;
 	}
@@ -267,12 +265,6 @@ figure:hover img {
 	}
 }
 @media only screen and (min-width: 641px) and (max-width: 1152px) {
-	main {
-		grid-template-columns: 1fr;
-	}
-	main > * {
-		grid-column: 1;
-	}
 	article {
 		grid-template-columns: 16px 1fr minmax(auto, 784px) 1fr 16px;
 	}
@@ -302,12 +294,6 @@ figure:hover img {
 	}
 }
 @media only screen and (max-width: 640px) {
-	main {
-		grid-template-columns: 1fr;
-	}
-	main > * {
-		grid-column: 1;
-	}
 	article {
 		grid-template-columns: 16px 1fr 16px;
 	}

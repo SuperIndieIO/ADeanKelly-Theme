@@ -34,7 +34,7 @@ $( document ).ready(function() {
   		}
 		
   		//Check if the paragraph number in order to add a skip to the Fibonacci Sequence
-  		if(CurrentParagraph == 3) {
+  		if (CurrentParagraph == 3) {
   			n++;
   		}
       CurrentParagraph++;
