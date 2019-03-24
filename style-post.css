@@ -3,9 +3,6 @@ main {
 	display: grid;
 	grid-auto-flow: row dense;
 }
-footer {
-	margin: 32px 0 0 0;
-}
 a {
 	color: #212121;
 }
@@ -286,6 +283,7 @@ figure:hover img {
 		display: grid;
 		grid-template-columns: 16px 1fr minmax(auto, 784px) 1fr 16px;
 		grid-row-gap: 16px;
+        margin: 16px 0 0 0;
 	}
 	aside > * {
 		grid-column: 3;

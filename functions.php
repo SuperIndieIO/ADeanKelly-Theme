@@ -97,6 +97,7 @@ function ADKThemeSettings($wp_customize) {
 	$wp_customize->add_setting('ADKThemeAdUnits-Sidebar');
 	
 	//Add Social Media Settings to the Customizer
+    $wp_customize->add_setting('ADKThemeSocialMedia-Youtube');
 	$wp_customize->add_setting('ADKThemeSocialMedia-Twitter');
 	$wp_customize->add_setting('ADKThemeSocialMedia-Facebook');
 	$wp_customize->add_setting('ADKThemeSocialMedia-Tumblr');
@@ -257,9 +258,20 @@ function ADKThemeSettings($wp_customize) {
 			'input_attrs' => array(
          		'placeholder' => __( '/12345/TopLevelAdUnit/LowerLevelAdUnit' ),),
 		) ) );
-	
+    
+    
+	//Add Youtube Social Media
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeSocialMedia-Youtube',
+		array(
+			'type' => 'text',
+			'label' => 'Youtube',
+			'description' => 'Youtube Account',
+			'section' => 'ADKThemeSocialMedia',
+			'settings' => 'ADKThemeSocialMedia-Youtube',
+		) ) );
+    
 	//Add Twitter Social Media
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeSocial',
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeSocialMedia-Twitter',
 		array(
 			'type' => 'text',
 			'label' => 'Twitter',
