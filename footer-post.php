@@ -1,3 +1,6 @@
+<!--Custom Theme Code-->
+<?php echo get_theme_mod('ADKThemeFooterCode-Before'); ?>
+
 <!--Defer Image Load JS-->
 <script>
 	function init() {
@@ -79,3 +82,6 @@
 	  document.getElementsByTagName("head")[0].appendChild(script2);
 	});
 </script>
+
+<!--Custom Theme Code-->
+<?php echo get_theme_mod('ADKThemeFooterCode-After'); ?>

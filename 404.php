@@ -70,6 +70,7 @@
             <p>Here are a few recent articles to check out.</p>
         </main>
         <footer>
+            <?php get_footer('home'); ?>
             <?php get_footer(); ?>
         </footer>
     </body>

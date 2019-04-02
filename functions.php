@@ -36,32 +36,42 @@ function ADKThemeSettings($wp_customize) {
 		'description' => '',
 		'priority' => 1,
 	));
+    //Add Footer Section
+	$wp_customize->add_section('ADKThemeFooterCode', array(
+		'title' => 'Footer Code [ADK Theme]',
+		'description' => '',
+		'priority' => 2,
+	));
 	
 	//Add Schema.org Section
 	$wp_customize->add_section('ADKThemeDesign', array(
 		'title' => 'Design Info [ADK Theme]',
 		'description' => '',
-		'priority' => 2,
+		'priority' => 3,
 	));
 	
 	//Add Ad Unit Section
 	$wp_customize->add_section('ADKThemeAdUnits', array(
 		'title' => 'Ad Units [ADK Theme]',
 		'description' => '',
-		'priority' => 3,
+		'priority' => 4,
 	));
 	
 	//Add Social Media Section
 	$wp_customize->add_section('ADKThemeSocialMedia', array(
 		'title' => 'Social Media [ADK Theme]',
 		'description' => '',
-		'priority' => 4,
+		'priority' => 5,
 	));
 	
 	//Add Head Settings to the Customizer
 	$wp_customize->add_setting('ADKThemeHeadCode-GoogleMeta');
 	$wp_customize->add_setting('ADKThemeHeadCode-MicrosoftMeta');
 	$wp_customize->add_setting('ADKThemeHeadCode-Additional', array('default' => '<!--No Additional Head Code-->'));
+    
+    //Add Footer Settings to the Customizer
+	$wp_customize->add_setting('ADKThemeFooterCode-Before', array('default' => '<!--No Additional Head Code-->'));
+	$wp_customize->add_setting('ADKThemeFooterCode-After', array('default' => '<!--No Additional Head Code-->'));
 	
 	//Add Design Settings to the Customizer
 	$wp_customize->add_setting('ADKThemeDesign-BackgroundHex',    
@@ -133,6 +143,27 @@ function ADKThemeSettings($wp_customize) {
 			'description' => 'Add additional code to the <head>',
 			'section' => 'ADKThemeHeadCode',
 			'settings' => 'ADKThemeHeadCode-Additional',
+		) ) );
+    
+    
+    //Add Control to Add Aditional Footer Code
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeFooterCode-Before',
+		array(
+			'type' => 'textarea',
+			'label' => 'Additional <footer> Code',
+			'description' => 'Add additional code to the <footer>',
+			'section' => 'ADKThemeFooterCode',
+			'settings' => 'ADKThemeFooterCode-Before',
+		) ) );
+    
+    //Add Control to Add Aditional Footer Code
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeFooterCode-After',
+		array(
+			'type' => 'textarea',
+			'label' => 'Additional <footer> Code',
+			'description' => 'Add additional code to the <footer>',
+			'section' => 'ADKThemeFooterCode',
+			'settings' => 'ADKThemeFooterCode-After',
 		) ) );
 	
 	//Add Control to Change Background Color

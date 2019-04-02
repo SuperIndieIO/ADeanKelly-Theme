@@ -35,6 +35,7 @@
         </article>
     </main>
     <footer>
+        <?php get_footer('home'); ?>
         <?php get_footer(); ?>
     </footer>
 </body>

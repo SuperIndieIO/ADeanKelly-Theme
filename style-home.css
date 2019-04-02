@@ -23,8 +23,8 @@ figure {
 figure * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-transition: all 0.55s ease;
-	transition: all 0.55s ease;
+	-webkit-transition: transform 0.55s ease;
+	transition: transform 0.55s ease;
 }
 figure img {
 	max-width: 100%;

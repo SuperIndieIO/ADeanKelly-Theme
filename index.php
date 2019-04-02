@@ -45,6 +45,7 @@
 	<?php $posttype++ ?>
 	<?php endwhile; endif; ?>
 </main>
-<?php get_footer('home'); ?>
+    <?php get_footer('home'); ?>
+    <?php get_footer(); ?>
 	</body>
 </html>
