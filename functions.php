@@ -426,4 +426,23 @@ function ADKContacts( $contactmethods ) {
 }
 add_filter('user_contactmethods','ADKContacts', 10, 1);
 
+define( 'AMP_QUERY_VAR', apply_filters( 'amp_query_var', 'amp' ) );
+add_rewrite_endpoint( AMP_QUERY_VAR, EP_PERMALINK );
+add_filter( 'template_include', 'amp_page_template', 99 );
+function amp_page_template( $template ) {
+    if( get_query_var( AMP_QUERY_VAR, false ) !== false ) {
+        if ( is_single() ) {
+            $template = get_template_directory() .  '/single-amp.php';
+        } 
+    }
+    return $template;
+}
+add_filter( 'amp_post_template_file', 'xyz_amp_set_custom_template', 10, 3 );
+function xyz_amp_set_custom_template( $file, $type, $post ) {
+	if ( 'single' === $type ) {
+		$file = dirname( __FILE__ ) . '/single-amp.php';
+	}
+	return $file;
+}
+
 ?>
