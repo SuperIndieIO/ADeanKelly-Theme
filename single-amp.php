@@ -19,7 +19,25 @@
             <h1 id='OV-PostHeadline' itemprop='headline'><?php echo get_the_title(); ?></h1>
             <h2 id='OV-PostSubHeadline'><?php echo(get_the_excerpt()); ?></h2>
             <div id='OV-PostAuthor' itemprop='author'><a href='<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>'><?php the_author(); ?></a> | <a href='https://www.twitter.com/<?php the_author_meta( twitter ); ?>'>@<?php the_author_meta( twitter ); ?></a> <p id='OV-PostDate' itemprop='datePublished'><?php the_time("M j, Y"); ?></p></div>
-            <?php echo $this->get( 'post_amp_content' ); // amphtml content; no kses ?>
+            <?php $text = $this->get( 'post_amp_content' ); ?>
+            <?php $array = explode("</p>", $text); $slot = 1; ?>
+            <?php $my_tags = get_the_tags(); foreach ( $my_tags as $tag ) { $tag_names[] = urlencode($tag->name); } $the_tags = json_encode($tag_names); $the_tags = str_replace('+', '_', $the_tags); ?>
+            <?php for($i = 0; $i < sizeof($array); $i++) { 
+                $targeting = array('slot'=>$slot, 'tag'=>$the_tags);
+                if (in_array($i, array(2,5,8,11))) {
+                    $slot++;
+                    echo $array[$i].'</p>
+                    <amp-ad width=320 height=100
+                        type="doubleclick"
+                        data-slot="/205549772/OtakuVoice/InArticle"
+                        data-multi-size="320x50,300x250"
+                        data-multi-size-validation="false"
+                        json= {"targeting":{"slot":"'.$slot.'","tag":'; echo $the_tags; ', "category":'; echo '}}>
+                        <div placeholder></div>
+                        <div fallback></div>
+                    </amp-ad>';
+                } else {
+                    echo $array[$i]."</p><!--NothingAdded-->"; }}?>
         
             <!--Social media sharing link-->
                 <div id='OV-PostSocialMedia'>

@@ -157,6 +157,22 @@
             margin: 0 6px;
             border-radius: 50%;
             }
+        /*Embed-Container*/
+.embed-container, .wp-embed-aspect-16-9, .wp-block-embed-youtube {
+	position: relative;
+	margin: 1em 0 1em 0;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	max-width: 100%;
+}
+.embed-container iframe, .embed-container object, .embed-container embed, .wp-block-embed-youtube iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
     </style>
     <style amp-boilerplate> body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 	

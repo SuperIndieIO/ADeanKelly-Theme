@@ -212,7 +212,7 @@ figure:hover img {
 	transform: scale(1.1);
 }
 /*Embed-Container*/
-.embed-container {
+.embed-container, .wp-embed-aspect-16-9 {
 	position: relative;
 	margin: 1em 0 1em 0;
 	padding-bottom: 56.25%;
@@ -220,7 +220,7 @@ figure:hover img {
 	overflow: hidden;
 	max-width: 100%;
 }
-.embed-container iframe, .embed-container object, .embed-container embed {
+.embed-container iframe, .embed-container object, .embed-container embed, .wp-embed-aspect-16-9 iframe {
 	position: absolute;
 	top: 0;
 	left: 0;
