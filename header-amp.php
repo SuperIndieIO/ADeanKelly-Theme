@@ -5,15 +5,14 @@
     <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-	<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 
     <!--Styles-->
     <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/favicon-96x96.ico" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1"> 
-    <meta name='theme-color' content='#00796B' />
+    <meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
     <link rel="canonical" href='<?php echo get_the_permalink(); ?>'>
     
 	<!--AMP Styles-->
@@ -29,7 +28,7 @@
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Roboto';
         }
-        p, a {
+        p, a, time {
             font-family: 'Open Sans', sans-serif;
         }
         a {
@@ -43,45 +42,40 @@
             display: grid;
             grid-template-columns: 1fr;
         }
-        #OV-AMPHeader > img {
-            margin: 8px auto;
-            background-color: #00796B;
-        }
-        #OV-AMPHeader-IMG {
-            margin: 8px 8px 3px 8px;
-        }
-        #OV-PostBody {
+        article {
             margin: 0 16px;
         }
-        #OV-PostHeadline {
-            margin: 16px 0;
-            color: #484848;
-            font-weight: 900;
+        h1 {
+            margin: 12px 0 4px 0;
+            color: #333333;
+            font-size: 2.5em;
+            line-height: 1em;
+            font-family: "Roboto:900", sans-serif;
         }
-        #OV-PostSubHeadline {
+        h2 {
             margin: 8px 0;
             color: #757575;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             font-style: italic;
         }
-        #OV-PostAuthor {
+        #post-author {
             margin: 16px 0;
             padding: 6px 0;
             border-top: #757575 1px solid;
             border-bottom: #757575 1px solid;
             font-weight: 600;
         }
-        #OV-PostAuthor > a {
+        #post-author > a {
             color: #484848;
             text-decoration: none;
             }
-        #OV-PostDate {
+        #post-date {
             margin: 0;
             color: #484848;
             float: right;
         }
-        #OV-BodyText {
+        article {
             color: #484848;
             font-weight: 400;
         }
@@ -125,22 +119,11 @@
             text-align: center;
             }
         .header-logo {
-            height: 72px;
-            width: 360px;
-            margin: 16px auto;
+            margin: 0 auto;
             display: block;
         }
         .featured-image {
-            margin: 0 8px;
             border-radius: 4px;
-        }
-        .embed-container {
-            height: 0;
-            padding-bottom: 56.25%;
-        }
-        .embed-container amp-iframe {
-            height: 0;
-            padding-bottom: 56.25%;
         }
         /*Social Media Classes*/
         .social-image {
@@ -158,21 +141,21 @@
             border-radius: 50%;
             }
         /*Embed-Container*/
-.embed-container, .wp-embed-aspect-16-9, .wp-block-embed-youtube {
-	position: relative;
-	margin: 1em 0 1em 0;
-	padding-bottom: 56.25%;
-	height: 0;
-	overflow: hidden;
-	max-width: 100%;
-}
-.embed-container iframe, .embed-container object, .embed-container embed, .wp-block-embed-youtube iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
+        .embed-container, .wp-embed-aspect-16-9, .wp-block-embed-youtube {
+            position: relative;
+            margin: 1em 0 1em 0;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .embed-container iframe, .embed-container object, .embed-container embed, .wp-block-embed-youtube iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
     <style amp-boilerplate> body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 	
@@ -203,21 +186,22 @@
          "@id": "<?php echo get_the_permalink(); ?>"
       	},
 	  "publisher" : {
-	  	"@type" : "Organization",
-    	"name" : "Otaku Voice",
-		"url" : "https://otakuvoice.com",
+		"@type" : "Organization",
+		"name" : "<?php echo get_bloginfo('name'); ?>",
+		"description" : "<?php echo get_bloginfo("description"); ?>",
+		"url" : "<?php echo esc_url( home_url( '/' ) ); ?>",
 		"logo" : {
-            "@type": "ImageObject",
-            "name": "Otaku Voice Logo",
-            "width": "64",
-            "height": "64",
-            "url": "<?php echo get_template_directory_uri(); ?>/img/ov-logo-64.png"
-        	},
-		"sameas" : [
-			"https://twitter.com/OtakuVoice",
-			"https://facebook.com/TheOtakuVoice",
-			"https://theotakuvoice.tumblr.com"
-  			]
+			"@type": "ImageObject",
+			"name": "<?php echo get_bloginfo('name'); ?> Logo",
+			"width": "640",
+			"height": "128",
+			"url": "<?php $headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); echo wp_get_attachment_url( $headerlogo ); ?>"
+			},
+			"sameas" : [
+				"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",
+				"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>"
+				"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"
+				]
 		}
 	}
 	</script>

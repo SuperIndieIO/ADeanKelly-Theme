@@ -83,21 +83,22 @@
          "@id": "<?php echo get_the_permalink(); ?>"
       	},
 	  "publisher" : {
-	  	"@type" : "Organization",
-    	"name" : "Otaku Voice",
-		"url" : "https://otakuvoice.com",
+		"@type" : "Organization",
+		"name" : "<?php echo get_bloginfo('name'); ?>",
+		"description" : "<?php echo get_bloginfo("description"); ?>",
+		"url" : "<?php echo esc_url( home_url( '/' ) ); ?>",
 		"logo" : {
-            "@type": "ImageObject",
-            "name": "Otaku Voice Logo",
-            "width": "64",
-            "height": "64",
-            "url": "<?php bloginfo('template_url'); ?>/img/ov-logo-64.png"
-        	},
-		"sameas" : [
-			"https://twitter.com/OtakuVoice",
-			"https://facebook.com/TheOtakuVoice",
-			"https://theotakuvoice.tumblr.com"
-  			]
+			"@type": "ImageObject",
+			"name": "<?php echo get_bloginfo('name'); ?> Logo",
+			"width": "640",
+			"height": "128",
+			"url": "<?php $headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); echo wp_get_attachment_url( $headerlogo ); ?>"
+			},
+			"sameas" : [
+				"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",
+				"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>"
+				"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"
+				]
 		}
 	}
 	</script>
