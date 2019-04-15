@@ -63,18 +63,39 @@
         </aside>
     </main>
     <footer>
-        <div id='OV-FooterSocialIcons'>
-                <a href="https://twitter.com/otakuvoice" target='_blank'>
-                <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/twitter.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
-                
-                <a href="https://facebook.com/theotakuvoice" target='_blank'>
-                <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/facebook.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
-                
-                <a href="https://theotakuvoice.tumblr.com" target='_blank'>
-                <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/tumblr.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
-            </div>
+        <section id='footer-section'>
+        <?php $menuparams = array(
+          'menu'            => 'footer-menu',
+          'container'       => '',
+          'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+          'depth'           => 0,
+        ); ?>
+        <?php wp_nav_menu( $menuparams ); ?>
         
-
+        <section id='footer-social'>
+            <?php if (get_theme_mod( 'ADKThemeSocialMedia-Youtube' )) : ?>
+            <a href="https://youtube.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Youtube' ); ?>" target='_blank'>
+            <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/youtube.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
+            <?php endif; ?>
+            
+            <?php if (get_theme_mod( 'ADKThemeSocialMedia-Twitter' )) : ?>
+            <a href="https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>" target='_blank'>
+            <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/twitter.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
+            <?php endif; ?>
+                
+            <?php if (get_theme_mod( 'ADKThemeSocialMedia-Facebook' )) : ?>
+            <a href="https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>" target='_blank'>
+            <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/facebook.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
+            <?php endif; ?>
+                
+            <?php if (get_theme_mod( 'ADKThemeSocialMedia-Tumblr' )) : ?>
+            <a href="https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>" target='_blank'>
+            <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/tumblr.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
+            <?php endif; ?>
+            </section>
+            
+            <amp-img id='alt-logo' src='<?php $footerlogo = get_theme_mod( 'ADKThemeDesign-Footer' ); echo wp_get_attachment_url( $footerlogo ); ?>'/>
+        </section>
     </footer>
                 <!--Analytics-->
 

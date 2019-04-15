@@ -97,22 +97,57 @@
             
         }
         /*Footer IDs */
-        #OV-FooterLogo {
-            display: block;
-            margin: 8px auto;
-            }
-        #OV-FooterInfo {
-            display: table;
-            margin: 8px auto;
-            }
-        #OV-FooterInfo > a {
-            display: inline-table;
-            margin: 0 8px;
-            color: #484848;
+        footer {
+            display: grid;
+            width: 100%;
+            margin: 16px 0 0 0;
+            padding: 16px 0;
+            min-height: 32px;
+            grid-template-columns: 1fr minmax(auto, 760px) 1fr;
+            background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+            background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+            background: linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+        }
+        #footer-section {
+            display: grid;
+            grid-column: 2;
+            grid-template-columns: auto auto auto;
+            grid-gap: 32px;
+            justify-content: end;
+            align-content: center;
+        }
+        nav#menu-footer-menu {
+            display: grid;
+            grid-auto-columns: max-content;
+            grid-column-gap: 16px;
+            grid-template-rows: auto auto auto;
+            grid-auto-flow: column dense;
+        }
+        #alt-logo {
+            max-height: 64px;
+        }
+        .menu-item {
+            list-style-type: none;
+            font-size: 0.8em;
+            font-family: 'Noto Sans', Arial, sans-serif;
+            line-height: 1.6em;
+        }
+        .menu-item a {
+            color: #ffffff;
             text-decoration: none;
-            font-family: 'Open Sans', sans-serif;
             }
-        #OV-FooterSocialIcons {
+        #social-media-follow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .social-image-follow {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin: 0 6px;
+            border-radius: 50%;
+            }
+        #footer-social {
             display: inline-block;
             padding: 8px 0 1px 0;
             width: 100%;
@@ -173,7 +208,7 @@
 	  "author" : {
 		"@type" : "Person",
 		"name" : "<?php echo get_the_author_meta( 'user_nicename' ); ?>",
-		"sameas" : "https://twitter.com/<?php the_author_meta( twitter ); ?>"
+        "sameas" : "https://twitter.com/<?php the_author_meta( 'twitter' ); ?>"
 		},
 	  "datePublished" : "<?php the_time("M j, Y"); ?>",
 	  "dateModified" : "<?php the_time("M j, Y"); ?>",
@@ -197,11 +232,7 @@
 			"height": "128",
 			"url": "<?php $headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); echo wp_get_attachment_url( $headerlogo ); ?>"
 			},
-			"sameas" : [
-				"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",
-				"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>"
-				"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"
-				]
+			"sameas" : [ <?php if (get_theme_mod( 'ADKThemeSocialMedia-Youtube' )) : ?>"https://youtube.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Youtube' ); ?>",<?php endif; ?><?php if (get_theme_mod( 'ADKThemeSocialMedia-Twitter' )) : ?>"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",<?php endif; ?><?php if (get_theme_mod( 'ADKThemeSocialMedia-Facebook' )) : ?>"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>",<?php endif; ?><?php if (get_theme_mod( 'ADKThemeSocialMedia-Tumblr' )) : ?>"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"<?php endif; ?>]
 		}
 	}
 	</script>

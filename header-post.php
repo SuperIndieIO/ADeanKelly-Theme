@@ -65,10 +65,10 @@
 	  "author" : {
 		"@type" : "Person",
 		"name" : "<?php echo get_the_author_meta( 'user_nicename' ); ?>",
-		"sameas" : "https://twitter.com/<?php the_author_meta( twitter ); ?>"
+		"sameas" : "https://twitter.com/<?php the_author_meta( 'twitter' ); ?>"
 		},
-	  "datePublished" : "<?php the_time("c"); ?>",
-	  "dateModified" : "<?php the_modified_time("c"); ?>",
+	  "datePublished" : "<?php the_time("M j, Y"); ?>",
+	  "dateModified" : "<?php the_time("M j, Y"); ?>",
 	  "image" : {
 	    "@type" : "ImageObject",
 	  	"url" : "<?php echo $thumb[0] ?>",
@@ -94,11 +94,7 @@
 			"height": "128",
 			"url": "<?php $headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); echo wp_get_attachment_url( $headerlogo ); ?>"
 			},
-			"sameas" : [
-				"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",
-				"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>"
-				"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"
-				]
+			"sameas" : [ <?php if (get_theme_mod( 'ADKThemeSocialMedia-Youtube' )) : ?>"https://youtube.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Youtube' ); ?>",<?php endif; ?><?php if (get_theme_mod( 'ADKThemeSocialMedia-Twitter' )) : ?>"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",<?php endif; ?><?php if (get_theme_mod( 'ADKThemeSocialMedia-Facebook' )) : ?>"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>",<?php endif; ?><?php if (get_theme_mod( 'ADKThemeSocialMedia-Tumblr' )) : ?>"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"<?php endif; ?>]
 		}
 	}
 	</script>
