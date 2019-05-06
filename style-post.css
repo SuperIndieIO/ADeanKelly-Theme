@@ -253,6 +253,12 @@ figure:hover img {
 		top: 408px;
 		margin: 0;
 	}
+    .large-picture {
+        grid-column: 3 / 6;
+    }
+    .large-sidebar {
+        margin-top: 16px;
+    }
 	.related-category {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
@@ -288,6 +294,16 @@ figure:hover img {
 	aside > * {
 		grid-column: 3;
 	}
+    .large-picture {
+        display: grid;
+        grid-template-columns: 16px 1fr minmax(auto, 784px) 1fr 16px;
+    }
+    .large-sidebar {
+        margin-top: 16px;
+    }
+    .large-picture > * {
+        grid-column: 3;
+    }
 	.related-category {
 		grid-template-columns: 1fr 1fr 1fr;
 	}

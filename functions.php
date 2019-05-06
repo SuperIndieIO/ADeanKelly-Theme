@@ -42,26 +42,33 @@ function ADKThemeSettings($wp_customize) {
 		'description' => '',
 		'priority' => 2,
 	));
+    
+    //Add Footer Section
+	$wp_customize->add_section('ADKThemeAMPCode', array(
+		'title' => 'AMP Code [ADK Theme]',
+		'description' => '',
+		'priority' => 3,
+	));
 	
 	//Add Schema.org Section
 	$wp_customize->add_section('ADKThemeDesign', array(
 		'title' => 'Design Info [ADK Theme]',
 		'description' => '',
-		'priority' => 3,
+		'priority' => 4,
 	));
 	
 	//Add Ad Unit Section
 	$wp_customize->add_section('ADKThemeAdUnits', array(
 		'title' => 'Ad Units [ADK Theme]',
 		'description' => '',
-		'priority' => 4,
+		'priority' => 5,
 	));
 	
 	//Add Social Media Section
 	$wp_customize->add_section('ADKThemeSocialMedia', array(
 		'title' => 'Social Media [ADK Theme]',
 		'description' => '',
-		'priority' => 5,
+		'priority' => 6,
 	));
 	
 	//Add Head Settings to the Customizer
@@ -101,6 +108,10 @@ function ADKThemeSettings($wp_customize) {
       		'default' => '#2c5364',
       		'transport' => 'refresh',
       		'sanitize_callback' => 'sanitize_hex_color'));
+    
+    //Add Footer Settings to the Customizer
+	$wp_customize->add_setting('ADKThemeAMPCode-Before', array('default' => '<!--No Additional AMP Code-->'));
+	$wp_customize->add_setting('ADKThemeAMPCode-After', array('default' => '<!--No Additional AMP Code-->'));
 	
 	//Add Ad Unit Settings to the Customizer
 	$wp_customize->add_setting('ADKThemeAdUnits-InArticle');
@@ -264,6 +275,26 @@ function ADKThemeSettings($wp_customize) {
 				'frame_title' => __( 'Select Footer' ),
 				'frame_button' => __( 'Choose Footer' ),
       		)
+		) ) );
+    
+    //Add Control to Add Aditional AMP Footer Code
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAMPCode-Before',
+		array(
+			'type' => 'textarea',
+			'label' => 'Additional AMP <footer> Code',
+			'description' => 'Add additional code to the AMP <footer>',
+			'section' => 'ADKThemeAMPCode',
+			'settings' => 'ADKThemeAMPCode-Before',
+		) ) );
+    
+    //Add Control to Add Aditional AMP Footer Code
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAMPCode-After',
+		array(
+			'type' => 'textarea',
+			'label' => 'Additional AMP <footer> Code',
+			'description' => 'Add additional code to the AMP <footer>',
+			'section' => 'ADKThemeAMPCode',
+			'settings' => 'ADKThemeAMPCode-After',
 		) ) );
 	
 	//Add Control to In-Article Ad Units

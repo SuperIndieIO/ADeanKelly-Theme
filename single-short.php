@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Medium Article Template with Image
+Template Name: Short Article Template without Image
 Template Post Type: post
 */
 ?>
@@ -18,16 +18,7 @@ Template Post Type: post
 	</header>
 	<main>
 		<!--Wordpress Loop Code-->
-		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id(); $thumbarray = array('postx','postl','postm','posts'); $i = 0; ?>
-			<?php foreach ($thumbarray as $imgsize) { $imgnum[$i] = wp_get_attachment_url($thumbid, $imgsize); $i++; } ?>
 		<article>
-			<picture>
-				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[3] ?>'>
-				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[2] ?>'>
-				<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
-				<source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>
-				<img src='<?php echo $imgnum[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
-			</picture>
 			<h1><?php echo get_the_title(); ?></h1>
 			<h2><?php echo(get_the_excerpt()); ?></h2>
 			<section id='post-author'>
@@ -75,7 +66,6 @@ Template Post Type: post
 			</section>
 		</article>
 		<aside>
-			<div class='sidebar-advertising'></div>
 			<div class='related-tag'>
 					<?php wp_reset_query(); ?>
 					<?php //for use in the loop, list 2 post titles related to first tag on current post

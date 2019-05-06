@@ -148,8 +148,8 @@
             border-radius: 50%;
             }
         #footer-social {
-            display: inline-block;
-            padding: 8px 0 1px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             width: 100%;
             text-align: center;
             }

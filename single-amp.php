@@ -32,7 +32,7 @@
             $targeting = array('slot'=>$slot, 'tag'=>$the_tags);
             if (in_array($i, array(1,4,7,10,16,21,27)) && $i < sizeof($array)) {
                 echo $array[$i].'</p>
-                <amp-ad width=320 height=100
+                <amp-ad layout="responsive" width=320 height=100
                     type="doubleclick"
                     data-slot="'; echo get_theme_mod("ADKThemeAdUnits-InArticle");
                     echo '" data-multi-size="320x50,300x250"
@@ -63,6 +63,9 @@
         </aside>
     </main>
     <footer>
+        <!--Custom Theme Code-->
+        <?php echo get_theme_mod('ADKThemeAMPCode-Before'); ?>
+        
         <section id='footer-section'>
         <?php $menuparams = array(
           'menu'            => 'footer-menu',
@@ -96,6 +99,9 @@
             
             <amp-img id='alt-logo' src='<?php $footerlogo = get_theme_mod( 'ADKThemeDesign-Footer' ); echo wp_get_attachment_url( $footerlogo ); ?>'/>
         </section>
+        
+        <!--Custom Theme Code-->
+        <?php echo get_theme_mod('ADKThemeAMPCode-After'); ?>
     </footer>
                 <!--Analytics-->
 
