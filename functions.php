@@ -93,6 +93,7 @@ function ADKThemeSettings($wp_customize) {
       		'sanitize_callback' => 'sanitize_hex_color'));
 	$wp_customize->add_setting('ADKThemeDesign-Header');
 	$wp_customize->add_setting('ADKThemeDesign-Footer');
+    $wp_customize->add_setting('ADKThemeDesign-Favicon');
 	$wp_customize->add_setting('ADKThemeDesign-TextBackgroundColorAlpha',
 		array(
       		'default' => '#0F2027',
@@ -258,8 +259,8 @@ function ADKThemeSettings($wp_customize) {
 	// Add a control to upload the logo
 	$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'ADKThemeDesign-Footer',
 		array(
-			'label' => 'Upload Header Image',
-			'description' => 'Upload a 640x128 Sized Image',
+			'label' => 'Upload Footer Image',
+			'description' => 'Upload a 128x128 Sized Image',
 			'section' => 'ADKThemeDesign',
 			'settings' => 'ADKThemeDesign-Footer',
 			'flex_width'  => false, // Allow any width, making the specified value recommended. False by default.
@@ -274,6 +275,28 @@ function ADKThemeSettings($wp_customize) {
 			 	'placeholder' => __( 'No footer selected' ),
 				'frame_title' => __( 'Select Footer' ),
 				'frame_button' => __( 'Choose Footer' ),
+      		)
+		) ) );
+    
+    // Add a control to upload the logo
+	$wp_customize->add_control( new WP_Customize_Cropped_Image_Control( $wp_customize, 'ADKThemeDesign-Favicon',
+		array(
+			'label' => 'Upload Favicon Image',
+			'description' => 'Upload a 96x96 Sized Image',
+			'section' => 'ADKThemeDesign',
+			'settings' => 'ADKThemeDesign-Favicon',
+			'flex_width'  => false, // Allow any width, making the specified value recommended. False by default.
+    		'flex_height' => false, // Require the resulting image to be exactly as tall as the height attribute (default).
+    		'width'       => 96,
+    		'height'      => 96,
+			'button_labels' => array( 
+         		'select' => __( 'Select Favicon' ),
+         		'change' => __( 'Change Favicon' ),
+				'remove' => __( 'Remove' ),
+				'default' => __( 'Default' ),
+			 	'placeholder' => __( 'No favicon selected' ),
+				'frame_title' => __( 'Select Favicon' ),
+				'frame_button' => __( 'Choose Favicon' ),
       		)
 		) ) );
     
@@ -475,5 +498,10 @@ function xyz_amp_set_custom_template( $file, $type, $post ) {
 	}
 	return $file;
 }
+
+/** Standard Article Template Naming Feature **/
+add_filter('default_page_template_title', function() {
+    return __('Article Template w/ Image', 'article');
+});
 
 ?>

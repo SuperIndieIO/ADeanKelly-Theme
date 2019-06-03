@@ -1,9 +1,4 @@
-<?php
-/*
-Template Name: Medium Article Template with Image
-Template Post Type: post
-*/
-?>
+<?php ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +13,15 @@ Template Post Type: post
 	</header>
 	<main>
 		<!--Wordpress Loop Code-->
-		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id(); $thumbarray = array('postx','postl','postm','posts'); $i = 0; ?>
-			<?php foreach ($thumbarray as $imgsize) { $imgnum[$i] = wp_get_attachment_url($thumbid, $imgsize); $i++; } ?>
+		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id($post->ID); $thumbarray = array('postl','postm','posts'); $imgnum = array(); ?>
+			<?php foreach ($thumbarray as $i) { $src = wp_get_attachment_image_src($thumbid, $i); $imgnum[] = $src[0];}; ?>
 		<article>
 			<picture>
-				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[3] ?>'>
-				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[2] ?>'>
+				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[2] ?>'>
+				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[1] ?>'>
 				<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
 				<source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>
-				<img src='<?php echo $imgnum[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
+				<img src='<?php echo $imgnum[2] ?>' alt='<?php $img_alt = get_post_meta($thumbid, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
 			</picture>
 			<h1><?php echo get_the_title(); ?></h1>
 			<h2><?php echo(get_the_excerpt()); ?></h2>

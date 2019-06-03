@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Short Article Template without Image
+Template Name: Short Article Template w/out Image
 Template Post Type: post
 */
 ?>

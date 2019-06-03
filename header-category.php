@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 
-<link rel="icon" type="image/png" href="<?php echo get_bloginfo( 'wpurl' ); ?>/images/favicon.png">
+<link rel="icon" type="image/png" href="<?php $favicon = get_theme_mod( 'ADKThemeDesign-Favicon' ); echo wp_get_attachment_url( $favicon ); ?>">
 <meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
 
 <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>

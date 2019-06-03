@@ -1,8 +1,7 @@
 <?php /*
-Template Name: Long Article Template with Image
+Template Name: Long Article Template w/ Image
 Template Post Type: post
 */
-get_header('post');
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,15 +17,15 @@ get_header('post');
 	</header>
 	<main>
 		<!--Wordpress Loop Code-->
-		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id(); $thumbarray = array('postx','postl','postm','posts'); $i = 0; ?>
-			<?php foreach ($thumbarray as $imgsize) { $imgnum[$i] = wp_get_attachment_url($thumbid, $imgsize); $i++; } ?>
-        <picture class='large-picture'>
-            <source media='(max-width: 479px)' srcset='<?php echo $imgnum[3] ?>'>
-            <source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[2] ?>'>
-            <source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
-            <source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>
-            <img src='<?php echo $imgnum[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
-        </picture>
+		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id($post->ID); $thumbarray = array('postl','postm','posts'); $imgnum = array(); ?>
+			<?php foreach ($thumbarray as $i) { $src = wp_get_attachment_image_src($thumbid, $i); $imgnum[] = $src[0];}; ?>
+			<picture>
+				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[2] ?>'>
+				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[1] ?>'>
+				<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
+				<source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>
+				<img src='<?php echo $imgnum[2] ?>' alt='<?php $img_alt = get_post_meta($thumbid, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
+			</picture>
         <article>
 			<h1><?php echo get_the_title(); ?></h1>
 			<h2><?php echo(get_the_excerpt()); ?></h2>
@@ -78,6 +77,52 @@ get_header('post');
 			<div class='sidebar-advertising'></div>
 			<div class='related-tag'>
 					<?php wp_reset_query(); ?>
+					<?php //for use in the loop, list 2 post titles related to first tag on current post
+						$backup = $post;  // backup the current object
+						$tags = wp_get_post_tags($post->ID);
+						$tagIDs = array();
+						if ($tags) {
+							$tagcount = count($tags);
+							for ($i = 0; $i < $tagcount; $i++) {
+								$tagIDs[$i] = $tags[$i]->term_id;
+							}
+							$args=array(
+								'tag__in' => $tagIDs,
+								'post__not_in' => array($post->ID),
+								'showposts'=> 2,
+								'caller_get_posts'=>1
+							);
+							$my_query = new WP_Query($args);
+							if( $my_query->have_posts() ) {
+								while ($my_query->have_posts()) : $my_query->the_post(); ?>
+					<?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '' ); ?>
+					<?php $desktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
+					<?php $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' ); ?>
+					<?php $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3s' ); ?>
+
+					<figure>
+						<picture>
+							<source media="(max-width: 640px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $mobile[0] ?>'>
+							<source media="(min-width: 641px) and (max-width: 959px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $tablet[0] ?>'>
+							<source media="(min-width: 960px)" srcset='<?php echo $desktop[0] ?>'>
+							<img src='<?php echo $thumb[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
+						</picture>
+						<figcaption>
+						<h3><?php echo get_the_title(); ?></h3>
+							</figcaption>
+						<a href='<?php echo get_the_permalink(); ?>'>
+					</a>
+				</figure>				
+					 <?php endwhile;
+						} else { ?><!--Put Something Here-->
+					<?php }
+					}
+					$post = $backup;  // copy it back
+					wp_reset_query(); // to use the original query again
+					?>
+				</div>
+			<div class='sidebar-advertising'></div>
+            <div class='related-tag'>
 					<?php //for use in the loop, list 2 post titles related to first tag on current post
 						$backup = $post;  // backup the current object
 						$tags = wp_get_post_tags($post->ID);
