@@ -39,7 +39,7 @@ Template Post Type: post
 			<?php the_content(); ?>
 			<!--Social media sharing link-->
 			<section id='social-media'>
-			<a href="http://twitter.com/share" onclick="TrackSocialShare('Twitter');" target='_blank'>
+			<a href="https://twitter.com/intent/tweet" onclick="TrackSocialShare('Twitter');" target='_blank'>
 				<img src='<?php bloginfo('template_url'); ?>/social-icons/twitter.svg' class='social-image-share' alt='Twitter Logo' /></a>
 
 			<a href='https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>' onclick="TrackSocialShare('Facebook');" target='_blank'>

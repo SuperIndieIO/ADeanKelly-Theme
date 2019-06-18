@@ -63,6 +63,9 @@
 <!--Load jQuery CDN-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
 
+<!--Load Page Analytics -->
+<script src='<?php bloginfo('template_url'); ?>/js/page.js'></script>
+
 <!--Load Ad Unit Variable Settings from Customizer-->
 <script>
 	var GlobalInArticle = '<?php echo get_theme_mod("ADKThemeAdUnits-InArticle"); ?>';
@@ -71,6 +74,7 @@
 
 <!--Bot Detection Script-->
 <script src='<?php bloginfo('template_url'); ?>/js/batman.min.js'></script>
+
 <script>
 	botDetect.onUser(function() {
 	  console.log('User is not a bot');
@@ -81,6 +85,16 @@
 	  script2.src = '<?php bloginfo('template_url'); ?>/js/sidebar.js';
 	  document.getElementsByTagName("head")[0].appendChild(script2);
 	});
+</script>
+
+<!--Track Outbound Links-->
+<script>
+    var TrackSocialFollow = function(platform) {
+        gtag('event', platform + ' follow', {'event_category' : 'Social Follow', 'event_label' : platform, 'value' : '1'});
+    }
+    var TrackSocialShare = function(platform) {
+        gtag('event', platform + ' share', {'event_category' : 'Social Share', 'event_label' : platform, 'value' : '1'});
+    }
 </script>
 
 <!--Custom Theme Code-->
