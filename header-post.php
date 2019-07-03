@@ -99,5 +99,10 @@
 }
 </script>
 
+<!--Enable Advertising-->
+<script type="application/javascript">
+    var ArticleAdvertising = true;
+    var SidebarAdvertising = true;
+</script>
 <!--Custom Theme Code-->
 <?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>

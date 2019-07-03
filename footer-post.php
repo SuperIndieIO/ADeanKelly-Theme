@@ -77,13 +77,14 @@
 
 <script>
 	botDetect.onUser(function() {
-	  console.log('User is not a bot');
+    if (ArticleAdvertising) {
 	  var script = document.createElement('script');
 	  script.src = '<?php bloginfo('template_url'); ?>/js/in-article.js';
-	  document.getElementsByTagName("head")[0].appendChild(script);
+	  document.getElementsByTagName("head")[0].appendChild(script); }
+    if (SidebarAdvertising) {
 	  var script2 = document.createElement('script');
 	  script2.src = '<?php bloginfo('template_url'); ?>/js/sidebar.js';
-	  document.getElementsByTagName("head")[0].appendChild(script2);
+	  document.getElementsByTagName("head")[0].appendChild(script2); }
 	});
 </script>
 

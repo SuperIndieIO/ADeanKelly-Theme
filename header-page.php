@@ -92,11 +92,11 @@
         "height": "64",
         "url": "<?php bloginfo('template_url'); ?>/img/ov-logo-64.png"
         },
-    "sameas" : [
-        "https://twitter.com/OtakuVoice",
-        "https://facebook.com/TheOtakuVoice",
-        "https://theotakuvoice.tumblr.com"
-        ]
+    "sameas" : [   
+        <?php if (get_theme_mod( 'ADKThemeSocialMedia-Youtube' )) : ?>"https://youtube.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Youtube' ); ?>",<?php endif; ?>
+        <?php if (get_theme_mod( 'ADKThemeSocialMedia-Twitter' )) : ?>"https://twitter.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' ); ?>",<?php endif; ?>
+        <?php if (get_theme_mod( 'ADKThemeSocialMedia-Facebook' )) : ?>"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>",<?php endif; ?>
+        <?php if (get_theme_mod( 'ADKThemeSocialMedia-Tumblr' )) : ?>"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"<?php endif; ?>]
     }
 }
 </script>

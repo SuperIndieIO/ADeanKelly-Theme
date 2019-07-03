@@ -96,8 +96,6 @@
             <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/tumblr.svg' class='social-image-follow' layout='fixed' height='24' width='24'/></a>
             <?php endif; ?>
             </section>
-            
-            <amp-img id='alt-logo' src='<?php $footerlogo = get_theme_mod( 'ADKThemeDesign-Footer' ); echo wp_get_attachment_url( $footerlogo ); ?>'/>
         </section>
         
         <!--Custom Theme Code-->
