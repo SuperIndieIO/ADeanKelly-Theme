@@ -13,7 +13,7 @@
             }
         </style>
         <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
-        <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style-404.css'/>
+        <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-404.css'/>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 
@@ -66,9 +66,9 @@
         </header>
         <main>
             <h1>404</h1>
-            <p>Sorry, We couldn't find the page you were looking for.</p>
-            <p>Here are a few recent articles to check out.</p>
-            <aside>
+            <p>Sorry. We couldn't find the page you were looking for just now.<br>
+            Here are a few recent articles to check out instead.</p>
+            <section id='Articles'>
                 <?php query_posts( 'posts_per_page=6' ); ?>
                 <?php while ( have_posts() ) : the_post(); ?>
                 <?php $post = get_the_ID(); ?>
@@ -77,7 +77,7 @@
                 <?php $sdesktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $imagesize[1] ); ?>
                 <?php $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $imagesize[2] ); ?>
                 <?php $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $imagesize[3] ); ?>
-                <figure class='<?php echo $classname[$postnumber]; ?>'>
+                <figure class='ADK-SmallArticle'>
 				<picture>
 					<source media="(min-width: 961px)" srcset='<?php echo $xdesktop[0] ?>'>
 					<source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $sdesktop[0] ?>'>
@@ -87,17 +87,16 @@
 				</picture>
 				<figcaption>
 					<h3><?php echo get_the_title(); ?></h3>
-					<p><?php echo(get_the_excerpt()); ?></p>
 				</figcaption>
 				<a href='<?php echo get_the_permalink(); ?>'>
 				</a>
 			</figure>
             <?php endwhile; ?>
-            </aside>
+            </section>
         </main>
         <footer>
-            <?php get_footer('home'); ?>
-            <?php get_footer(); ?>
+            <?php get_template_part( 'footer/footer', '404' ); ?>
+			<?php get_template_part( 'footer/footer' ); ?>
         </footer>
     </body>
 </html>

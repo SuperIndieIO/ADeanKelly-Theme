@@ -27,6 +27,11 @@ add_image_size( '32/9l', 960, 270, true );
 add_image_size( '32/9m', 640, 180, true );
 add_image_size( '32/9s', 480, 135, true );
 
+add_image_size( '4/3x', 1280, 960, true );
+add_image_size( '4/3l', 960, 720, true );
+add_image_size( '4/3m', 640, 480, true );
+add_image_size( '4/3s', 480, 360, true );
+
 //Customizer Theme Settings
 function ADKThemeSettings($wp_customize) {
 	
@@ -503,5 +508,95 @@ function xyz_amp_set_custom_template( $file, $type, $post ) {
 add_filter('default_page_template_title', function() {
     return __('Article Template w/ Image', 'article');
 });
+
+add_action( 'wp_ajax_load_more_posts', 'load_more_posts' );
+add_action( 'wp_ajax_nopriv_load_more_posts', 'load_more_posts' );
+
+function load_more_posts(){
+    global $post;
+    $args = array('post_type'=>'post', 'posts_per_page' => $_POST['posts_per_page'], 'offset'=> $_POST['offset'], 'cat' => $_POST['category'], 'tag__in' => $_POST['tag']);
+    $rst=[];
+    $posts=[];
+    $query = new WP_Query($args);
+    if($query->have_posts()):
+        while($query->have_posts()):$query->the_post();
+            if ( has_post_thumbnail($post) ) {
+                $thumb_id = get_post_thumbnail_id($post->ID);
+                $thumb_src = wp_get_attachment_image_src($thumb_id, '16/9x', false );
+                $thumb_alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
+            } else {
+                $thumb_src[0] = get_bloginfo( 'template_url' ) . '/default/default.jpg';
+                $thumb_alt = 'Default Image';
+            }
+            $catList = ''; 
+            foreach((get_the_category()) as $cat) {
+                    $catID = get_cat_ID( $cat->cat_name );
+                    if(!empty($catList)) { $catList .= ' / '; } 
+                    $catList .= $cat->cat_name; 
+            }
+            $posts = array ('imgsrc' => $thumb_src,'imgalt' => $thumb_alt, 'category' => $catList, 'headline' => get_the_title(), 'url' => get_the_permalink());
+            $rst[] = $posts;
+        endwhile;
+        wp_reset_postdata();
+        $offset = $_POST['offset']+$_POST['posts_per_page'];
+    endif;
+    wp_send_json_success(array('post'=>$rst, 'offset'=>$offset));
+}
+
+function createPost( $postID, $postClass, $postnumber) {
+    $thumb_id = get_post_thumbnail_id($postID);
+    $imagesizesxlarge = array('8/3x', '16/9s', '16/9s', '16/9s', '16/9l', '16/l', '16/9s', '16/9s', '16/9l', '16/9l', '16/9l');
+    $imagesizeslarge = array ('8/3l', '16/9m', '8/3l', '16/9m', '8/3l', '16/9m', '16/9m', '16/9m', '8/3l', '16/9m');
+    $imagesizesmedium = array ('16/9m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m');
+    $imagesizessmall = array ('4/3m', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s');
+    $xdesktop = wp_get_attachment_image_src($thumb_id, $imagesizesxlarge[$postnumber] );
+    $sdesktop = wp_get_attachment_image_src($thumb_id, $imagesizeslarge[$postnumber] );
+    $tablet = wp_get_attachment_image_src($thumb_id, $imagesizesmedium[$postnumber] );
+    $mobile = wp_get_attachment_image_src($thumb_id, $imagesizessmall[$postnumber] );
+    $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
+    ?><figure class='<?php echo $postClass[$postnumber]; ?>'>
+        <picture>
+            <source media="(min-width: 961px)" srcset='<?php echo $xdesktop[0] ?>'>
+            <source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $sdesktop[0] ?>'>
+            <source media="(max-width: 639px) and (min-width: 480px)" srcset='<?php echo $tablet[0] ?>'>
+            <source media="(max-width: 479px)" srcset='<?php echo $mobile[0] ?>'>
+            <img class='ADK-PostLargeImage' src='<?php echo $mobile[0] ?>' alt='<?php echo $alt; ?>'>
+        </picture>
+        <span><p><?php $catList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($catList)) { $catList .= ' / '; } $catList .= $cat->cat_name; } echo $catList; ?></p></span>
+        <figcaption>
+            <h3><?php echo get_the_title(); ?></h3>
+        </figcaption>
+        <a href='<?php echo get_the_permalink(); ?>'>
+        </a>
+    </figure><?php
+}
+
+function createArchivePost( $postID, $postClass, $postnumber) {
+    $thumb_id = get_post_thumbnail_id($postID);
+    $imagesizesxlarge = array('4/3x', '16/9s', '16/9s', '16/9s', '16/9s', '16/9m', '16/9m', '16/9s', '16/9m', '16/9m', '16/9m');
+    $imagesizeslarge = array ('8/3l', '16/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '16/9m');
+    $imagesizesmedium = array ('16/9m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m');
+    $imagesizessmall = array ('4/3m', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s');
+    $xdesktop = wp_get_attachment_image_src($thumb_id, $imagesizesxlarge[$postnumber] );
+    $sdesktop = wp_get_attachment_image_src($thumb_id, $imagesizeslarge[$postnumber] );
+    $tablet = wp_get_attachment_image_src($thumb_id, $imagesizesmedium[$postnumber] );
+    $mobile = wp_get_attachment_image_src($thumb_id, $imagesizessmall[$postnumber] );
+    $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
+    ?><figure class='<?php echo $postClass[$postnumber]; ?>'>
+        <picture>
+            <source media="(min-width: 961px)" srcset='<?php echo $xdesktop[0] ?>'>
+            <source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $sdesktop[0] ?>'>
+            <source media="(max-width: 639px) and (min-width: 480px)" srcset='<?php echo $tablet[0] ?>'>
+            <source media="(max-width: 479px)" srcset='<?php echo $mobile[0] ?>'>
+            <img class='ADK-PostLargeImage' src='<?php echo $mobile[0] ?>' alt='<?php echo $alt; ?>'>
+        </picture>
+        <span><p><?php $catList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($catList)) { $catList .= ' / '; } $catList .= $cat->cat_name; } echo $catList; ?></p></span>
+        <figcaption>
+            <h3><?php echo get_the_title(); ?></h3>
+        </figcaption>
+        <a href='<?php echo get_the_permalink(); ?>'>
+        </a>
+    </figure><?php
+}
 
 ?>

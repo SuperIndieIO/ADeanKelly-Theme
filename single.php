@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php get_header('post'); ?>
+	<?php get_template_part( 'header/header', 'post' ); ?>
 </head>
 <body>
 	<header>
@@ -62,7 +62,7 @@
 								<img src='<?php echo $desktop[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt; ?>'>
 							</picture>
 							<figcaption>
-								<h3><?php echo get_the_title(); ?></h3>
+								<h5><?php echo get_the_title(); ?></h5>
 							</figcaption>
 							<a href='<?php echo get_the_permalink(); ?>'></a>
 						</figure>
@@ -121,8 +121,8 @@
 		</aside>
 	</main>
 	<footer>
-		<?php get_footer('post'); ?>
-		<?php get_footer(); ?>
+		<?php get_template_part( 'footer/footer', 'post' ); ?>
+        <?php get_template_part( 'footer/footer' ); ?>
 	</footer>
 </body>
 </html>

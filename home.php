@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php get_header('home'); ?>
+		<?php get_template_part( 'header/header', 'home' ); ?>
 	</head>
 	<body>
 		<header>
@@ -12,41 +12,20 @@
 			</a>
 		</header>
 		<main>
-		<?php $postnumber = 0; ?>
-		<?php $classname = array('ADK-TopArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle'); ?>
-		<?php $imagesizesxlarge = array('8/3x', '16/9s', '16/9s', '16/9s', '32/9l', '16/9m', '16/9m', '32/9l', '16/9m', '16/9m', '16/9m'); ?>
-		<?php $imagesizeslarge = array ('8/3l', '16/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '16/9m'); ?>
-		<?php $imagesizesmedium = array ('16/9m', '8/3m', '8/3m', '8/3m', '16/9m', '8/3m', '8/3m', '16/9m', '8/3m', '8/3m', '8/3m', '8/3m'); ?>
-		<?php $imagesizessmall = array ('16/9s', '8/3s', '8/3s', '8/3s', '16/9s', '8/3s', '8/3s', '16/9s', '8/3s', '8/3s', '8/3s', '8/3s'); ?>
+        <?php $postnumber = 0; ?>
+		<?php $classname = array('ADK-TopArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle'); ?>
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-			<?php $post = get_the_ID(); $thumb_id = get_post_thumbnail_id($post->ID) ?>
-			<?php $xdesktop = wp_get_attachment_image_src($thumb_id, $imagesizesxlarge[$postnumber] ); ?>
-			<?php $sdesktop = wp_get_attachment_image_src($thumb_id, $imagesizeslarge[$postnumber] ); ?>
-			<?php $tablet = wp_get_attachment_image_src($thumb_id, $imagesizesmedium[$postnumber] ); ?>
-			<?php $mobile = wp_get_attachment_image_src($thumb_id, $imagesizessmall[$postnumber] ); ?>
-            <?php $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true); ?>
-			<figure class='<?php echo $classname[$postnumber]; ?>'>
-				<picture>
-					<source media="(min-width: 961px)" srcset='<?php echo $xdesktop[0] ?>'>
-					<source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $sdesktop[0] ?>'>
-					<source media="(max-width: 639px) and (min-width: 480px)" srcset='<?php echo $tablet[0] ?>'>
-					<source media="(max-width: 479px)" srcset='<?php echo $mobile[0] ?>'>
-					<img class='ADK-PostLargeImage' src='<?php echo $mobile[0] ?>' alt='<?php echo $alt; ?>'>
-				</picture>
-				<figcaption>
-					<h3><?php echo get_the_title(); ?></h3>
-					<p><?php echo(get_the_excerpt()); ?></p>
-				</figcaption>
-				<a href='<?php echo get_the_permalink(); ?>'>
-				</a>
-			</figure>
+            <?php $post = get_the_ID(); ?>
+			<?php createPost($post->ID, $classname, $postnumber); ?>
 			<?php $postnumber++ ?>
 		<?php endwhile; endif; ?>
 		</main>
-		<section id='page-nav'><?php numeric_posts_nav(); ?></section>
+        <section id='load-more-section'>
+            <button id='load-more' onclick='AjaxLoadMore(ajaxurl)'>Load More</button>
+        </section>
 		<footer>
-			<?php get_footer('home'); ?>
-			<?php get_footer(); ?>
+			<?php get_template_part( 'footer/footer', 'home' ); ?>
+			<?php get_template_part( 'footer/footer' ); ?>
 		</footer>
 	</body>
 </html>

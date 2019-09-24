@@ -1,11 +1,11 @@
 /*Home-Page Stylesheet*/
 
-/*The Otaku Project Featured Post*/
 main {
 	display: grid;
 	max-width: 1280px;
 	grid-gap: 16px;
 	grid-auto-flow: row dense;
+    padding: 0;
 }
 picture > img {
 	width: 100%;
@@ -34,41 +34,52 @@ figure img {
 	object-fit: cover;
 }
 figure figcaption {
-	width: 100%;
+	max-width: 100%;
 	padding: 12px;
 	position: absolute;
 	bottom: 0;
 	z-index: 1;
 }
+
 figure figcaption::before {
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	top: 8px;
+	bottom: 8px;
+	left: 8px;
+	right: 8px;
 	content: '';
 	background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
 	background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
 	background: linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	opacity: 0.70;
+    border-radius: 4px;
+	opacity: 0.85;
 	z-index: -1;
+}
+
+figure span {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px;
+	background: var(--text-bgc-omega, #2c5364);
+    border-radius: 2px;
+	opacity: 0.95;
 }
 figure h3 {
 	display: inline-block;
 	font-family: 'Roboto', Arial, sans-serif;
 	font-weight: 700;
 	letter-spacing: -0.4px;
-	margin-bottom: 4px;
+    padding: 8px;
 }
 figure p {
+    display: inline-block;
 	max-height: 3.2em;
-	font-size: 0.8em;
-	font-family: 'Noto Sans', Arial, sans-serif;
-	line-height: 1.6em;
+	font-size: 0.75em;
+	font-family: 'Roboto', Arial, sans-serif;
+	font-weight: 700;
+	letter-spacing: -0.4px;
 	margin: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 figure a {
 	left: 0;
@@ -81,6 +92,15 @@ figure a {
 figure:hover img {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
+}
+
+#tax-section h1 {
+    display: block;
+    color: #333333;
+	font-family: 'Roboto:900', Arial, sans-serif;
+    font-size: 3em;
+    text-align: center;
+    padding: 8px; 
 }
 
 /*Navigation */
@@ -117,22 +137,41 @@ section#page-nav {
 }
 
 /*Screen Sizing*/
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 961px) {
 	main {
 		margin: 0 auto;
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 	.ADK-TopArticle {
 		grid-column: span 3;
+        font-size: 2em;
 	}
+    .ADK-4x3Article {
+        grid-column: span 2;
+        grid-row: span 3;
+        font-size: 2em;
+    }
 	.ADK-MidArticle {
 		grid-column: span 2;
+        grid-row: span 2;
+        font-size: 1.5em;
 	}
+    .ADK-TallArticle {
+        grid-row: span 2;
+    }
+    .ADK-SmallArticle {
+        font-size: 1em;
+    }
 	footer {
-		grid-template-columns: 1fr 1280px 1fr;
+		grid-template-columns: 1fr min(1fr 1280px) 1fr;
 	}
 }
-@media only screen and (min-width: 641px) and (max-width: 1280px) {
+@media only screen and (min-width:641px) and (max-width: 1312px) {
+    main {
+        margin: 0 16px;
+    }
+}
+@media only screen and (min-width: 641px) and (max-width: 960px) {
 	main {
 		margin: 0 16px;
 		grid-template-columns: 1fr 1fr;
@@ -140,6 +179,9 @@ section#page-nav {
 	.ADK-TopArticle {
 		grid-column: span 2;
 	}
+    .ADK-4x3Article {
+        grid-column: span 2;
+    }
 	.ADK-MidArticle {
 		grid-column: span 2;
 	}

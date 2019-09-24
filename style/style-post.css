@@ -2,6 +2,7 @@
 main {
 	display: grid;
 	grid-auto-flow: row dense;
+    padding: 0 0 112px 0;
 }
 a {
 	color: #212121;
@@ -180,7 +181,7 @@ figure figcaption::before {
 	opacity: 0.70;
 	z-index: -1;
 }
-figure h3 {
+figure h3, figure h5 {
 	display: inline-block;
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 1em;

@@ -9,8 +9,8 @@
 		background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
 	}
 </style>
-<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css?r=<?php echo time(); ?>'/>
-<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style-home.css?r=<?php echo time(); ?>'/>
+<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
+<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-home.css'/>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 
@@ -62,6 +62,12 @@
                 <?php if (get_theme_mod( 'ADKThemeSocialMedia-Tumblr' )) : ?>"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"<?php endif; ?>]
 		}
 }
+</script>
+
+<!--Check Page Type-->
+<script type='text/javascript'>
+    var PageCategory = '<?php echo get_queried_object()->term_id; ?>';
+    var PageType = 'category';
 </script>
 
 <!--Custom Theme Code-->

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<?php get_header('page'); ?>
+	<?php get_template_part( 'header/header', 'page' ); ?>
 </head>
 <body>
 	<header>
@@ -35,8 +35,8 @@
         </article>
     </main>
     <footer>
-        <?php get_footer('home'); ?>
-        <?php get_footer(); ?>
+        <?php get_template_part( 'footer/footer', 'home' ); ?>
+        <?php get_template_part( 'footer/footer' ); ?>
     </footer>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php get_header('archive'); ?>
+		<?php get_template_part( 'header/header', 'archive' ); ?>
 	</head>
 	<body>
 		<header>
@@ -43,10 +43,12 @@
 		<?php endwhile; endif; ?>
 			
 		</main>
-		<section id='page-nav'><?php numeric_posts_nav(); ?></section>
+        <section id='load-more-section'>
+            <button id='load-more' onclick='AjaxLoadMore(ajaxurl)'>Load More</button>
+        </section>
 		<footer>
-			<?php get_footer('home'); ?>
-			<?php get_footer(); ?>
+			<?php get_template_part( 'footer/footer', 'home' ); ?>
+			<?php get_template_part( 'footer/footer' ); ?>
 		</footer>
 	</body>
 </html>

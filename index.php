@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<?php get_header('home'); ?>
+		<?php get_template_part( 'header/header', 'home' ); ?>
 	</head>
 <body>
 	<header>
@@ -45,7 +45,12 @@
 	<?php $posttype++ ?>
 	<?php endwhile; endif; ?>
 </main>
-    <?php get_footer('home'); ?>
-    <?php get_footer(); ?>
+            <section id='load-more-section'>
+            <button id='load-more' onclick='AjaxLoadMore(ajaxurl)'>Load More</button>
+        </section>
+    <footer>
+        <?php get_template_part( 'footer/footer', 'home' ); ?>
+        <?php get_template_part( 'footer/footer' ); ?>
+    </footer>
 	</body>
 </html>

@@ -13,7 +13,7 @@
 </script>
 
 <!--Load Google Ad Manager Code-->
-<script async='async' src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+<script async="async" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
 <script>
 	var googletag = googletag || {};
 	googletag.cmd = googletag.cmd || [];
@@ -58,6 +58,17 @@
 		var Value = KeyValuePairs[Object.keys(KeyValuePairs)[i]];
 		googletag.pubads().setTargeting(Key, Value);
 	  }});
+    
+    //Send Category and Tags back to Ad Manager
+    var ContentCategory = ['<?php foreach((get_the_category()) as $cat) { $catContent[] = $cat->cat_name; } echo implode( "', '", $catContent ); ?>'];
+    var ContentTag = ['<?php foreach((get_the_tags()) as $tag) { $tagContent[] = $tag->name; } echo implode( "', '", $tagContent ); ?>'];
+    var ContentAuthor = '<?php echo get_the_author_meta( 'ID' ) ?>';
+    googletag.cmd.push(function() {
+            googletag.pubads().setTargeting('category', ContentCategory);
+            googletag.pubads().setTargeting('tag', ContentTag);
+            googletag.pubads().setTargeting('author', ContentAuthor);
+            googletag.pubads().setTargeting('page', 'postpage');
+        });
   </script>
 
 <!--Load jQuery CDN-->
@@ -79,7 +90,7 @@
 	botDetect.onUser(function() {
     if (ArticleAdvertising) {
 	  var script = document.createElement('script');
-	  script.src = '<?php bloginfo('template_url'); ?>/js/in-article.js';
+	  script.src = '<?php bloginfo('template_url'); ?>/js/article.js';
 	  document.getElementsByTagName("head")[0].appendChild(script); }
     if (SidebarAdvertising) {
 	  var script2 = document.createElement('script');

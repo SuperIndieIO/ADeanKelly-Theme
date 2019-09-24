@@ -1,6 +1,6 @@
 <!doctype HTML>
 <html amp lang="en">
-<?php get_header('amp'); ?>
+<?php get_template_part( 'header/header', 'amp' ); ?>
 <body>
     <!--Wordpress loop code-->
         <?php $post = get_the_ID(); ?>
