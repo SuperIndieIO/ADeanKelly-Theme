@@ -63,8 +63,8 @@ function ADKThemeSettings($wp_customize) {
 	));
 	
 	//Add Ad Unit Section
-	$wp_customize->add_section('ADKThemeAdUnits', array(
-		'title' => 'Ad Units [ADK Theme]',
+	$wp_customize->add_section('ADKThemeAdvertising', array(
+		'title' => 'Advertising [ADK Theme]',
 		'description' => '',
 		'priority' => 5,
 	));
@@ -120,9 +120,10 @@ function ADKThemeSettings($wp_customize) {
 	$wp_customize->add_setting('ADKThemeAMPCode-After', array('default' => '<!--No Additional AMP Code-->'));
 	
 	//Add Ad Unit Settings to the Customizer
-	$wp_customize->add_setting('ADKThemeAdUnits-InArticle');
-	$wp_customize->add_setting('ADKThemeAdUnits-Sidebar');
-	
+	$wp_customize->add_setting('ADKThemeAdvertising-InArticle');
+	$wp_customize->add_setting('ADKThemeAdvertising-Sidebar');
+	$wp_customize->add_setting('ADKThemeAdvertising-AdsenseChannels');
+    
 	//Add Social Media Settings to the Customizer
     $wp_customize->add_setting('ADKThemeSocialMedia-Youtube');
 	$wp_customize->add_setting('ADKThemeSocialMedia-Twitter');
@@ -326,27 +327,37 @@ function ADKThemeSettings($wp_customize) {
 		) ) );
 	
 	//Add Control to In-Article Ad Units
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdUnits-InArticle',
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdvertising-InArticle',
 		array(
 			'type' => 'text',
 			'label' => 'In-Article Ad Units',
 			'description' => 'Adsense In-Article Ad Unit',
-			'section' => 'ADKThemeAdUnits',
-			'settings' => 'ADKThemeAdUnits-InArticle',
+			'section' => 'ADKThemeAdvertising',
+			'settings' => 'ADKThemeAdvertising-InArticle',
 			'input_attrs' => array(
          		'placeholder' => __( '/12345/TopLevelAdUnit/LowerLevelAdUnit' ),),
 		) ) );
 	
 	//Add Control to In-Article Ad Units
-	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdUnits-Sidebar',
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdvertising-Sidebar',
 		array(
 			'type' => 'text',
 			'label' => 'Sidebar Ad Units',
 			'description' => 'Adsense In-Sidebar Ad Unit',
-			'section' => 'ADKThemeAdUnits',
-			'settings' => 'ADKThemeAdUnits-Sidebar',
+			'section' => 'ADKThemeAdvertising',
+			'settings' => 'ADKThemeAdvertising-Sidebar',
 			'input_attrs' => array(
          		'placeholder' => __( '/12345/TopLevelAdUnit/LowerLevelAdUnit' ),),
+		) ) );
+    
+    //Add Adsense Custom Channels
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeAdvertising-AdsenseChannels',
+		array(
+			'type' => 'text',
+			'label' => 'Adsense Custom Channels',
+			'description' => 'Custom channel tracking in Adsense',
+			'section' => 'ADKThemeAdvertising',
+			'settings' => 'ADKThemeAdvertising-AdsenseChannels',
 		) ) );
     
     

@@ -79,8 +79,9 @@
 
 <!--Load Ad Unit Variable Settings from Customizer-->
 <script>
-	var GlobalInArticle = '<?php echo get_theme_mod("ADKThemeAdUnits-InArticle"); ?>';
-	var GlobalSidebar = '<?php echo get_theme_mod("ADKThemeAdUnits-Sidebar"); ?>';
+	var GlobalInArticle = '<?php echo get_theme_mod("ADKThemeAdvertising-InArticle"); ?>';
+	var GlobalSidebar = '<?php echo get_theme_mod("ADKThemeAdvertising-Sidebar"); ?>';
+    var AdsenseChannels = <?php echo get_theme_mod("ADKThemeAdvertising-AdsenseChannels"); ?>;
 </script>
 
 <!--Bot Detection Script-->
@@ -88,15 +89,10 @@
 
 <script>
 	botDetect.onUser(function() {
-    if (ArticleAdvertising) {
 	  var script = document.createElement('script');
 	  script.src = '<?php bloginfo('template_url'); ?>/js/article.js';
-	  document.getElementsByTagName("head")[0].appendChild(script); }
-    if (SidebarAdvertising) {
-	  var script2 = document.createElement('script');
-	  script2.src = '<?php bloginfo('template_url'); ?>/js/sidebar.js';
-	  document.getElementsByTagName("head")[0].appendChild(script2); }
-	});
+	  document.getElementsByTagName("head")[0].appendChild(script);
+    });
 </script>
 
 <!--Track Outbound Links-->

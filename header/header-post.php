@@ -103,6 +103,7 @@
 <script type="application/javascript">
     var ArticleAdvertising = true;
     var SidebarAdvertising = true;
+    var CategoryList = ["<?php $categoryList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($categoryList)) { $categoryList .= '", "'; } $categoryList .= $cat->cat_name; } echo $categoryList; ?>"];
 </script>
 <!--Custom Theme Code-->
 <?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>
