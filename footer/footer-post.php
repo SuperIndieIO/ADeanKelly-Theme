@@ -72,10 +72,9 @@
   </script>
 
 <!--Load jQuery CDN-->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
 
 <!--Load Page Analytics -->
-<script src='<?php bloginfo('template_url'); ?>/js/page.js'></script>
+<script src='<?php bloginfo('template_url'); ?>/js/page.min.js'></script>
 
 <!--Load Ad Unit Variable Settings from Customizer-->
 <script>

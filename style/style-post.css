@@ -21,9 +21,6 @@ article > h2, h3, h4, h5, h6 {
 	color: #212121;
 	font-family: 'Roboto:400', sans-serif;
 }
-article > ins {
-	margin: 8px 0;
-}
 article > iframe {
 	width: 100%;
 	border-width: 0;
@@ -329,6 +326,9 @@ figure:hover img {
 	article > * {
 		grid-column: 2;
 	}
+    article > .leaderboard-adunit {
+        grid-column: span 3;
+    }
 	article > p.embed-container, .embed-container {
 		grid-column: 1 / 4;
 	}
@@ -338,6 +338,9 @@ figure:hover img {
 	aside > * {
 		margin: 16px;
 	}
+    aside > .sidebar-adunit {
+        margin: 16px 0;
+    }
 	.related-category {
 		grid-template-columns: 1fr;
 	}

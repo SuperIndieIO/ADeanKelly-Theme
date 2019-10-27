@@ -3,7 +3,6 @@ var DocumentMain = document.getElementsByTagName('main');
 var LoadingPosts = false;
 var loadMorePostsFunction;
 DocumentMain = DocumentMain[0];
-console.log(DocumentMain);
 
 function isLoading() {
     if (!LoadingPosts) {
@@ -21,7 +20,8 @@ function AjaxLoadMore(ajaxurl) {
     console.log('Offset = ' + offset);
     
     if (offset == null) {
-        console.log('Ending Load-More');
+        console.log('No more articles to load.');
+        
         return;
     }
 
@@ -48,7 +48,7 @@ function AjaxLoadMore(ajaxurl) {
             break;
         case 'archive':
             //Sending AJAX Request
-        ajaxhttp.send('action=load_more_posts&offset='+offset+'&posts_per_page='+posts_per_page);
+            ajaxhttp.send('action=load_more_posts&offset='+offset+'&posts_per_page='+posts_per_page);
             break;
         default:
             //Sending AJAX Request

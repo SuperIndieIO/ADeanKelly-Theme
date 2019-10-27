@@ -44,7 +44,7 @@
 			
 		</main>
         <section id='load-more-section'>
-            <button id='load-more' onclick='AjaxLoadMore(ajaxurl)'>Load More</button>
+            <button id='load-more' onclick='isLoading()'>Load More</button>
         </section>
 		<footer>
 			<?php get_template_part( 'footer/footer', 'home' ); ?>
