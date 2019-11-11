@@ -11,11 +11,12 @@
 </style>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-post.css'/>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
+
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>   
+<meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
 
 <link rel="icon" type="image/png" href="<?php $favicon = get_theme_mod( 'ADKThemeDesign-Favicon' ); echo wp_get_attachment_url( $favicon ); ?>">
-<meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
 
 <!--Meta Info-->
 <?php the_post(); ?><!--Gather Post Excerpt Information for Meta Tags-->  
@@ -44,7 +45,6 @@
 <meta property="article:published_time" content='<?php the_time("c"); ?>'>
 <meta property='article:modified_time' content='<?php the_modified_time("c");?>'>
 <meta property='og:site_name' content='<?php echo get_bloginfo('name'); ?>'>
-<!--TBD: <meta property='fb:app_id' content='585600295152171'>-->
 
 <!--Twitter Meta Info-->
 <meta name='twitter:card' content='summary_large_image'>
@@ -52,7 +52,7 @@
 <meta name='twitter:title' content='<?php echo get_the_title(); ?>'>
 <meta name='twitter:image' content='<?php echo $thumb[0] ?>'>
 <meta name='twitter:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
-<!--TBD: <meta name='twitter:site' content='@OtakuVoice'>-->
+<meta name='twitter:site' content='@<?php if(get_theme_mod('ADKThemeSocialMedia-Twitter')) {echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' );}; ?>'>
 <meta name='twitter:creator' content='@<?php if(the_author_meta( 'twitter' )){the_author_meta( 'twitter' );}; ?>'>
 
 <!--Schema.org JSON Markup-->

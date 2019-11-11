@@ -212,7 +212,6 @@ figure:hover img {
 /*Embed-Container*/
 .embed-container, .wp-embed-aspect-16-9 {
 	position: relative;
-	margin: 1em 0 1em 0;
 	padding-bottom: 56.25%;
 	height: 0;
 	overflow: hidden;

@@ -584,7 +584,7 @@ function createPost( $postID, $postClass, $postnumber) {
 
 function createArchivePost( $postID, $postClass, $postnumber) {
     $thumb_id = get_post_thumbnail_id($postID);
-    $imagesizesxlarge = array('4/3x', '16/9s', '16/9s', '16/9s', '16/9s', '16/9m', '16/9m', '16/9s', '16/9m', '16/9m', '16/9m');
+    $imagesizesxlarge = array('4/3l', '16/9s', '16/9s', '16/9s', '16/9s', '16/9m', '16/9m', '16/9s', '16/9m', '16/9m', '16/9m');
     $imagesizeslarge = array ('8/3l', '16/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '16/9m');
     $imagesizesmedium = array ('16/9m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m');
     $imagesizessmall = array ('4/3m', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s');

@@ -67,8 +67,8 @@ function CheckInArticleViewability() {
             googletag.cmd.push(function() {
 
 
-                var inarticlemapping = googletag.sizeMapping().addSize([760, 0], [[728, 66], [728, 90], [468, 60]]).addSize([480, 0], [[468, 60]]).addSize([0, 0], [[320, 50], [320, 100], [300, 250]]).build();
-                var AMSlot = googletag.defineSlot( GlobalInArticle, [[320, 50], [468, 60],[728, 66], [728, 90], [320, 100], [300, 250]], AdUnitID).defineSizeMapping(inarticlemapping).setTargeting('slot', k + 1 ).set('adsense_channel_ids', setChannelList).addService(googletag.pubads());
+                var inarticlemapping = googletag.sizeMapping().addSize([760, 0], [[728, 66], [728, 90], [468, 60]]).addSize([480, 0], [[468, 60], 'fluid']).addSize([0, 0], [[320, 50], [320, 100], [300, 250], 'fluid']).build();
+                var AMSlot = googletag.defineSlot( GlobalInArticle, ['fluid', [320, 50], [468, 60],[728, 66], [728, 90], [320, 100], [300, 250]], AdUnitID).defineSizeMapping(inarticlemapping).setTargeting('slot', k + 1 ).set('adsense_channel_ids', setChannelList).addService(googletag.pubads());
 
                 // Display has to be called before
                 // refresh and after the slot div is in the page.
