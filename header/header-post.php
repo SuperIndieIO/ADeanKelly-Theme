@@ -11,6 +11,8 @@
 </style>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-post.css'/>
+<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-gutenberg.css'/>
+
 
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>   
 <meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />

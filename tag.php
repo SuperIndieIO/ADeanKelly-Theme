@@ -14,11 +14,9 @@
         <section id='tax-section'>
             <h1><?php echo single_tag_title(); ?></h1>
         </section>
-		<main>    
-            <?php $postnumber = 0; ?>
-            <?php $classname = array('ADK-4x3Article', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle'); ?>
+		<main>
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                <?php $post = get_the_ID(); createArchivePost($post->ID, $classname, $postnumber); $postnumber++; ?>
+                <?php $post = get_the_ID(); createPost($post->ID); ?>
             <?php endwhile; endif; ?>
 		</main>
         <section id='load-more-section'>

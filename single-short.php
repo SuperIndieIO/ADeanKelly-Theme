@@ -44,7 +44,7 @@ Template Post Type: post
 				<img src='<?php bloginfo('template_url'); ?>/social-icons/reddit.svg' class='social-image-share' alt='Reddit Logo' /></a>
 			</section>
 			<!--Category related articles-->
-			<section class='related-category'>
+			<section class='related-category related-content'>
 				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post), 'category__not_in' => 'Featured' ) ); ?>
 				<?php if( $related ) foreach( $related as $post ) {?>
 				<?php $post = get_the_ID(); ?>
@@ -65,53 +65,10 @@ Template Post Type: post
 				<?php } wp_reset_postdata(); ?>
 			</section>
 		</article>
-		<aside>
-			<div class='related-tag'>
-					<?php wp_reset_query(); ?>
-					<?php //for use in the loop, list 2 post titles related to first tag on current post
-						$backup = $post;  // backup the current object
-						$tags = wp_get_post_tags($post->ID);
-						$tagIDs = array();
-						if ($tags) {
-							$tagcount = count($tags);
-							for ($i = 0; $i < $tagcount; $i++) {
-								$tagIDs[$i] = $tags[$i]->term_id;
-							}
-							$args=array(
-								'tag__in' => $tagIDs,
-								'post__not_in' => array($post->ID),
-								'showposts'=> 2,
-								'caller_get_posts'=>1
-							);
-							$my_query = new WP_Query($args);
-							if( $my_query->have_posts() ) {
-								while ($my_query->have_posts()) : $my_query->the_post(); ?>
-					<?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '' ); ?>
-					<?php $desktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
-					<?php $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' ); ?>
-					<?php $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3s' ); ?>
-
-					<figure>
-						<picture>
-							<source media="(max-width: 640px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $mobile[0] ?>'>
-							<source media="(min-width: 641px) and (max-width: 959px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $tablet[0] ?>'>
-							<source media="(min-width: 960px)" srcset='<?php echo $desktop[0] ?>'>
-							<img src='<?php echo $thumb[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
-						</picture>
-						<figcaption>
-						<h3><?php echo get_the_title(); ?></h3>
-							</figcaption>
-						<a href='<?php echo get_the_permalink(); ?>'>
-					</a>
-				</figure>				
-					 <?php endwhile;
-						} else { ?><!--Put Something Here-->
-					<?php }
-					}
-					$post = $backup;  // copy it back
-					wp_reset_query(); // to use the original query again
-					?>
-				</div>
+		<aside class='related-content'>
+            <div class='related-tag'>
+                <?php getRelatedPostsTag( $post->ID ); ?>
+            </div>
 			<div class='sidebar-advertising'></div>
 		</aside>
 	</main>

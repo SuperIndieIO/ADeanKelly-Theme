@@ -44,5 +44,10 @@
 }
 </script>
 
+<!--Check Page Type-->
+<script type='text/javascript'>
+    var PageType = 'archive';
+</script>
+
 <!--Custom Theme Code-->
 <?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>

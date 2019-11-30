@@ -32,6 +32,11 @@ add_image_size( '4/3l', 960, 720, true );
 add_image_size( '4/3m', 640, 480, true );
 add_image_size( '4/3s', 480, 360, true );
 
+//Add Gutenberg Theme Support
+add_theme_support( 'wp-block-styles' );
+add_theme_support( 'align-wide' );
+add_theme_support( 'responsive-embeds' );
+
 //Customizer Theme Settings
 function ADKThemeSettings($wp_customize) {
 	
@@ -80,6 +85,7 @@ function ADKThemeSettings($wp_customize) {
 	$wp_customize->add_setting('ADKThemeHeadCode-GoogleMeta');
 	$wp_customize->add_setting('ADKThemeHeadCode-MicrosoftMeta');
 	$wp_customize->add_setting('ADKThemeHeadCode-Additional', array('default' => '<!--No Additional Head Code-->'));
+    $wp_customize->add_setting('ADKThemeHeadCode-GoogleAnalytics');
     
     //Add Footer Settings to the Customizer
 	$wp_customize->add_setting('ADKThemeFooterCode-Before', array('default' => '<!--No Additional Head Code-->'));
@@ -151,6 +157,16 @@ function ADKThemeSettings($wp_customize) {
 			'description' => 'Add Verification for Microsoft Meta',
 			'section' => 'ADKThemeHeadCode',
 			'settings' => 'ADKThemeHeadCode-MicrosoftMeta',
+		) ) );
+    
+    //Add Google Analytics UA- Code to Pages
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'ADKThemeHeadCode-GoogleAnalytics',
+		array(
+			'type' => 'text',
+			'label' => 'Google Analytics UA- Code',
+			'description' => 'Add Google Analytics to all pages',
+			'section' => 'ADKThemeHeadCode',
+			'settings' => 'ADKThemeHeadCode-GoogleAnalytics',
 		) ) );
 	
 	//Add Control to Add Aditional Head Code
@@ -250,7 +266,7 @@ function ADKThemeSettings($wp_customize) {
 			'settings' => 'ADKThemeDesign-Header',
 			'flex_width'  => false, // Allow any width, making the specified value recommended. False by default.
     		'flex_height' => true, // Require the resulting image to be exactly as tall as the height attribute (default).
-    		'width'       => 640,
+    		'width'       => 1920,
     		'height'      => 128,
 			'button_labels' => array( 
          		'select' => __( 'Select Header' ),
@@ -554,26 +570,23 @@ function load_more_posts(){
     wp_send_json_success(array('post'=>$rst, 'offset'=>$offset));
 }
 
-function createPost( $postID, $postClass, $postnumber) {
+function createPost( $postID ) {
     $thumb_id = get_post_thumbnail_id($postID);
-    $imagesizesxlarge = array('8/3x', '16/9s', '16/9s', '16/9s', '16/9l', '16/l', '16/9s', '16/9s', '16/9l', '16/9l', '16/9l');
-    $imagesizeslarge = array ('8/3l', '16/9m', '8/3l', '16/9m', '8/3l', '16/9m', '16/9m', '16/9m', '8/3l', '16/9m');
-    $imagesizesmedium = array ('16/9m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m');
-    $imagesizessmall = array ('4/3m', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s');
-    $xdesktop = wp_get_attachment_image_src($thumb_id, $imagesizesxlarge[$postnumber] );
-    $sdesktop = wp_get_attachment_image_src($thumb_id, $imagesizeslarge[$postnumber] );
-    $tablet = wp_get_attachment_image_src($thumb_id, $imagesizesmedium[$postnumber] );
-    $mobile = wp_get_attachment_image_src($thumb_id, $imagesizessmall[$postnumber] );
-    $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
-    ?><figure class='<?php echo $postClass[$postnumber]; ?>'>
+
+    $xl = wp_get_attachment_image_src($thumb_id, '16/9x' );
+    $l = wp_get_attachment_image_src($thumb_id, '16/9l' );
+    $m = wp_get_attachment_image_src($thumb_id, '16/9m' );
+    $s = wp_get_attachment_image_src($thumb_id, '16/9s' );
+    $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true); ?>
+    <figure class='ADK-Article'>
         <picture>
-            <source media="(min-width: 961px)" srcset='<?php echo $xdesktop[0] ?>'>
-            <source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $sdesktop[0] ?>'>
-            <source media="(max-width: 639px) and (min-width: 480px)" srcset='<?php echo $tablet[0] ?>'>
-            <source media="(max-width: 479px)" srcset='<?php echo $mobile[0] ?>'>
-            <img class='ADK-PostLargeImage' src='<?php echo $mobile[0] ?>' alt='<?php echo $alt; ?>'>
+            <source media="(min-width: 961px)" srcset='<?php echo $xl[0] ?>'>
+            <source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $l[0] ?>'>
+            <source media="(max-width: 639px) and (min-width: 480px)" srcset='<?php echo $m[0] ?>'>
+            <source media="(max-width: 479px)" srcset='<?php echo $s[0] ?>'>
+            <img class='ADK-PostLargeImage' src='<?php echo $s[0] ?>' alt='<?php echo $alt; ?>'>
         </picture>
-        <span><p><?php $catList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($catList)) { $catList .= ' / '; } $catList .= $cat->cat_name; } echo $catList; ?></p></span>
+        <p><?php $catList = getCatList();  echo $catList; ?></p>
         <figcaption>
             <h3><?php echo get_the_title(); ?></h3>
         </figcaption>
@@ -582,32 +595,79 @@ function createPost( $postID, $postClass, $postnumber) {
     </figure><?php
 }
 
-function createArchivePost( $postID, $postClass, $postnumber) {
-    $thumb_id = get_post_thumbnail_id($postID);
-    $imagesizesxlarge = array('4/3l', '16/9s', '16/9s', '16/9s', '16/9s', '16/9m', '16/9m', '16/9s', '16/9m', '16/9m', '16/9m');
-    $imagesizeslarge = array ('8/3l', '16/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '32/9m', '16/9m', '16/9m', '16/9m');
-    $imagesizesmedium = array ('16/9m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m', '8/3m');
-    $imagesizessmall = array ('4/3m', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s', '16/9s');
-    $xdesktop = wp_get_attachment_image_src($thumb_id, $imagesizesxlarge[$postnumber] );
-    $sdesktop = wp_get_attachment_image_src($thumb_id, $imagesizeslarge[$postnumber] );
-    $tablet = wp_get_attachment_image_src($thumb_id, $imagesizesmedium[$postnumber] );
-    $mobile = wp_get_attachment_image_src($thumb_id, $imagesizessmall[$postnumber] );
-    $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true);
-    ?><figure class='<?php echo $postClass[$postnumber]; ?>'>
-        <picture>
-            <source media="(min-width: 961px)" srcset='<?php echo $xdesktop[0] ?>'>
-            <source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $sdesktop[0] ?>'>
-            <source media="(max-width: 639px) and (min-width: 480px)" srcset='<?php echo $tablet[0] ?>'>
-            <source media="(max-width: 479px)" srcset='<?php echo $mobile[0] ?>'>
-            <img class='ADK-PostLargeImage' src='<?php echo $mobile[0] ?>' alt='<?php echo $alt; ?>'>
-        </picture>
-        <span><p><?php $catList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($catList)) { $catList .= ' / '; } $catList .= $cat->cat_name; } echo $catList; ?></p></span>
-        <figcaption>
-            <h3><?php echo get_the_title(); ?></h3>
-        </figcaption>
-        <a href='<?php echo get_the_permalink(); ?>'>
-        </a>
-    </figure><?php
+function getCatList() {
+    foreach( (get_the_category()) as $cat) { 
+        $catID = get_cat_ID( $cat->cat_name ); 
+        if(!empty($catList)) { 
+            $catList .= ' / '; 
+        }
+        $catList .= $cat->cat_name; 
+    } 
+    return $catList;
+}
+
+function getRelatedPostsTag( $postID ) {
+    $backupID = $postID;
+    $tags = wp_get_post_tags( $postID );
+    
+    $related_posts = array();
+    
+    if ( $tags ) {
+        foreach ( $tags as $post_tag ) {
+            $args = array( 'tag__in' => $post_tag, 'caller_get_posts' => 1 );
+            echo $post_tag->name;
+            echo ': ';
+            $my_query = new WP_Query($args);
+            if( $my_query->have_posts() ) { while ($my_query->have_posts()) : $my_query->the_post();
+                
+                $related_posts[] = get_the_ID( $post );
+                echo get_the_ID( $post );
+                echo ', ';
+                endwhile;
+            }
+        }
+        
+        $related_posts = array_count_values( $related_posts );
+        arsort( $related_posts );
+        $related_posts = array_keys( $related_posts );
+        
+        foreach( $related_posts as $related ) {
+            echo $related;
+            echo ', ';
+        }
+        
+        $index = array_search( $backupID, $related_posts );
+        if( $index !== false ) {
+            unset( $related_posts[$index] );
+        }
+        
+        $related_posts = array_slice( $related_posts, 0, 2);
+        $args = array( 'post__in' => $related_posts, 'post__not_in' => array( $backupID->ID ), 'caller_get_posts' => 1 );
+        wp_reset_query();
+        $final_query = new WP_Query( $args );
+        
+        if( $final_query-have_posts() ){ 
+            while ( $final_query->have_posts()) : $final_query->the_post();
+            
+            $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '' );
+            $desktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' );
+            $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' );
+            $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3s' ); ?>
+
+            <figure>
+                <picture>
+                    <source media="(max-width: 640px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $mobile[0] ?>'>
+                    <source media="(min-width: 641px) and (max-width: 959px)" srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $tablet[0] ?>'>
+                    <source media="(min-width: 960px)" srcset='<?php echo $desktop[0] ?>'>
+                    <img src='<?php echo $thumb[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $new_post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
+                </picture>
+                <figcaption>
+                    <h3><?php echo get_the_title(); ?></h3>
+                </figcaption>
+                <a href='<?php echo get_the_permalink(); ?>'></a>
+            </figure><?php	endwhile;
+        }
+    }
 }
 
 ?>

@@ -12,10 +12,8 @@
 			</a>
 		</header>
 		<main>
-		<?php $postnumber = 0; ?>
-            <?php $classname = array('ADK-4x3Article', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle'); ?>
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                <?php $post = get_the_ID(); createArchivePost($post->ID, $classname, $postnumber); $postnumber++; ?>
+                <?php $post = get_the_ID(); createPost($post->ID); ?>
             <?php endwhile; endif; ?>
 		</main>
         <section id='load-more-section'>

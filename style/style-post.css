@@ -16,7 +16,7 @@ article > p {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
-article > h2, h3, h4, h5, h6 {
+article h2, h3, h4, h5, h6 {
 	margin: 8px 0;
 	color: #212121;
 	font-family: 'Roboto:400', sans-serif;
@@ -49,6 +49,7 @@ blockquote > * {
 	display: block;
 	margin: 8px 0;
 }
+
 /*Header Styles*/
 /* Main Post Styles */
 picture > img {
@@ -89,10 +90,10 @@ section#post-author > a {
 time#post-date {
 	float: right;
 }
-article > h3 {
+article h3 {
 	font-size: 24px;
 }
-article > h4, h5, h6 {
+article h4, h5, h6 {
 	font-size: 20px;
 }
 article > a {
@@ -110,6 +111,7 @@ section#social-media {
 .leaderboard-unit {
 	margin: 8px 0;
 }
+
 /*Social Media Classes*/
 .social-image-share {
 	display: inline-block;
@@ -118,6 +120,7 @@ section#social-media {
 	border-radius: 50%;
 	margin: 0 6px;
 }
+
 /*The Otaku Project Related and Sidebar Posts*/
 .related-category {
 	display: grid;
@@ -130,8 +133,9 @@ section#social-media {
 	display: grid;
 	grid-gap: 16px 16px;
 }
+
 /*Sidebar Figure Styles*/
-figure {
+.related-content figure {
 	width: 100%;
 	margin: 0;
 	color: #ffffff;
@@ -141,22 +145,22 @@ figure {
 	text-align: left;
 	border-radius: 4px;
 }
-figure * {
+.related-content figure * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	-webkit-transition: all 0.55s ease;
 	transition: all 0.55s ease;
 }
-figure img {
+.related-content figure img {
 	max-width: 100%;
 	height: 100%;
 	vertical-align: top;
 	position: relative;
 	object-fit: cover;
 }
-figure figcaption {
+.related-content figure figcaption {
 	width: 100%;
-	padding: 12px;
+	padding: 8px;
 	position: absolute;
 	font-weight: 700;
 	font-family: 'Noto Sans', Arial, sans-serif;
@@ -164,21 +168,19 @@ figure figcaption {
 	bottom: 0;
 	z-index: 1;
 }
-figure figcaption::before {
+.related-content figure figcaption::before {
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background: #700877;
+	top: 4px;
+	bottom: 4px;
+	left: 4px;
+	right: 4px;
 	content: '';
-	background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	background: linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+	background: var(--text-bgc-alpha, #0F2027);
 	opacity: 0.70;
+    border-radius: 4px;
 	z-index: -1;
 }
-figure h3, figure h5 {
+.related-content figure h3, h5 {
 	display: inline-block;
 	font-family: 'Roboto', Arial, sans-serif;
 	font-size: 1em;
@@ -187,7 +189,7 @@ figure h3, figure h5 {
 	letter-spacing: -0.4px;
 	margin: 0;
 }
-figure p {
+.related-content figure p {
 	max-height: 3.2em;
 	font-size: 0.8em;
 	font-family: 'Noto Sans', Arial, sans-serif;
@@ -197,7 +199,7 @@ figure p {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-figure a {
+.related-content figure a {
 	left: 0;
 	right: 0;
 	top: 0;
@@ -205,10 +207,11 @@ figure a {
 	position: absolute;
 	z-index: 1;
 }
-figure:hover img {
+.related-content figure:hover img {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
 }
+
 /*Embed-Container*/
 .embed-container, .wp-embed-aspect-16-9 {
 	position: relative;
@@ -224,6 +227,10 @@ figure:hover img {
 	width: 100%;
 	height: 100%;
 }
+article .twitter-tweet {
+    margin: 0 auto;
+}
+
 @media only screen and (min-width: 1153px) {
 	main {
 		grid-template-columns: 1fr 16px 784px 16px 320px 16px 1fr;

@@ -12,12 +12,9 @@
 			</a>
 		</header>
 		<main>
-        <?php $postnumber = 0; ?>
-		<?php $classname = array('ADK-TopArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle'); ?>
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
             <?php $post = get_the_ID(); ?>
-			<?php createPost($post->ID, $classname, $postnumber); ?>
-			<?php $postnumber++ ?>
+			<?php createPost( $post->ID ); ?>
 		<?php endwhile; endif; ?>
 		</main>
         <section id='load-more-section'>

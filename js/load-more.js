@@ -1,4 +1,5 @@
-var PostClass = ['ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle'];
+//var PostClass = ['ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle'];
+var PostClass = 'ADK-Article';
 var DocumentMain = document.getElementsByTagName('main');
 var LoadingPosts = false;
 var loadMorePostsFunction;
@@ -89,7 +90,7 @@ function AddPosts(posts) {
         var NewPicture = document.createElement('picture');
         var NewImg = document.createElement('img');
 
-        NewPost.className = PostClass[i];
+        NewPost.className = PostClass;
         NewHeadlineText.textContent = decodeHTML(PostInfo.headline);
         NewPostLink.href = PostInfo.url;
         NewCategoryText.textContent = PostInfo.category;

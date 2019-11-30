@@ -1,4 +1,4 @@
-/*Home-Page Stylesheet*/
+/*Archive Stylesheet*/
 
 main {
 	display: grid;
@@ -99,39 +99,6 @@ figure:hover img {
     padding: 8px; 
 }
 
-/*Navigation */
-section#page-nav {
-	text-align: center;
-}
-.navigation ul {
-    padding: 0;
-}
-.navigation li a,
-.navigation li a:hover,
-.navigation li.active a,
-.navigation li.disabled {
-    text-decoration:none;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-}
-.navigation li {
-    display: inline;
-}
-.navigation li a,
-.navigation li a:hover,
-.navigation li.active a,
-.navigation li.disabled {
-    padding: 12px 6px;
-    color: #484848;
-}
-.navigation li a:hover,
-.navigation li.active a {
-    color: #484848;
-    font-weight: 900;
-	text-decoration: underline;
-}
-
 /*Screen Sizing*/
 @media only screen and (min-width: 961px) {
 	main {
@@ -139,8 +106,9 @@ section#page-nav {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 	.ADK-Article:nth-child(1) {
-        padding-bottom: 37.5%;
-		grid-column: span 3;
+        padding-bottom: 87.5%;
+		grid-column: span 2;
+        grid-row: span 3;
         font-size: 2em;
 	}
     /*.ADK-4x3Article {
@@ -148,7 +116,7 @@ section#page-nav {
         grid-row: span 3;
         font-size: 2em;
     }*/
-	.ADK-Article:nth-child(6n+3), .ADK-Article:nth-child(6n+5) {
+	.ADK-Article:nth-child(6n+6), .ADK-Article:nth-child(6n+8) {
         padding-bottom: calc(56.25% + 8px);
 		grid-column: span 2;
         grid-row: span 2;
