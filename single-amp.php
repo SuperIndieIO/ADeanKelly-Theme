@@ -7,11 +7,11 @@
         <?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), '16/9x' ); ?>
         <?php $alt_text = get_post_meta($post->ID, '_wp_attachment_image_alt', true); ?>
     <header>
-			<a href='<?php echo esc_url( home_url( "/" ) ); ?>'>
-				<?php $headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); ?>
-				<amp-img class='header-logo' src='<?php echo wp_get_attachment_url( $headerlogo ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' height='48' width='270'/>
-			</a>
-		</header>
+        <a href='<?php echo esc_url( home_url( "/" ) ); ?>'>
+            <?php $headerlogo = get_theme_mod( 'ADKThemeDesign-Header' ); ?>
+            <amp-img class='header-logo' src='<?php echo wp_get_attachment_url( $headerlogo ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' height='48' width='270'/>
+        </a>
+    </header>
     <main>
         <!--Article Image-->
         <article>
@@ -26,23 +26,23 @@
             </time>
         </section>        
         <?php $text = $this->get( 'post_amp_content' ); ?>
-        <?php $array = explode("</p>", $text); $slot = 1; ?>
-        <?php $my_tags = get_the_tags(); foreach ( $my_tags as $tag ) { $tag_names[] = urlencode($tag->name); } $the_tags = json_encode($tag_names); $the_tags = str_replace('+', '_', $the_tags); ?>
+        <?php $array = explode("<h3>", $text); $slot = 1; ?>
+        <?php $apost = "'"; ?>
+        <?php $my_tags = get_the_tags(); foreach ( $my_tags as $tag ) { $tag_names[] = $tag->name; } $the_tags = json_encode($tag_names, JSON_HEX_AMP); ?>
+        <?php $my_cat = get_the_category(); foreach ( $my_cat as $cat ) { $cat_names[] = $cat->name; } $the_cats = json_encode( $cat_names, JSON_HEX_AMP ); ?>
         <?php for($i = 0; $i < sizeof($array); $i++) { 
             $targeting = array('slot'=>$slot, 'tag'=>$the_tags);
-            if (in_array($i, array(1,4,7,10,16,21,27)) && $i < sizeof($array)) {
-                echo $array[$i].'</p>
+                echo $array[$i].'
                 <amp-ad layout="responsive" width=320 height=100
                     type="doubleclick"
                     data-slot="'; echo get_theme_mod("ADKThemeAdUnits-InArticle");
                     echo '" data-multi-size="320x50,300x250"
                     data-multi-size-validation="false"
-                    json= {"targeting":{"slot":"'.$slot.'","tag":'; echo $the_tags; ', "category":'; echo '}}>
+                    json='.$apost.'{"targeting":{"slot":"'.$slot.'","tag":'.$the_tags.',"category":'.$the_cats.'}}'.$apost.'>
                     <div placeholder></div>
                     <div fallback></div>
-                </amp-ad>';
-                $slot++;
-            } else { echo $array[$i]."</p>";}}?>
+                </amp-ad><h3>';
+                $slot++; }?>
 
         <!--Social media sharing link-->
             <div id='OV-PostSocialMedia'>
@@ -59,8 +59,6 @@
                 <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/reddit.svg' class='social-image' layout='fixed' height='32' width='32'/></a>
             </div>
         </article>
-        <aside>
-        </aside>
     </main>
     <footer>
         <!--Custom Theme Code-->

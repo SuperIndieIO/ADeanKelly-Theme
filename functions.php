@@ -37,6 +37,13 @@ add_theme_support( 'wp-block-styles' );
 add_theme_support( 'align-wide' );
 add_theme_support( 'responsive-embeds' );
 
+add_filter( 'upload_mimes', 'adk_myme_types', 1, 1 );
+function adk_myme_types( $mime_types ) {
+  $mime_types['webp'] = 'image/webp';     // Adding .svg extension
+  
+  return $mime_types;
+}
+
 //Customizer Theme Settings
 function ADKThemeSettings($wp_customize) {
 	
@@ -615,14 +622,9 @@ function getRelatedPostsTag( $postID ) {
     if ( $tags ) {
         foreach ( $tags as $post_tag ) {
             $args = array( 'tag__in' => $post_tag, 'caller_get_posts' => 1 );
-            echo $post_tag->name;
-            echo ': ';
             $my_query = new WP_Query($args);
-            if( $my_query->have_posts() ) { while ($my_query->have_posts()) : $my_query->the_post();
-                
+            if( $my_query->have_posts() ) { while ($my_query->have_posts()) : $my_query->the_post();   
                 $related_posts[] = get_the_ID( $post );
-                echo get_the_ID( $post );
-                echo ', ';
                 endwhile;
             }
         }
@@ -630,25 +632,18 @@ function getRelatedPostsTag( $postID ) {
         $related_posts = array_count_values( $related_posts );
         arsort( $related_posts );
         $related_posts = array_keys( $related_posts );
-        
-        foreach( $related_posts as $related ) {
-            echo $related;
-            echo ', ';
-        }
-        
+
         $index = array_search( $backupID, $related_posts );
         if( $index !== false ) {
             unset( $related_posts[$index] );
         }
         
         $related_posts = array_slice( $related_posts, 0, 2);
-        $args = array( 'post__in' => $related_posts, 'post__not_in' => array( $backupID->ID ), 'caller_get_posts' => 1 );
         wp_reset_query();
+        $args = array( 'post__in' => $related_posts, 'caller_get_posts' => 1 );
         $final_query = new WP_Query( $args );
         
-        if( $final_query-have_posts() ){ 
-            while ( $final_query->have_posts()) : $final_query->the_post();
-            
+        if( $final_query->have_posts() ){ while ( $final_query->have_posts()) : $final_query->the_post();
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '' );
             $desktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' );
             $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' );

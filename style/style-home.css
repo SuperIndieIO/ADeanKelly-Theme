@@ -62,9 +62,9 @@ figure p {
 	letter-spacing: -0.4px;
 	margin: 0;
     position: absolute;
-    top: 0.25em;
-    right: 0.25em;
-    padding: 0.25em;
+    top: 0.33em;
+    right: 0.33em;
+    padding: 0.33em;
 	background: var(--text-bgc-omega, #2c5364);
     border-radius: 2px;
 	opacity: 0.95;

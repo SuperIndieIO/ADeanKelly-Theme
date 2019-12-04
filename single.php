@@ -13,11 +13,11 @@
 	</header>
 	<main>
 		<!--Wordpress Loop Code-->
-		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id($post->ID); $thumbarray = array('postl','postm','posts'); $imgnum = array(); ?>
+		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id($post->ID); $thumbarray = array('postl','postm','posts'); $imgnum = array(); $imgtype = get_post_mime_type( $thumbid ); $imgtype = explode('/', $imgtype); $imgtype = $imgtype[1]; ?>
 			<?php foreach ($thumbarray as $i) { $src = wp_get_attachment_image_src($thumbid, $i); $imgnum[] = $src[0];}; ?>
 		<article>
 			<picture>
-				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[2] ?>'>
+				<source media='(max-width: 479px)' type='image/<?php echo $imgtype; ?>' srcset='<?php echo $imgnum[2] ?>'>
 				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[1] ?>'>
 				<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
 				<source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>

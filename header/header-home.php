@@ -9,7 +9,7 @@
 		background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
 	}
 </style>
-<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css?r=<?php echo time(); ?>'/>
+<link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-home.css'/>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
