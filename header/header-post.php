@@ -18,7 +18,7 @@
 <meta name='theme-color' content='<?php echo get_theme_mod("ADKThemeDesign-ThemeColorHex"); ?>' />
 
 <link rel="icon" type="image/png" href="<?php $favicon = get_theme_mod( 'ADKThemeDesign-Favicon' ); echo wp_get_attachment_url( $favicon ); ?>">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Open+Sans:400,700&display=swap" rel="stylesheet">
 
 <!--Meta Info-->
 <?php the_post(); ?><!--Gather Post Excerpt Information for Meta Tags-->  
@@ -26,7 +26,7 @@
 <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
 <meta name='title' content='<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>'>
 <meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
-<meta name='section' content='<?php $catList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($catList)) { $catList .= ', '; } $catList .= $cat->cat_name; } echo $catList; ?>'>
+<meta name='section' content='<?php echo getCatList( ', ' ) ?>'/>
 <meta name='keywords' content='<?php $my_tags = get_the_tags(); if ( $my_tags ) { foreach ( $my_tags as $tag ) { $tag_names[] = $tag->name; } echo implode( ', ', $tag_names ); }?>'>
 <meta name='language' content='English'>
 <meta http-equiv="content-language" content="en-us">
@@ -105,7 +105,8 @@
 <script type="application/javascript">
     var ArticleAdvertising = true;
     var SidebarAdvertising = true;
-    var CategoryList = ["<?php $categoryList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($categoryList)) { $categoryList .= '", "'; } $categoryList .= $cat->cat_name; } echo $categoryList; ?>"];
+    var CategoryList = ["<?php echo getCatList('", "'); ?>"];
+    var TagList = ["<?php echo getTagList('", "'); ?>"];
 </script>
 <!--Custom Theme Code-->
 <?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>

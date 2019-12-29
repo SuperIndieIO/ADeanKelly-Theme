@@ -49,31 +49,28 @@ figure img {
 	object-fit: cover;
 }
 figure figcaption {
-	width: 100%;
-	padding: 12px;
+	max-width: 100%;
+	padding: 0.25em;
 	position: absolute;
 	bottom: 0;
-	z-index: 1;
+	z-index: 10;
 }
 figure figcaption::before {
 	position: absolute;
-	top: 8px;
-	bottom: 8px;
-	left: 8px;
-	right: 8px;
+	top: 0.25em;
+	bottom: 0.25em;
+	left: 0.25em;
+	right: 0.25em;
 	content: '';
-	background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	background: linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
+    background: var(--text-bgc-alpha, #0F2027);
     border-radius: 4px;
 	opacity: 0.85;
-	z-index: -1;
+	z-index: -10;
 }
 figure h3 {
 	display: inline-block;
-	font-family: 'Roboto', Arial, sans-serif;
+	font-family: 'Arimo', sans-serif;
 	font-weight: 700;
-	letter-spacing: -0.4px;
     padding: 8px;
 }
 figure p {
@@ -107,14 +104,16 @@ figure:hover img {
         grid-template-columns: 1fr;
     }
 }
-@media only screen and (min-width: 720px) and (max-width: 1280px) {
-    #Articles {
-        grid-template-columns: 1fr 1fr;
-    }
-}
 @media only screen and (max-width: 719px) {
     #Articles {
         grid-template-columns: 1fr;
+    }
+}
+@media only screen and (min-width: 720px) and (max-width: 1280px) {
+    #Articles {
+        grid-template-columns: 1fr 1fr;
+        max-width: 704px;
+        margin: 0 auto;
     }
 }
 @media only screen and (min-width: 480px) { 

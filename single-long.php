@@ -17,12 +17,11 @@ Template Post Type: post
 	</header>
 	<main>
 		<!--Wordpress Loop Code-->
-		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id($post->ID); $thumbarray = array('postl','postm','posts'); $imgnum = array(); ?>
+		<?php $post = get_the_ID(); $primary = $post; $thumbid = get_post_thumbnail_id($post->ID); $thumbarray = array('postxl','postm','posts'); $imgnum = array(); ?>
 			<?php foreach ($thumbarray as $i) { $src = wp_get_attachment_image_src($thumbid, $i); $imgnum[] = $src[0];}; ?>
-			<picture>
+        <picture>
 				<source media='(max-width: 479px)' srcset='<?php echo $imgnum[2] ?>'>
-				<source media='(min-width: 480px) and (max-width: 639px)' srcset='<?php echo $imgnum[1] ?>'>
-				<source media='(min-width: 640px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
+				<source media='(min-width: 480px) and (max-width: 960px)' srcset='<?php echo $imgnum[1] ?>'>
 				<source media='(min-width: 960px)' srcset='<?php echo $imgnum[0] ?>'>
 				<img src='<?php echo $imgnum[2] ?>' alt='<?php $img_alt = get_post_meta($thumbid, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
 			</picture>
@@ -76,11 +75,11 @@ Template Post Type: post
 		<aside class='large-sidebar related-content'>
 			<div class='sidebar-advertising'></div>
 			<div class='related-tag'>
-                <?php getRelatedPostsTag( $post->ID ); ?>
+                <?php getRelatedPostsTag( $post->ID, 0 ); ?>
             </div>
 			<div class='sidebar-advertising'></div>
             <div class='related-tag'>
-                <?php getRelatedPostsTag( $post->ID ); ?>
+                <?php getRelatedPostsTag( $post->ID, 2 ); ?>
             </div>
 			<div class='sidebar-advertising'></div>
 		</aside>

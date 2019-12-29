@@ -26,7 +26,7 @@ article > p {
 article > h2, h3, h4, h5, h6 {
 	margin: 8px 0;
 	color: #212121;
-	font-family: 'Roboto:400', sans-serif;
+	font-family: 'Arimo', sans-serif;
 }
 article > ins {
 	margin: 8px 0;
@@ -42,7 +42,7 @@ article > blockquote {
 	border-left: 8px solid #424242;
 	margin: 8px 0;
 	padding: 0 0 0 16px;
-	font-family: 'Roboto:400', sans-serif;
+	font-family: 'Arimo', sans-serif;
 	color: #313131;
 }
 article > figure {
@@ -80,7 +80,8 @@ article > h2 {
 	color: #757575;
 	font-style: italic;
 	font-size: 18px;
-	font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+	font-family: 'Arimo', sans-serif;
 }
 section#post-author {
 	margin: 8px 0;

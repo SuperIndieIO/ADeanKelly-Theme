@@ -4,7 +4,13 @@ Theme URI: https://adeankelly.com
 Github Theme URI: https://github.com/SuperIndieIO/ADeanKelly-Theme
 Author: A. Dean Kelly
 Description: The Theme for ADeanKelly.com
-Version: 1.03.04
+v1.04 -
+- Updated archive and index pages to ustilize the 16x9 size and begin deprecating other sizes.
+- Fixed in article advertising margins.
+- Merged in-article and sidebar advertising.
+- Various performance enhancements.
+
+Version: 1.04
 License: N/A
 Tags: ADeanKelly
 Text Domain: ADeanKelly
@@ -36,10 +42,8 @@ header {
     border: none;
     display: block;
     color: #eee;
-    background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
-	background: linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);   
-    font-family: 'Roboto', Arial, sans-serif;
+	background: var(--text-bgc-alpha, #0F2027);   
+    font-family: 'Arimo', sans-serif;
 	font-weight: 700;
     font-size: 1.5em;
     transition: all 1s;

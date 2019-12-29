@@ -112,7 +112,6 @@ wp-block-audio figcaption {
     padding-top: 50%
 }
 
-.wp-block-embed__wrapper iframe,
  .wp-block-embed.wp-embed-aspect-1-1 .wp-block-embed__wrapper iframe,
  .wp-block-embed.wp-embed-aspect-1-2 .wp-block-embed__wrapper iframe,
  .wp-block-embed.wp-embed-aspect-16-9 .wp-block-embed__wrapper iframe,
@@ -163,7 +162,7 @@ wp-block-audio figcaption {
     flex-wrap: wrap;
     list-style-type: none;
     padding: 0;
-    margin: 0
+    margin: 8px 0 0 0;
 }
 
 .blocks-gallery-grid .blocks-gallery-image,
@@ -229,8 +228,11 @@ wp-block-audio figcaption {
     padding: 40px 10px 9px;
     color: #fff;
     text-align: center;
-    font-size: 13px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, .7), rgba(0, 0, 0, .3) 70%, transparent)
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    background: linear-gradient(0deg,rgba(0,0,0,.7),rgba(0,0,0,.3) 70%,transparent);
+    box-sizing: border-box;
+    border-radius: 0 0 4px 4px;
 }
 
 .blocks-gallery-grid .blocks-gallery-image figcaption img,

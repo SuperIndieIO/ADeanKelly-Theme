@@ -35,10 +35,10 @@
 			<?php the_content(); ?>
 			<!--Social media sharing link-->
 			<section id='social-media'>
-			<a href="https://twitter.com/intent/tweet" onclick="TrackSocialShare('Twitter');" target='_blank'>
+			<a href="https://twitter.com/intent/tweet?text=<?php echo get_the_title(); ?>&url=<?php echo the_permalink(); ?>" onclick="TrackSocialShare('Twitter');" target='_blank'>
 				<img src='<?php bloginfo('template_url'); ?>/social-icons/twitter.svg' class='social-image-share' alt='Twitter Logo' /></a>
 
-			<a href='https://www.facebook.com/sharer/sharer.php?u=<?php the_permalink(); ?>' onclick="TrackSocialShare('Facebook');" target='_blank'>
+			<a href='https://www.facebook.com/sharer/sharer.php?u=<?php echo the_permalink(); ?>' onclick="TrackSocialShare('Facebook');" target='_blank'>
 				<img src='<?php bloginfo('template_url'); ?>/social-icons/facebook.svg' class='social-image-share' alt='Facebook Logo' /></a>
 
 			<a href='http://tumblr.com/widgets/share/tool?canonicalUrl=<?php echo get_the_permalink(); ?>' onclick="TrackSocialShare('Tumblr');" target='_blank'>
@@ -49,30 +49,29 @@
 			</section>
 			<!--Category related articles-->
 			<section class='related-category related-content'>
-				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post), 'category__not_in' => 'Featured' ) ); ?>
+				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post) ) ); ?>
 				<?php if( $related ) foreach( $related as $post ) {?>
 				<?php $post = get_the_ID(); ?>
 				<?php $large = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
 				<?php $small = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3m' ); ?>
 				<figure> 
-							<!--<img class='ADK-PostSmallImage' src='<?php echo $thumb[0] ?>'/>-->
-							<picture>
-								<source media='(max-width: 640px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $small[0] ?>'>
-								<source media='(min-width: 641px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $large[0] ?>'>
-								<img src='<?php echo $desktop[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt; ?>'>
-							</picture>
-							<figcaption>
-								<h5><?php echo get_the_title(); ?></h5>
-							</figcaption>
-							<a href='<?php echo get_the_permalink(); ?>'></a>
-						</figure>
+				    <picture>
+				        <source media='(max-width: 640px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $small[0] ?>'>
+				        <source media='(min-width: 641px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $large[0] ?>'>
+				        <img src='<?php echo $desktop[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt; ?>'>
+				    </picture>
+				    <figcaption>
+				        <h5><?php echo get_the_title(); ?></h5>
+				    </figcaption>
+				    <a href='<?php echo get_the_permalink(); ?>'></a>
+				</figure>
 				<?php } wp_reset_postdata(); ?>
 			</section>
 		</article>
 		<aside class='related-content'>
 			<div class='sidebar-advertising'></div>
             <div class='related-tag'>
-                <?php getRelatedPostsTag( $post->ID ); ?>
+                <?php getRelatedPostsTag( $post->ID, 0 ); ?>
             </div>
 			<div class='sidebar-advertising'></div>
 		</aside>

@@ -25,8 +25,8 @@ figure {
 figure * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	-webkit-transition: transform 0.55s ease;
-	transition: transform 0.55s ease;
+	-webkit-transition: transform 0.75s ease;
+	transition: transform 0.75s ease;
 }
 figure img {
 	max-width: 100%;
@@ -40,7 +40,7 @@ figure figcaption {
 	padding: 0.25em;
 	position: absolute;
 	bottom: 0;
-	z-index: 1;
+	z-index: 10;
 }
 figure figcaption::before {
 	position: absolute;
@@ -59,7 +59,6 @@ figure p {
 	font-size: 0.75em;
 	font-family: 'Roboto', Arial, sans-serif;
 	font-weight: 700;
-	letter-spacing: -0.4px;
 	margin: 0;
     position: absolute;
     top: 0.33em;
@@ -71,10 +70,9 @@ figure p {
 }
 figure h3 {
 	display: inline-block;
-	font-family: 'Roboto', Arial, sans-serif;
+	font-family: 'Arimo', sans-serif;
 	font-weight: 700;
     font-size: 1em;
-	letter-spacing: -0.4px;
     padding: 8px;
 }
 figure a {
@@ -90,6 +88,11 @@ figure:hover img {
 	transform: scale(1.1);
 }
 
+.touch img {
+    -webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
 #tax-section h1 {
     display: block;
     color: #333333;
@@ -97,39 +100,6 @@ figure:hover img {
     font-size: 3em;
     text-align: center;
     padding: 8px; 
-}
-
-/*Navigation */
-section#page-nav {
-	text-align: center;
-}
-.navigation ul {
-    padding: 0;
-}
-.navigation li a,
-.navigation li a:hover,
-.navigation li.active a,
-.navigation li.disabled {
-    text-decoration:none;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    font-weight: 500;
-}
-.navigation li {
-    display: inline;
-}
-.navigation li a,
-.navigation li a:hover,
-.navigation li.active a,
-.navigation li.disabled {
-    padding: 12px 6px;
-    color: #484848;
-}
-.navigation li a:hover,
-.navigation li.active a {
-    color: #484848;
-    font-weight: 900;
-	text-decoration: underline;
 }
 
 /*Screen Sizing*/
@@ -143,11 +113,6 @@ section#page-nav {
 		grid-column: span 3;
         font-size: 2em;
 	}
-    /*.ADK-4x3Article {
-        grid-column: span 2;
-        grid-row: span 3;
-        font-size: 2em;
-    }*/
 	.ADK-Article:nth-child(6n+3), .ADK-Article:nth-child(6n+5) {
         padding-bottom: calc(56.25% + 8px);
 		grid-column: span 2;
@@ -156,12 +121,6 @@ section#page-nav {
 	}
     .ADK-Article {
         padding-bottom: 56.25%;
-    }
-    .ADK-TallArticle {
-        grid-row: span 2;
-    }
-    .ADK-SmallArticle {
-        font-size: 1em;
     }
 	footer {
 		grid-template-columns: 1fr min(1fr 1280px) 1fr;

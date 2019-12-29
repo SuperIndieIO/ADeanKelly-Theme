@@ -73,8 +73,8 @@
 	  }});
     
     //Send Category and Tags back to Ad Manager
-    var ContentCategory = ['<?php foreach((get_the_category()) as $cat) { $catContent[] = $cat->cat_name; } echo implode( "', '", $catContent ); ?>'];
-    var ContentTag = ['<?php foreach((get_the_tags()) as $tag) { $tagContent[] = $tag->name; } echo implode( "', '", $tagContent ); ?>'];
+    var ContentCategory = ['<?php echo getCatList( "', '"); ?>'];
+    var ContentTag = ['<?php echo getTagList("', '"); ?>'];
     var ContentAuthor = '<?php echo get_the_author_meta( 'ID' ) ?>';
     googletag.cmd.push(function() {
             googletag.pubads().setTargeting('category', ContentCategory);

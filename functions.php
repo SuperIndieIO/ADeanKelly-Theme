@@ -37,13 +37,6 @@ add_theme_support( 'wp-block-styles' );
 add_theme_support( 'align-wide' );
 add_theme_support( 'responsive-embeds' );
 
-add_filter( 'upload_mimes', 'adk_myme_types', 1, 1 );
-function adk_myme_types( $mime_types ) {
-  $mime_types['webp'] = 'image/webp';     // Adding .svg extension
-  
-  return $mime_types;
-}
-
 //Customizer Theme Settings
 function ADKThemeSettings($wp_customize) {
 	
@@ -585,7 +578,7 @@ function createPost( $postID ) {
     $m = wp_get_attachment_image_src($thumb_id, '16/9m' );
     $s = wp_get_attachment_image_src($thumb_id, '16/9s' );
     $alt = get_post_meta($thumb_id, '_wp_attachment_image_alt', true); ?>
-    <figure class='ADK-Article'>
+    <figure class='ADK-Article' ontouchstart='this.classList.add("touch");' ontouchend='this.classList.remove("touch");'>
         <picture>
             <source media="(min-width: 961px)" srcset='<?php echo $xl[0] ?>'>
             <source media="(min-width: 640px) and (max-width: 960px)" srcset='<?php echo $l[0] ?>'>
@@ -593,7 +586,7 @@ function createPost( $postID ) {
             <source media="(max-width: 479px)" srcset='<?php echo $s[0] ?>'>
             <img class='ADK-PostLargeImage' src='<?php echo $s[0] ?>' alt='<?php echo $alt; ?>'>
         </picture>
-        <p><?php $catList = getCatList();  echo $catList; ?></p>
+        <p><?php echo getCatList( ' / ' ); ?></p>
         <figcaption>
             <h3><?php echo get_the_title(); ?></h3>
         </figcaption>
@@ -602,18 +595,23 @@ function createPost( $postID ) {
     </figure><?php
 }
 
-function getCatList() {
-    foreach( (get_the_category()) as $cat) { 
-        $catID = get_cat_ID( $cat->cat_name ); 
-        if(!empty($catList)) { 
-            $catList .= ' / '; 
-        }
-        $catList .= $cat->cat_name; 
+function getCatList( $separator ) {
+    foreach( get_the_category() as $cat ) { 
+        $catList[] = $cat->cat_name; 
     } 
+    $catList = implode( $separator, $catList);
     return $catList;
 }
 
-function getRelatedPostsTag( $postID ) {
+function getTagList( $separator ) {
+    foreach( get_the_tags() as $tag ) {
+        $tagList[] = $tag->name;
+    }
+    $tagList = implode( $separator, $tagList );
+    return $tagList;
+}
+
+function getRelatedPostsTag( $postID, $postOffset ) {
     $backupID = $postID;
     $tags = wp_get_post_tags( $postID );
     
@@ -638,7 +636,7 @@ function getRelatedPostsTag( $postID ) {
             unset( $related_posts[$index] );
         }
         
-        $related_posts = array_slice( $related_posts, 0, 2);
+        $related_posts = array_slice( $related_posts, $postOffset, 2);
         wp_reset_query();
         $args = array( 'post__in' => $related_posts, 'caller_get_posts' => 1 );
         $final_query = new WP_Query( $args );
@@ -663,6 +661,7 @@ function getRelatedPostsTag( $postID ) {
             </figure><?php	endwhile;
         }
     }
+    wp_reset_postdata();
 }
 
 ?>

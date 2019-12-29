@@ -19,7 +19,8 @@ article > p {
 article h2, h3, h4, h5, h6 {
 	margin: 8px 0;
 	color: #212121;
-	font-family: 'Roboto:400', sans-serif;
+	font-family: 'Arimo', sans-serif;
+    font-weight: 400;
 }
 article > iframe {
 	width: 100%;
@@ -62,16 +63,17 @@ article > h1 {
 	margin: 12px 0 4px 0;
 	color: #333333;
 	font-size: 2em;
-	font-family: 'Roboto:900', sans-serif;
+	font-family: 'Arimo', sans-serif;
+    font-weight: 700;
 	line-height: 1em;
 	vertical-align: bottom;
 }
 article > h2 {
 	margin: 8px 0;
-	color: #757575;
-	font-style: italic;
+	color: #333333;
 	font-size: 18px;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Arimo', sans-serif;
+    font-weight: 400;
 }
 section#post-author {
 	margin: 8px 0;
@@ -79,7 +81,7 @@ section#post-author {
 	color: #757575;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: 700;
 	border-top: #757575 1px solid;
 	border-bottom: #757575 1px solid;
 }
@@ -108,8 +110,8 @@ section#social-media {
 	width: 100%;
 	text-align: center;
 }
-.leaderboard-unit {
-	margin: 8px 0;
+.leaderboard-adunit {
+	margin: 16px 0;
 }
 
 /*Social Media Classes*/
@@ -163,8 +165,6 @@ section#social-media {
 	padding: 8px;
 	position: absolute;
 	font-weight: 700;
-	font-family: 'Noto Sans', Arial, sans-serif;
-	letter-spacing: -0.4px;
 	bottom: 0;
 	z-index: 1;
 }
@@ -180,9 +180,9 @@ section#social-media {
     border-radius: 4px;
 	z-index: -1;
 }
-.related-content figure h3, h5 {
+.related-content figure h3, .related-content figure h5 {
 	display: inline-block;
-	font-family: 'Roboto', Arial, sans-serif;
+	font-family: 'Arimo', sans-serif;
 	font-size: 1em;
 	font-weight: 700;
 	color: #fff;

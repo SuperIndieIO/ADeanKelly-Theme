@@ -71,7 +71,7 @@ figure p {
 }
 figure h3 {
 	display: inline-block;
-	font-family: 'Roboto', Arial, sans-serif;
+	font-family: 'Arimo', sans-serif;
 	font-weight: 700;
     font-size: 1em;
 	letter-spacing: -0.4px;
@@ -87,6 +87,11 @@ figure a {
 }
 figure:hover img {
 	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+.touch img {
+    -webkit-transform: scale(1.1);
 	transform: scale(1.1);
 }
 
@@ -106,16 +111,11 @@ figure:hover img {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 	.ADK-Article:nth-child(1) {
-        padding-bottom: 87.5%;
+        padding-bottom: calc(84.75% + 16px);
 		grid-column: span 2;
         grid-row: span 3;
         font-size: 2em;
 	}
-    /*.ADK-4x3Article {
-        grid-column: span 2;
-        grid-row: span 3;
-        font-size: 2em;
-    }*/
 	.ADK-Article:nth-child(6n+6), .ADK-Article:nth-child(6n+8) {
         padding-bottom: calc(56.25% + 8px);
 		grid-column: span 2;

@@ -11,7 +11,7 @@
 </style>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-archive.css'/>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Open+Sans:400,700&display=swap" rel="stylesheet">
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
 
 <link rel="icon" type="image/png" href="<?php $favicon = get_theme_mod( 'ADKThemeDesign-Favicon' ); echo wp_get_attachment_url( $favicon ); ?>">
@@ -21,20 +21,20 @@
 
 <!--Meta Info-->
 <title><?php single_cat_title(); ?> Category | Page <?php echo $paged; ?> | <?php echo get_bloginfo('name'); ?></title>
-<meta name='description' content='<?php echo get_bloginfo("description"); ?>'>
-<link rel='alternate' type='application/rss+xml' title='RSS' href='<?php echo get_bloginfo('rss2_url'); ?>' />
+<meta name='description' content='<?php if ( category_description() ) { echo category_description(); } else { echo get_bloginfo("description");} ?>'>
+<link rel='alternate' type='application/rss+xml' title='RSS' href='<?php the_category_rss( 'rss2' ); ?>' />
 <meta name='language' content='English'>
 <meta http-equiv="content-language" content="en-us">
 
 <!--Facebook Meta Info-->
 <meta property='og:title' content='<?php single_cat_title(); ?> Category | Page <?php echo $paged; ?> | <?php echo get_bloginfo('name'); ?>'/>
 <meta property='og:type' content='website'/>
-<meta property='og:url' content='<?php echo esc_url( home_url( '/' ) ); ?>'/>
-<meta property='og:description' content='<?php echo get_bloginfo("description"); ?>'/>
+<meta property='og:url' content='<?php echo get_category_link( get_the_category() ); ?>'/>
+<meta property='og:description' content='<?php if ( category_description() ) { echo category_description(); } else { echo get_bloginfo("description");} ?>'/>
 
 <!--Twitter Meta Info-->
 <meta name='twitter:card' content='summary'/>
-<meta name='twitter:url' content='<?php echo esc_url( home_url( '/' ) ); ?>'/>
+<meta name='twitter:url' content='<?php echo get_category_link( get_the_category() ); ?>'/>
 <meta name='twitter:title' content='<?php single_cat_title(); ?> Category | Page <?php echo $paged; ?> | <?php echo get_bloginfo('name'); ?>'>
 <meta name='twitter:image' content='<?php echo get_bloginfo("description"); ?>'>
 

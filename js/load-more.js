@@ -71,6 +71,11 @@ function AjaxLoadMore(ajaxurl) {
             console.log('Offset = ' + offset);
             AddPosts(ajaxResponse.data.post);
             LoadingPosts = false;
+            
+            if( offset == null ){
+                var LoadMore = document.getElementById('load-more');
+                LoadMore.innerText = 'No More Articles';
+            }
         }
     };
 
@@ -105,6 +110,9 @@ function AddPosts(posts) {
         NewPost.appendChild(NewCategory);
         NewPost.appendChild(NewHeadline);
         NewPost.appendChild(NewPostLink);
+        
+        NewPost.addEventListener('touchstart', function() { this.classList.add('touch'); } );
+        NewPost.addEventListener('touchend', function() { this.classList.remove('touch'); });
 
         console.log(NewPost);
         console.log(PostInfo.headline);

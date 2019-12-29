@@ -11,7 +11,7 @@
 </style>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style.css'/>
 <link rel="stylesheet"  type="text/css" href='<?php bloginfo('template_url'); ?>/style/style-page.css'/>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400, 900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Open+Sans:400,700&display=swap" rel="stylesheet">
 <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>   
 
 <link rel="icon" type="image/png" href="<?php $favicon = get_theme_mod( 'ADKThemeDesign-Favicon' ); echo wp_get_attachment_url( $favicon ); ?>">

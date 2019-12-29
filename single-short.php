@@ -67,7 +67,7 @@ Template Post Type: post
 		</article>
 		<aside class='related-content'>
             <div class='related-tag'>
-                <?php getRelatedPostsTag( $post->ID ); ?>
+                <?php getRelatedPostsTag( $post->ID, 0 ); ?>
             </div>
 			<div class='sidebar-advertising'></div>
 		</aside>
