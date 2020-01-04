@@ -22,12 +22,12 @@
 
 <!--Meta Info-->
 <?php the_post(); ?><!--Gather Post Excerpt Information for Meta Tags-->  
-<?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postx' ); ?> 
+<?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postx' );?>
 <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
 <meta name='title' content='<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>'>
 <meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
-<meta name='section' content='<?php echo getCatList( ', ' ) ?>'/>
-<meta name='keywords' content='<?php $my_tags = get_the_tags(); if ( $my_tags ) { foreach ( $my_tags as $tag ) { $tag_names[] = $tag->name; } echo implode( ', ', $tag_names ); }?>'>
+<meta name='section' content='<?php echo getCatList( ', ' ); ?>'/>
+<meta name='keywords' content='<?php echo getTagList(', '); ?>'>
 <meta name='language' content='English'>
 <meta http-equiv="content-language" content="en-us">
 
@@ -40,10 +40,14 @@
 <meta property='og:type' content='article'>
 <meta property='og:title' content='<?php echo get_the_title(); ?>'>
 <meta property='og:url' content='<?php echo get_the_permalink(); ?>'>
-<meta property='og:image:secure_url' content='<?php echo $thumb[0] ?>'>
-<meta property='og:description' content='<?php get_the_excerpt(); ?>'>
-<meta property='article:section' content='<?php echo $catList; ?>'>
-<meta property='article:tag' content='<?php echo implode( ', ', $tag_names ); ?>'>
+<meta property='og:image' content='<?php echo $thumb[0]; ?>'>
+<meta property='og:image:secure_url' content='<?php echo $thumb[0]; ?>'>
+<meta property='og:image:width' content='<?php echo $thumb[1]; ?>'>
+<meta property='og:image:height' content='<?php echo $thumb[2]; ?>'>
+<meta property='og:image:type' content='image/<?php $thumbtype = wp_check_filetype( $thumb[0] ); echo $thumbtype['ext']; ?>'>
+<meta property='og:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
+<meta property='article:section' content='<?php echo getCatList( ', ' ); ?>'>
+<meta property='article:tag' content='<?php echo getTagList(', '); ?>'>
 <meta property="article:published_time" content='<?php the_time("c"); ?>'>
 <meta property='article:modified_time' content='<?php the_modified_time("c");?>'>
 <meta property='og:site_name' content='<?php echo get_bloginfo('name'); ?>'>
@@ -74,11 +78,11 @@
   "image" : {
     "@type" : "ImageObject",
     "url" : "<?php echo $thumb[0] ?>",
-    "width" : "1280",
-    "height" : "720"
+    "width" : "<?php echo $thumb[1] ?>",
+    "height" : "<?php echo $thumb[2] ?>"
   },
-  "articleSection" : "<?php echo $catList; ?>",
-  "keywords" : "<?php echo implode( ', ', $tag_names ); ?>",
+  "articleSection" : "<?php echo getCatList(', '); ?>",
+  "keywords" : "<?php echo getTagList(', '); ?>",
   "url" : "<?php echo get_the_permalink(); ?>",
   "mainEntityOfPage" : {
      "@type": "WebPage",
