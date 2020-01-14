@@ -22,7 +22,10 @@
 
 <!--Meta Info-->
 <?php the_post(); ?><!--Gather Post Excerpt Information for Meta Tags-->  
-<?php $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postx' );?>
+<?php 
+    $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'postx' );
+    $thumbtype = wp_check_filetype( $thumb[0] );
+?>
 <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
 <meta name='title' content='<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>'>
 <meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
@@ -44,13 +47,14 @@
 <meta property='og:image:secure_url' content='<?php echo $thumb[0]; ?>'>
 <meta property='og:image:width' content='<?php echo $thumb[1]; ?>'>
 <meta property='og:image:height' content='<?php echo $thumb[2]; ?>'>
-<meta property='og:image:type' content='image/<?php $thumbtype = wp_check_filetype( $thumb[0] ); echo $thumbtype['ext']; ?>'>
+<meta property='og:image:type' content='image/<?php echo $thumbtype['ext']; ?>'>
 <meta property='og:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
 <meta property='article:section' content='<?php echo getCatList( ', ' ); ?>'>
 <meta property='article:tag' content='<?php echo getTagList(', '); ?>'>
 <meta property="article:published_time" content='<?php the_time("c"); ?>'>
 <meta property='article:modified_time' content='<?php the_modified_time("c");?>'>
 <meta property='og:site_name' content='<?php echo get_bloginfo('name'); ?>'>
+<meta property='fb:app_id' content='585600295152171'>
 
 <!--Twitter Meta Info-->
 <meta name='twitter:card' content='summary_large_image'>

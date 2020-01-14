@@ -1,11 +1,11 @@
 <head>
     <!--AMP Information-->
+    <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 
@@ -27,7 +27,7 @@
             background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Roboto';
+            font-family: 'Arimo', sans-serif;
         }
         p, a, time {
             font-family: 'Open Sans', sans-serif;
@@ -51,14 +51,14 @@
             color: #333333;
             font-size: 2em;
             line-height: 1em;
-            font-family: "Roboto:900", sans-serif;
+            font-family: 'Arimo', sans-serif;
         }
         h2 {
             margin: 8px 0;
             color: #757575;
             font-size: 18px;
-            font-weight: 700;
-            font-style: italic;
+            font-weight: 400;
+            font-family: 'Arimo', sans-serif;
         }
         #post-author {
             margin: 16px 0;
@@ -130,7 +130,7 @@
         .menu-item {
             list-style-type: none;
             font-size: 0.8em;
-            font-family: 'Noto Sans', Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6em;
         }
         .menu-item a {
@@ -214,8 +214,8 @@
 	  "datePublished" : "<?php the_time("M j, Y"); ?>",
 	  "dateModified" : "<?php the_time("M j, Y"); ?>",
 	  "image" : "<?php echo $thumb[0] ?>",
-	  "articleSection" : "<?php $catList = ''; foreach((get_the_category()) as $cat) { $catID = get_cat_ID( $cat->cat_name ); if(!empty($catList)) { $catList .= ', '; } $catList .= $cat->cat_name; } echo $catList; ?>",
-	  "keywords" : "<?php $my_tags = get_the_tags(); if ( $my_tags ) { foreach ( $my_tags as $tag ) { $tag_names[] = $tag->name; } echo implode( ', ', $tag_names ); }?>",
+	  "articleSection" : "<?php echo getCatList(', '); ?>",
+	  "keywords" : "<?php echo getTagList(', '); ?>",
 	  "url" : "<?php echo get_the_permalink(); ?>",
 	  "mainEntityOfPage": {
          "@type": "WebPage",

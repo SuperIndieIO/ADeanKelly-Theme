@@ -45,7 +45,7 @@ Template Post Type: post
 			</section>
 			<!--Category related articles-->
 			<section class='related-category related-content'>
-				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post), 'category__not_in' => 'Featured' ) ); ?>
+				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post) ) ); ?>
 				<?php if( $related ) foreach( $related as $post ) {?>
 				<?php $post = get_the_ID(); ?>
 				<?php $large = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
