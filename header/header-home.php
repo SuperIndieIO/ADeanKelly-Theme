@@ -61,6 +61,18 @@
 		}
 }
 </script>
+<!--Breadcrumb Schema-->
+<script type="application/ld+json">
+{
+	"@context" : "http://schema.org",
+	"@type": "BreadcrumbList",
+  		"itemListElement": [{
+    		"@type": "ListItem",
+    		"position": 1,
+    		"name": "<?php echo get_bloginfo('name'); ?>",
+   			"item": "<?php echo esc_url( home_url( '/' ) ); ?>" }]
+}
+</script>
 
 <!--Check Page Type-->
 <script type='text/javascript'>

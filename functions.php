@@ -2,7 +2,7 @@
 
 add_theme_support( 'menus' );
 function register_footer_menu() {
-  register_nav_menu('footer',__( 'Footer Menu' ));
+    register_nav_menus( array( 'footer-menu-1' => 'Footer Menu', 'footer-menu-2' => 'Footer Menu 2', 'footer-menu-3' => 'Footer Menu 3' ));
 }
 add_action( 'init', 'register_footer_menu' );
 
@@ -541,7 +541,7 @@ add_action( 'wp_ajax_nopriv_load_more_posts', 'load_more_posts' );
 
 function load_more_posts(){
     global $post;
-    $args = array('post_type'=>'post', 'posts_per_page' => $_POST['posts_per_page'], 'offset'=> $_POST['offset'], 'cat' => $_POST['category'], 'tag__in' => $_POST['tag']);
+    $args = array('post_type'=>'post', 'posts_per_page' => $_POST['posts_per_page'], 'offset'=> $_POST['offset'], 'cat' => $_POST['category'], 'tag__in' => $_POST['tag'], 'post_status' => 'publish');
     $rst=[];
     $posts=[];
     $query = new WP_Query($args);

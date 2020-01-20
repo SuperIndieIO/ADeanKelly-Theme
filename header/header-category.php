@@ -22,7 +22,7 @@
 <!--Meta Info-->
 <title><?php single_cat_title(); ?> Category | Page <?php echo $paged; ?> | <?php echo get_bloginfo('name'); ?></title>
 <meta name='description' content='<?php if ( category_description() ) { echo category_description(); } else { echo get_bloginfo("description");} ?>'>
-<link rel='alternate' type='application/rss+xml' title='RSS' href='<?php the_category_rss( 'rss2' ); ?>' />
+<link rel='alternate' type='application/rss+xml' title='RSS' href='<?php echo get_category_link( get_the_category() ); ?>/feed' />
 <meta name='language' content='English'>
 <meta http-equiv="content-language" content="en-us">
 
@@ -61,6 +61,22 @@
                 <?php if (get_theme_mod( 'ADKThemeSocialMedia-Facebook' )) : ?>"https://facebook.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Facebook' ); ?>",<?php endif; ?>
                 <?php if (get_theme_mod( 'ADKThemeSocialMedia-Tumblr' )) : ?>"https://tumblr.com/<?php echo get_theme_mod( 'ADKThemeSocialMedia-Tumblr' ); ?>"<?php endif; ?>]
 		}
+}
+</script>
+<!--Breadcrumb Schema-->
+<script type="application/ld+json">
+{
+	"@context" : "http://schema.org",
+	"@type": "BreadcrumbList",
+  		"itemListElement": [{
+    		"@type": "ListItem",
+    		"position": 1,
+    		"name": "<?php echo get_bloginfo('name'); ?>",
+   			"item": "<?php echo esc_url( home_url( '/' ) ); ?>" },
+            { "@type": "ListItem",
+    		"position": 2,
+    		"name": "<?php single_cat_title(); ?>",
+   			"item": "<?php echo get_category_link( get_the_category() ); ?>" }]
 }
 </script>
 

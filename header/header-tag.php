@@ -63,6 +63,22 @@
 		}
 }
 </script>
+<!--Breadcrumb Schema-->
+<script type="application/ld+json">
+{
+	"@context" : "http://schema.org",
+	"@type": "BreadcrumbList",
+  		"itemListElement": [{
+    		"@type": "ListItem",
+    		"position": 1,
+    		"name": "<?php echo get_bloginfo('name'); ?>",
+   			"item": "<?php echo esc_url( home_url( '/' ) ); ?>" },
+            { "@type": "ListItem",
+    		"position": 2,
+    		"name": "<?php single_tag_title(); ?>",
+   			"item": "<?php echo get_tag_link( get_queried_object()->term_id ); ?>" }]
+}
+</script>
 
 <!--Get Tag-->
 <script type='text/javascript'>

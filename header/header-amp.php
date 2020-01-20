@@ -8,6 +8,7 @@
     <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <!--<script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>-->
 
     <!--Styles-->
     <link rel="icon" type="image/png" href="<?php $favicon = get_theme_mod( 'ADKThemeDesign-Favicon' ); echo wp_get_attachment_url( $favicon ); ?>">
@@ -80,7 +81,7 @@
             color: #484848;
             font-weight: 400;
         }
-        #OV-PostSocialMedia {
+        #ADK-PostSocialMedia {
             display: inline-block;
             padding: 8px 0 1px 0;
             margin: 0 0 16px 0;
@@ -104,6 +105,7 @@
             margin: 16px 0 0 0;
             padding: 16px 0;
             min-height: 32px;
+            font-size: 12px;
             grid-template-columns: 1fr minmax(auto, 760px) 1fr;
             background: -moz-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
             background: -webkit-linear-gradient(90deg, var(--text-bgc-alpha, #0F2027) 0%, var(--text-bgc-beta, #203A43) 50%, var(--text-bgc-omega, #2c5364) 100%);
@@ -112,9 +114,9 @@
         #footer-section {
             display: grid;
             grid-column: 2;
-            grid-template-columns: auto auto auto;
-            grid-gap: 32px;
-            justify-content: end;
+            grid-template-columns: auto auto auto auto;
+            grid-gap: 16px;
+            justify-content: center;
             align-content: center;
         }
         nav#menu-footer-menu {
@@ -151,6 +153,7 @@
         #footer-social {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            grid-template-rows: 28px 28px;
             width: 100%;
             text-align: center;
             }

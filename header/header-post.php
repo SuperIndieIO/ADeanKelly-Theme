@@ -39,21 +39,23 @@
 <?php if ( post_supports_amp($post) ) { echo "<link rel='amphtml' href='"; echo get_the_permalink(); echo "amp/'>"; } ?>
 
 
-<!--Facebook Meta Info-->
+<!--OG Graph Info-->
 <meta property='og:type' content='article'>
 <meta property='og:title' content='<?php echo get_the_title(); ?>'>
+<meta property='og:site_name' content='<?php echo get_bloginfo('name'); ?>'>
 <meta property='og:url' content='<?php echo get_the_permalink(); ?>'>
+<meta property='og:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
+
 <meta property='og:image' content='<?php echo $thumb[0]; ?>'>
 <meta property='og:image:secure_url' content='<?php echo $thumb[0]; ?>'>
 <meta property='og:image:width' content='<?php echo $thumb[1]; ?>'>
 <meta property='og:image:height' content='<?php echo $thumb[2]; ?>'>
 <meta property='og:image:type' content='image/<?php echo $thumbtype['ext']; ?>'>
-<meta property='og:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
+
 <meta property='article:section' content='<?php echo getCatList( ', ' ); ?>'>
 <meta property='article:tag' content='<?php echo getTagList(', '); ?>'>
 <meta property="article:published_time" content='<?php the_time("c"); ?>'>
 <meta property='article:modified_time' content='<?php the_modified_time("c");?>'>
-<meta property='og:site_name' content='<?php echo get_bloginfo('name'); ?>'>
 <meta property='fb:app_id' content='585600295152171'>
 
 <!--Twitter Meta Info-->
@@ -108,7 +110,22 @@
     }
 }
 </script>
-
+<!--Breadcrumb Schema-->
+<script type="application/ld+json">
+{
+	"@context" : "http://schema.org",
+	"@type": "BreadcrumbList",
+  		"itemListElement": [{
+    		"@type": "ListItem",
+    		"position": 1,
+    		"name": "<?php echo get_bloginfo('name'); ?>",
+   			"item": "<?php echo esc_url( home_url( '/' ) ); ?>" },
+            { "@type": "ListItem",
+    		"position": 2,
+    		"name": "<?php echo get_the_title(); ?>",
+   			"item": "<?php echo get_the_permalink(); ?>" }]
+}
+</script>
 <!--Enable Advertising-->
 <script type="application/javascript">
     var ArticleAdvertising = true;

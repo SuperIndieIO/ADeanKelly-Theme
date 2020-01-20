@@ -1,11 +1,22 @@
 <section id='footer-section'>
-<?php $menuparams = array(
-  'menu'            => 'footer-menu',
-  'container'       => '',
-  'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
-  'depth'           => 0,
-); ?>
-<?php wp_nav_menu( $menuparams ); ?>
+<?php 
+    $menuone = array(
+        'theme_location'  => 'footer-menu-1',
+        'container'       => '',
+        'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+        'depth'           => 0 );
+    $menutwo = array(
+        'theme_location'  => 'footer-menu-2',
+        'container'       => '',
+        'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+        'depth'           => 0 );
+    $menuthree = array(
+        'theme_location'  => 'footer-menu-3',
+        'container'       => '',
+        'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+        'depth'           => 0 );
+?>
+<?php wp_nav_menu( $menuone ); wp_nav_menu( $menutwo ); wp_nav_menu( $menuthree ); ?>
 <div id='social-media-follow'>
     
     <?php if (get_theme_mod( 'ADKThemeSocialMedia-Youtube' )) : ?>

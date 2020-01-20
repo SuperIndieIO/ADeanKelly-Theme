@@ -18,7 +18,7 @@
 <script src='<?php bloginfo('template_url'); ?>/js/load-more.js'></script>
 <script>
     var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
-    var offset = <?php $page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1; $ppp = get_option( 'posts_per_page' ); $offset = $page * $ppp; $offset++; echo $offset; ?>;
+    var offset = <?php $page = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1; $ppp = get_option( 'posts_per_page' ); $offset = $page * $ppp; echo $offset; ?>;
     var posts_per_page = 9;
 </script>
 

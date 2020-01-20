@@ -4,7 +4,7 @@ Theme URI: https://adeankelly.com
 Github Theme URI: https://github.com/SuperIndieIO/ADeanKelly-Theme
 Author: A. Dean Kelly
 Description: The Theme for ADeanKelly.com
-Version: 1.04.02
+Version: 1.04.03
 License: N/A
 Tags: ADeanKelly
 Text Domain: ADeanKelly
@@ -27,7 +27,7 @@ header {
 }
 
 #load-more-section {
-    padding: 32px 0 128px 0;
+    padding: 32px 0 32px 0;
 }
 #load-more {
     margin: 0 auto;
@@ -48,7 +48,6 @@ header {
 
 /*Footer Styles*/
 footer {
-    position: absolute;
     bottom: 0;
 	display: grid;
     width: 100%;
@@ -61,7 +60,7 @@ footer {
 section#footer-section {
 	display: grid;
 	grid-column: 2;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto auto auto auto;
 	grid-gap: 32px;
 	justify-content: end;
 	align-content: center;
@@ -89,6 +88,7 @@ nav#menu-footer-menu {
 #social-media-follow {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content;
 }
 .social-image-follow {
     display: inline-block;

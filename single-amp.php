@@ -43,9 +43,9 @@
                     <div fallback></div>
                 </amp-ad><h3>';
                 $slot++; }?>
-
+            
         <!--Social media sharing link-->
-            <div id='OV-PostSocialMedia'>
+            <div id='ADK-PostSocialMedia'>
             <a href="http://twitter.com/share" target='_blank'>
                 <amp-img src='<?php echo get_template_directory_uri(); ?>/social-icons/twitter.svg' class='social-image' layout='fixed' height='32' width='32'/></a>
 
@@ -65,13 +65,24 @@
         <?php echo get_theme_mod('ADKThemeAMPCode-Before'); ?>
         
         <section id='footer-section'>
-        <?php $menuparams = array(
-          'menu'            => 'footer-menu',
-          'container'       => '',
-          'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
-          'depth'           => 0,
-        ); ?>
-        <?php wp_nav_menu( $menuparams ); ?>
+        <?php 
+            $menuone = array(
+                'theme_location'  => 'footer-menu-1',
+                'container'       => '',
+                'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+                'depth'           => 0 );
+            $menutwo = array(
+                'theme_location'  => 'footer-menu-2',
+                'container'       => '',
+                'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+                'depth'           => 0 );
+            $menuthree = array(
+                'theme_location'  => 'footer-menu-3',
+                'container'       => '',
+                'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+                'depth'           => 0 );
+        ?>
+        <?php wp_nav_menu( $menuone ); wp_nav_menu( $menutwo ); wp_nav_menu( $menuthree ); ?>
         
         <section id='footer-social'>
             <?php if (get_theme_mod( 'ADKThemeSocialMedia-Youtube' )) : ?>
@@ -100,6 +111,28 @@
         <?php echo get_theme_mod('ADKThemeAMPCode-After'); ?>
     </footer>
                 <!--Analytics-->
+    <amp-analytics type="googleanalytics">
+        <script type="application/json">
+            {
+              "vars": {
+                "account": "UA-110231473-2"
+              },
+              "triggers": {
+                "trackPageview": {
+                  "on": "visible",
+                  "request": "pageview" }, 
+                "scrollArticle": {
+                    "on": "scroll",
+                    "scrollSpec": {
+                        "verticalBoundaries": [95] },
+                        "vars" : {
+                            "eventCategory" : "Reading",
+                            "eventAction" : "Page Read",
+                            "eventLabel" : "<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>"
+                        },
+                        "request": "event" } } }                 
+            </script>
+        </amp-analytics>
 
 </body>
 </html>
