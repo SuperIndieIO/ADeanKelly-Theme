@@ -18,7 +18,7 @@
         <amp-img src='<?php echo $thumb[0] ?>' width="16" height="9" layout="responsive" class='featured-image'></amp-img>
         <!--Article content-->
         <h1><?php echo get_the_title(); ?></h1>
-        <h2><?php echo(get_the_excerpt()); ?></h2>
+        <h2><?php echo get_the_excerpt(); ?></h2>
         <section id='post-author'>
             <a href='<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>' rel='author'><?php the_author(); ?></a> | <a href='https://www.twitter.com/<?php the_author_meta( "twitter" ); ?>'>@<?php if(the_author_meta( 'twitter' )){the_author_meta( 'twitter' );}; ?></a>
             <time id='post-date'>
@@ -26,24 +26,8 @@
             </time>
         </section>        
         <?php $text = $this->get( 'post_amp_content' ); ?>
-        <?php $array = explode("<h3>", $text); $slot = 1; ?>
-        <?php $apost = "'"; ?>
-        <?php $my_tags = get_the_tags(); foreach ( $my_tags as $tag ) { $tag_names[] = $tag->name; } $the_tags = json_encode($tag_names, JSON_HEX_AMP); ?>
-        <?php $my_cat = get_the_category(); foreach ( $my_cat as $cat ) { $cat_names[] = $cat->name; } $the_cats = json_encode( $cat_names, JSON_HEX_AMP ); ?>
-        <?php for($i = 0; $i < sizeof($array); $i++) { 
-            $targeting = array('slot'=>$slot, 'tag'=>$the_tags);
-                echo $array[$i].'
-                <amp-ad layout="responsive" width=320 height=100
-                    type="doubleclick"
-                    data-slot="'; echo get_theme_mod("ADKThemeAdUnits-InArticle");
-                    echo '" data-multi-size="320x50,300x250"
-                    data-multi-size-validation="false"
-                    json='.$apost.'{"targeting":{"slot":"'.$slot.'","tag":'.$the_tags.',"category":'.$the_cats.'}}'.$apost.'>
-                    <div placeholder></div>
-                    <div fallback></div>
-                </amp-ad><h3>';
-                $slot++; }?>
-            
+        <?php echo AMPContent( $text ); ?>
+        
         <!--Social media sharing link-->
             <div id='ADK-PostSocialMedia'>
             <a href="http://twitter.com/share" target='_blank'>

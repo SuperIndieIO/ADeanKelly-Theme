@@ -664,4 +664,42 @@ function getRelatedPostsTag( $postID, $postOffset ) {
     wp_reset_postdata();
 }
 
+function AMPContent( $content ) {
+    
+    $content = explode( '<h3>', $content );
+    $final_content;
+    
+    $slot = 1;
+    $position = 2;
+    $the_adunit = get_theme_mod("ADKThemeAdUnits-InArticle");
+    $the_tags = getTagList(',');
+    $the_cats = getCatList(',');
+    $the_tags = explode(',', $the_tags);
+    $the_cats = explode(',', $the_cats);
+    $the_author = get_the_author_meta( 'ID' );
+    
+    $final_content[] = $content[0];
+    
+    for($i = 1; $i < count( $content ); $i++) {
+        
+        $json_object = new stdClass();
+        $json_object->slot = $slot;
+        $json_object->page = 'amppage';
+        $json_object->author = $the_author;
+        $json_object->tag = $the_tags;
+        $json_object->category = $the_cats;
+    
+        $json_ad = new stdClass();
+        $json_ad->targeting = $json_object;
+        $json_ad = json_encode( $json_ad );
+        
+        $current_ad ="<amp-ad layout='responsive' width=320 height=100 type='doubleclick'data-slot='".$the_adunit."' data-multi-size='320x50,300x250' data-multi-size-validation='false' json='".$json_ad."'><div placeholder></div><div fallback></div></amp-ad><h3>";
+        $final_content[] = $current_ad;
+        $final_content[] = $content[$i];
+        $slot++;
+    }
+    $final_content = implode('', $final_content );
+    return $final_content;
+}
+
 ?>

@@ -2,7 +2,7 @@
 main {
 	display: grid;
 	grid-auto-flow: row dense;
-    padding: 0 0 112px 0;
+    padding-bottom: 16px;
 }
 a {
 	color: #212121;
@@ -65,13 +65,13 @@ article > h1 {
 	font-size: 2em;
 	font-family: 'Arimo', sans-serif;
     font-weight: 700;
-	line-height: 1em;
+	line-height: 1.25em;
 	vertical-align: bottom;
 }
 article > h2 {
 	margin: 8px 0;
 	color: #333333;
-	font-size: 18px;
+	font-size: 1.25em;
 	font-family: 'Arimo', sans-serif;
     font-weight: 400;
 }
@@ -93,7 +93,7 @@ time#post-date {
 	float: right;
 }
 article h3 {
-	font-size: 24px;
+	font-size: 1.25em;
 }
 article h4, h5, h6 {
 	font-size: 20px;

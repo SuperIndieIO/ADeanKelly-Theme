@@ -41,6 +41,4 @@
     
 </div>	
 
-<img id='alt-logo' src='<?php $footerlogo = get_theme_mod( 'ADKThemeDesign-Footer' ); echo wp_get_attachment_url( $footerlogo ); ?>'/>
-
 </section>
