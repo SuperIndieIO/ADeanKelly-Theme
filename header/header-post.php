@@ -36,7 +36,7 @@
 
 <!--AMP and Permalink Info-->
 <link rel='canonical' href='<?php echo get_the_permalink(); ?>'>
-<?php if ( post_supports_amp($post) ) { echo "<link rel='amphtml' href='"; echo get_the_permalink(); echo "amp/'>"; } ?>
+<?php if ( post_supports_amp( $post ) ) { echo "<link rel='amphtml' href='"; echo get_the_permalink(); echo "amp/'>"; } ?>
 
 
 <!--OG Graph Info-->
@@ -67,7 +67,7 @@
 <meta name='twitter:site' content='@<?php if(get_theme_mod('ADKThemeSocialMedia-Twitter')) {echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' );}; ?>'>
 <meta name='twitter:creator' content='@<?php if(the_author_meta( 'twitter' )){the_author_meta( 'twitter' );}; ?>'>
 
-<!--Schema.org JSON Markup-->
+<!--Article Schema Markup-->
 <script type="application/ld+json">
 {
   "@context" : "http://schema.org",
@@ -110,11 +110,12 @@
     }
 }
 </script>
-<!--Breadcrumb Schema-->
+<!--Breadcrumb Schema Markup-->
 <script type="application/ld+json">
 {
 	"@context" : "http://schema.org",
 	"@type": "BreadcrumbList",
+        "name": "Breadcrumb List",
   		"itemListElement": [{
     		"@type": "ListItem",
     		"position": 1,
@@ -126,6 +127,7 @@
    			"item": "<?php echo get_the_permalink(); ?>" }]
 }
 </script>
+
 <!--Enable Advertising-->
 <script type="application/javascript">
     var ArticleAdvertising = true;

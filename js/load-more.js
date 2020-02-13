@@ -1,9 +1,8 @@
 //var PostClass = ['ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-MidArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle', 'ADK-SmallArticle'];
-var PostClass = 'ADK-Article';
-var DocumentMain = document.getElementsByTagName('main');
-var LoadingPosts = false;
+const PostClass = 'ADK-Article';
+const DocumentMain = document.getElementsByTagName('main')[0];
+let LoadingPosts = false;
 var loadMorePostsFunction;
-DocumentMain = DocumentMain[0];
 
 function isLoading() {
     if (!LoadingPosts) {
@@ -28,11 +27,11 @@ function AjaxLoadMore(ajaxurl) {
 
     //Creating AJAX Request
     //Setting Request Headers
-    var ajaxhttp = new XMLHttpRequest();
+    let ajaxhttp = new XMLHttpRequest();
     ajaxhttp.open('POST', ajaxurl, true);
     ajaxhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
     
-    switch (PageType) {
+    switch ( PageType ) {
         case 'tag':
             //Sending AJAX Request
             ajaxhttp.send('action=load_more_posts&offset='+offset+'&posts_per_page='+posts_per_page+'&tag='+PageTag);
@@ -83,31 +82,39 @@ function AjaxLoadMore(ajaxurl) {
 
 function AddPosts(posts) {
     
-    for(i=0;i<Object.keys(posts).length;i++) {
+    for( let i = 0; i < Object.keys( posts ).length; i++ ) {
     
         var PostInfo = posts[i];
         var NewPost = document.createElement('figure');
         var NewHeadline = document.createElement('figcaption');
         var NewHeadlineText = document.createElement('h3');
-        var NewCategory = document.createElement('span');
+        let NewHeadlineTextSpan = document.createElement('span')
+        var NewCategoryTextSpan = document.createElement('span');
         var NewCategoryText = document.createElement('p');
         var NewPostLink = document.createElement('a');
         var NewPicture = document.createElement('picture');
         var NewImg = document.createElement('img');
 
         NewPost.className = PostClass;
-        NewHeadlineText.textContent = decodeHTML(PostInfo.headline);
+        NewHeadlineTextSpan.textContent = decodeHTML(PostInfo.headline);
+        NewCategoryTextSpan.textContent = PostInfo.category;
+        NewHeadlineTextSpan.setAttribute( 'class', 'post-title' );
+        NewCategoryTextSpan.setAttribute( 'class', 'post-categories' );
+        
         NewPostLink.href = PostInfo.url;
-        NewCategoryText.textContent = PostInfo.category;
+        
         NewImg.src = PostInfo.imgsrc[0];
         NewImg.alt = PostInfo.imgalt;
 
         NewPicture.appendChild(NewImg);
-        NewHeadline.appendChild(NewHeadlineText);
-        NewCategory.appendChild(NewCategoryText);
+        NewHeadlineText.appendChild(NewHeadlineTextSpan);
+        NewCategoryText.appendChild(NewCategoryTextSpan);
+        NewHeadline.appendChild( NewCategoryText );
+        NewHeadline.appendChild( NewHeadlineText );
+        
+        
 
         NewPost.appendChild(NewPicture);
-        NewPost.appendChild(NewCategory);
         NewPost.appendChild(NewHeadline);
         NewPost.appendChild(NewPostLink);
         

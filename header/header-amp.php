@@ -1,7 +1,9 @@
 <head>
     <!--AMP Information-->
     <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
+    <meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
     <meta charset="utf-8">
+    
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-font" src="https://cdn.ampproject.org/v0/amp-font-0.1.js"></script>
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>

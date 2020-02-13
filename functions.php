@@ -558,7 +558,7 @@ function load_more_posts(){
             $catList = ''; 
             foreach((get_the_category()) as $cat) {
                     $catID = get_cat_ID( $cat->cat_name );
-                    if(!empty($catList)) { $catList .= ' / '; } 
+                    if(!empty($catList)) { $catList .= ' // '; } 
                     $catList .= $cat->cat_name; 
             }
             $posts = array ('imgsrc' => $thumb_src,'imgalt' => $thumb_alt, 'category' => $catList, 'headline' => get_the_title(), 'url' => get_the_permalink());
@@ -586,9 +586,10 @@ function createPost( $postID ) {
             <source media="(max-width: 479px)" srcset='<?php echo $s[0] ?>'>
             <img class='ADK-PostLargeImage' src='<?php echo $s[0] ?>' alt='<?php echo $alt; ?>'>
         </picture>
-        <p><?php echo getCatList( ' / ' ); ?></p>
+        
         <figcaption>
-            <h3><?php echo get_the_title(); ?></h3>
+            <p><span class='post-categories'><?php echo getCatList(' // '); ?></span></p>
+            <h3><span class='post-title'><?php echo get_the_title(); ?></span></h3>
         </figcaption>
         <a href='<?php echo get_the_permalink(); ?>'>
         </a>

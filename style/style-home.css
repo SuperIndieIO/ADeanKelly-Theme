@@ -36,44 +36,27 @@ figure img {
 	object-fit: cover;
 }
 figure figcaption {
+	display: grid;
 	max-width: 100%;
-	padding: 0.25em;
+	margin: 8px;
 	position: absolute;
 	bottom: 0;
-	z-index: 10;
-}
-figure figcaption::before {
-	position: absolute;
-	top: 0.25em;
-	bottom: 0.25em;
-	left: 0.25em;
-	right: 0.25em;
-	content: '';
-	background: var(--text-bgc-alpha, #0F2027);
-    border-radius: 4px;
-	opacity: 0.85;
-	z-index: -1;
+	z-index: 1;
 }
 figure p {
     display: inline-block;
-	font-size: 0.75em;
-	font-family: 'Roboto', Arial, sans-serif;
-	font-weight: 700;
-	margin: 0;
-    position: absolute;
-    top: 0.33em;
-    right: 0.33em;
-    padding: 0.33em;
-	background: var(--text-bgc-omega, #2c5364);
-    border-radius: 2px;
-	opacity: 0.95;
+	font-size: 0.85em;
+	font-family: 'Arimo', sans-serif;
+	font-weight: 400;
+	margin: 0.5em 0.125em
 }
 figure h3 {
 	display: inline-block;
 	font-family: 'Arimo', sans-serif;
 	font-weight: 700;
     font-size: 1em;
-    padding: 8px;
+	letter-spacing: -0.4px;
+    margin: 0 0.25em;
 }
 figure a {
 	left: 0;
@@ -86,6 +69,20 @@ figure a {
 figure:hover img {
 	-webkit-transform: scale(1.1);
 	transform: scale(1.1);
+}
+
+.post-title { 
+    background-color: var(--text-bgc-alpha);
+	box-shadow: 0 0 0 0.25em var(--text-bgc-alpha);
+	line-height: 1.5em;
+	border-radius: 2px 0;
+}
+.post-categories {    
+    background-color: var(--text-bgc-omega);
+	box-shadow: 0 0 0 0.125em var(--text-bgc-omega);
+	margin-right: 0.75em;
+	padding: 0 0.125em;
+	border-radius: 0 2px;
 }
 
 .touch img {
@@ -113,6 +110,9 @@ figure:hover img {
 		grid-column: span 3;
         font-size: 2em;
 	}
+    .ADK-Article:nth-child(1) p {
+        font-size: 0.625em;
+    }
 	.ADK-Article:nth-child(6n+3), .ADK-Article:nth-child(6n+5) {
         padding-bottom: calc(56.25% + 8px);
 		grid-column: span 2;
