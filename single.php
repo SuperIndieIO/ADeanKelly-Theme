@@ -26,7 +26,7 @@
 			<h1><?php echo get_the_title(); ?></h1>
 			<h2><?php echo(get_the_excerpt()); ?></h2>
 			<section id='post-author'>
-				<a href='<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>' rel='author'><?php the_author(); ?></a> | <a href='https://www.twitter.com/<?php the_author_meta( "twitter" ); ?>'>@<?php if(the_author_meta( 'twitter' )){the_author_meta( 'twitter' );}; ?></a>
+				<p><a href='<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'nickname' ) ); ?>' rel='author'><?php the_author(); ?></a> | <a href='https://www.twitter.com/<?php the_author_meta( "twitter" ); ?>'>@<?php if(the_author_meta( 'twitter' )){the_author_meta( 'twitter' );}; ?></a></p>
 				<time id='post-date'>
 					<?php the_time("M j, Y"); ?>
 				</time>
@@ -49,31 +49,15 @@
 			</section>
 			<!--Category related articles-->
 			<section class='related-category related-content'>
-				<?php $related = get_posts( array( 'category__in' => wp_get_post_categories($post), 'numberposts' => 3, 'post__not_in' => array($post) ) ); ?>
-				<?php if( $related ) foreach( $related as $post ) {?>
-				<?php $post = get_the_ID(); ?>
-				<?php $large = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
-				<?php $small = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3m' ); ?>
-				<figure> 
-				    <picture>
-				        <source media='(max-width: 640px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $small[0] ?>'>
-				        <source media='(min-width: 641px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $large[0] ?>'>
-				        <img src='<?php echo $desktop[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt; ?>'>
-				    </picture>
-				    <figcaption>
-				        <h5><?php echo get_the_title(); ?></h5>
-				    </figcaption>
-				    <a href='<?php echo get_the_permalink(); ?>'></a>
-				</figure>
-				<?php } wp_reset_postdata(); ?>
+                <?php getRelatedPostsCategory( $post ); ?>
 			</section>
 		</article>
 		<aside class='related-content'>
-			<div class='sidebar-advertising'></div>
-            <div class='related-tag'>
-                <?php getRelatedPostsTag( $post->ID, 0 ); ?>
-            </div>
-			<div class='sidebar-advertising'></div>
+			<div class='sidebar-advertising'>
+				<div class='related-tag'>
+					<?php getRelatedPostsTag( $post->ID, 0 ); ?>
+				</div>
+			</div>
 		</aside>
 	</main>
 	<footer>

@@ -15,6 +15,7 @@ article > p {
 	color: #333333;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+    line-height: 1.5em;
 }
 article h2, h3, h4, h5, h6 {
 	margin: 8px 0;
@@ -38,6 +39,7 @@ article > blockquote {
 }
 article > figure {
 	margin: 8px 0;
+	overflow: hidden;
 }
 article > ul, ol {
 	margin: 8px 0;
@@ -59,7 +61,7 @@ picture > img {
 	display: block;
 	object-fit: cover;
 }
-article > h1 {
+article h1 {
 	margin: 12px 0 4px 0;
 	color: #333333;
 	font-size: 2em;
@@ -68,35 +70,35 @@ article > h1 {
 	line-height: 1.25em;
 	vertical-align: bottom;
 }
-article > h2 {
+article h2 {
 	margin: 8px 0;
-	color: #333333;
-	font-size: 1.25em;
+	font-size: 1.65em;
 	font-family: 'Arimo', sans-serif;
     font-weight: 400;
 }
-section#post-author {
-	margin: 8px 0;
-	padding: 6px 0;
-	color: #757575;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
-	font-weight: 700;
-	border-top: #757575 1px solid;
-	border-bottom: #757575 1px solid;
-}
-section#post-author > a {
-	color: #484848;
-	text-decoration: none;
-}
-time#post-date {
-	float: right;
-}
 article h3 {
-	font-size: 1.25em;
+	font-size: 1.5em;
 }
 article h4, h5, h6 {
-	font-size: 20px;
+	font-size: 1.25em;
+}
+#post-author {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	margin: 8px 0;
+	font-family: 'Arimo', sans-serif;
+	font-weight: 400;
+        }
+#post-author p {
+	margin: 4px 0;
+}
+#post-author a {
+	color: #484848;
+	text-decoration: none;
+	}
+#post-date {
+	margin: 0;
+	color: #484848;
 }
 article > a {
 	color: #212121;
@@ -111,7 +113,7 @@ section#social-media {
 	text-align: center;
 }
 .leaderboard-adunit {
-	margin: 16px 0;
+	margin: 48px 0;
 }
 
 /*Social Media Classes*/
@@ -123,7 +125,7 @@ section#social-media {
 	margin: 0 6px;
 }
 
-/*The Otaku Project Related and Sidebar Posts*/
+/*Related and Sidebar Posts*/
 .related-category {
 	display: grid;
 	margin: 0;
@@ -134,6 +136,20 @@ section#social-media {
 .related-tag {
 	display: grid;
 	grid-gap: 16px 16px;
+	margin-bottom: 16px;
+}
+.post-title {
+    background-color: var(--text-bgc-alpha);
+	box-shadow: 0 0 0 0.25em var(--text-bgc-alpha);
+	line-height: 1.5em;
+	border-radius: 2px 0;
+}
+.post-categories {    
+    background-color: var(--text-bgc-omega);
+	box-shadow: 0 0 0 0.25em var(--text-bgc-omega);
+	margin-right: 0.75em;
+	padding: 0.25em;
+	border-radius: 0 8px;
 }
 
 /*Sidebar Figure Styles*/
@@ -145,7 +161,7 @@ section#social-media {
 	position: relative;
 	overflow: hidden;
 	text-align: left;
-	border-radius: 4px;
+	border-radius: 8px;
 }
 .related-content figure * {
 	-webkit-box-sizing: border-box;
@@ -161,24 +177,11 @@ section#social-media {
 	object-fit: cover;
 }
 .related-content figure figcaption {
-	width: 100%;
-	padding: 8px;
+	margin: 8px;
 	position: absolute;
 	font-weight: 700;
 	bottom: 0;
 	z-index: 1;
-}
-.related-content figure figcaption::before {
-	position: absolute;
-	top: 4px;
-	bottom: 4px;
-	left: 4px;
-	right: 4px;
-	content: '';
-	background: var(--text-bgc-alpha, #0F2027);
-	opacity: 0.70;
-    border-radius: 4px;
-	z-index: -1;
 }
 .related-content figure h3, .related-content figure h5 {
 	display: inline-block;
@@ -186,8 +189,7 @@ section#social-media {
 	font-size: 1em;
 	font-weight: 700;
 	color: #fff;
-	letter-spacing: -0.4px;
-	margin: 0;
+	margin: 0.25em;
 }
 .related-content figure p {
 	max-height: 3.2em;
@@ -231,7 +233,7 @@ article .twitter-tweet {
     margin: 0 auto;
 }
 
-@media only screen and (min-width: 1153px) {
+@media only screen and (min-width: 1164px) {
 	main {
 		grid-template-columns: 1fr 16px 784px 16px 320px 16px 1fr;
 	}
@@ -248,23 +250,20 @@ article .twitter-tweet {
 	aside > * {
 		margin: 0 0 16px;
 	}
-	aside > div:nth-last-child(2) {
+	/*aside > div:nth-last-child(2) {
 		position: sticky;
 		top: 16px;
-	}
+	}*/
 	aside > div:last-child {
 		position: sticky;
-		top: 408px;
+		top: 16px;
 		margin: 0;
 	}
     .large-picture {
         grid-column: 3 / 6;
     }
-    .large-sidebar {
-        margin-top: 16px;
-    }
 	.related-category {
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
 	}
 	.related-tag {
 		grid-template-columns: 1fr;
@@ -273,7 +272,7 @@ article .twitter-tweet {
 		grid-template-columns: 1fr 1120px 1fr;
 	}
 }
-@media only screen and (min-width: 641px) and (max-width: 1152px) {
+@media only screen and (min-width: 641px) and (max-width: 1164px) {
 	main {
 		grid-template-columns: 1fr;
 	}
@@ -309,7 +308,7 @@ article .twitter-tweet {
         grid-column: 3;
     }
 	.related-category {
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr;
 	}
 	.related-tag {
 		grid-template-columns: 1fr 1fr;
@@ -356,5 +355,6 @@ article .twitter-tweet {
 	}
 	footer {
 		grid-template-columns: 16px 1fr 16px;
+		overflow-x: scroll;
 	}
 }

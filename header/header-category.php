@@ -30,7 +30,7 @@
 <meta property='og:title' content='<?php single_cat_title(); ?> Category | Page <?php echo $paged; ?> | <?php echo get_bloginfo('name'); ?>'/>
 <meta property='og:type' content='website'/>
 <meta property='og:url' content='<?php echo get_category_link( get_the_category() ); ?>'/>
-<meta property='og:description' content='<?php if ( category_description() ) { echo category_description(); } else { echo get_bloginfo("description");} ?>'/>
+<meta property='og:description' content="<?php if ( category_description() ) { echo category_description(); } else { echo get_bloginfo("description");} ?>"/>
 
 <!--Twitter Meta Info-->
 <meta name='twitter:card' content='summary'/>
@@ -75,7 +75,7 @@
    			"item": "<?php echo esc_url( home_url( '/' ) ); ?>" },
             { "@type": "ListItem",
     		"position": 2,
-    		"name": "<?php single_cat_title(); ?>",
+    		"name": "<?php single_cat_title(); ?> Category",
    			"item": "<?php echo get_category_link( get_the_category() ); ?>" }]
 }
 </script>

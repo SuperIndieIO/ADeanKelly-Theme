@@ -612,6 +612,36 @@ function getTagList( $separator ) {
     return $tagList;
 }
 
+function getRelatedPostsCategory( $postID ) {
+    $backupID = $postID;
+    $cats = wp_get_post_categories( $postID );
+            wp_reset_query();
+
+    $related_category = new WP_query( array( 'category__in' => $cats, 'posts_per_page' => 2, 'post__not_in' => array( $postID ) ) );
+    if ( $related_category->have_posts() ) : while ( $related_category->have_posts() ) : $related_category->the_post(); 
+        $large = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' );
+        $small = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); 
+        $thumbnail_id = get_post_thumbnail_id( $post->ID );
+        $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); ?>
+        <figure> 
+            <picture>
+                <source media='(max-width: 640px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $small[0] ?>'>
+                <source media='(min-width: 641px)' srcset='data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' data-srcset='<?php echo $large[0] ?>'>
+                <img src='<?php echo $large[0] ?>' alt='<?php  echo $img_alt; ?>'>
+            </picture>
+            <figcaption>
+                <p><span class='post-categories'><?php echo getCatList(' // '); ?></span></p>
+                <h5><span class='post-title'><?php echo get_the_title(); ?></span></h5>
+            </figcaption>
+            <a href='<?php echo get_the_permalink(); ?>'></a>
+        </figure>
+    <?php
+    wp_reset_postdata();
+    endwhile;
+    endif;
+    
+}
+
 function getRelatedPostsTag( $postID, $postOffset ) {
     $backupID = $postID;
     $tags = wp_get_post_tags( $postID );
@@ -646,7 +676,7 @@ function getRelatedPostsTag( $postID, $postOffset ) {
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '' );
             $desktop = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' );
             $tablet = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9m' );
-            $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '8/3s' ); ?>
+            $mobile = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), $size = '16/9s' ); ?>
 
             <figure>
                 <picture>
@@ -656,13 +686,39 @@ function getRelatedPostsTag( $postID, $postOffset ) {
                     <img src='<?php echo $thumb[0] ?>' alt='<?php $thumbnail_id = get_post_thumbnail_id( $new_post->ID ); $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); echo $img_alt;  ?>'>
                 </picture>
                 <figcaption>
-                    <h3><?php echo get_the_title(); ?></h3>
+                    <p><span class='post-categories'><?php echo getCatList(' // '); ?></span></p>
+                    <h3><span class='post-title'><?php echo get_the_title(); ?></span></h3>
                 </figcaption>
                 <a href='<?php echo get_the_permalink(); ?>'></a>
             </figure><?php	endwhile;
         }
     }
     wp_reset_postdata();
+}
+
+function getRelatedPostsAMP( $postID ) {
+	$backupID = $postID;
+    $cats = wp_get_post_categories( $postID );
+    wp_reset_query();
+
+    $related_category = new WP_query( array( 'category__in' => $cats, 'posts_per_page' => 2, 'post__not_in' => array( $postID ) ) );
+    if ( $related_category->have_posts() ) : while ( $related_category->have_posts() ) : $related_category->the_post(); 
+		$thumbnail_id = get_post_thumbnail_id( $post->ID );
+        $large = wp_get_attachment_image_src(($thumbnail_id), $size = '16/9m' );
+        
+        $img_alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true); ?>
+        <figure> 
+			<amp-img src='<?php echo $large[0] ?>' alt='<?php  echo $img_alt; ?>' layout='responsive' width='16' height='9'></amp-img>
+            <figcaption>
+                <p><span class='post-categories'><?php echo getCatList(' // '); ?></span></p>
+                <h5><span class='post-title'><?php echo get_the_title(); ?></span></h5>
+            </figcaption>
+            <a href='<?php echo get_the_permalink(); ?>'></a>
+        </figure>
+    <?php
+    wp_reset_postdata();
+    endwhile;
+    endif;
 }
 
 function AMPContent( $content ) {
@@ -694,7 +750,7 @@ function AMPContent( $content ) {
         $json_ad->targeting = $json_object;
         $json_ad = json_encode( $json_ad );
         
-        $current_ad ="<amp-ad layout='responsive' width=320 height=100 type='doubleclick'data-slot='".$the_adunit."' data-multi-size='320x50,300x250' data-multi-size-validation='false' json='".$json_ad."'><div placeholder></div><div fallback></div></amp-ad><h3>";
+        $current_ad ="<div style='text-align:center'><amp-ad layout='fluid' height='fluid' type='doubleclick'data-slot='".$the_adunit."' data-multi-size='320x50,320x100,300x250' json='".$json_ad."'><div placeholder></div><div fallback></div></amp-ad></div><h3>";
         $final_content[] = $current_ad;
         $final_content[] = $content[$i];
         $slot++;

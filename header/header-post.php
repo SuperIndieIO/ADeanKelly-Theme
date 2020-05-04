@@ -27,8 +27,8 @@
     $thumbtype = wp_check_filetype( $thumb[0] );
 ?>
 <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
-<meta name='title' content='<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>'>
-<meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
+<meta name='title' content="<?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?>">
+<meta name='description' content="<?php echo(get_the_excerpt()); ?>">
 <meta name='section' content='<?php echo getCatList( ', ' ); ?>'/>
 <meta name='keywords' content='<?php echo getTagList(', '); ?>'>
 <meta name='language' content='English'>
@@ -44,7 +44,7 @@
 <meta property='og:title' content='<?php echo get_the_title(); ?>'>
 <meta property='og:site_name' content='<?php echo get_bloginfo('name'); ?>'>
 <meta property='og:url' content='<?php echo get_the_permalink(); ?>'>
-<meta property='og:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
+<meta property='og:description' content="<?php echo strip_tags(get_the_excerpt($post->ID)); ?>">
 
 <meta property='og:image' content='<?php echo $thumb[0]; ?>'>
 <meta property='og:image:secure_url' content='<?php echo $thumb[0]; ?>'>
@@ -63,7 +63,7 @@
 <meta name='twitter:url' content='<?php echo get_the_permalink(); ?>'>
 <meta name='twitter:title' content='<?php echo get_the_title(); ?>'>
 <meta name='twitter:image' content='<?php echo $thumb[0] ?>'>
-<meta name='twitter:description' content='<?php echo strip_tags(get_the_excerpt($post->ID)); ?>'>
+<meta name='twitter:description' content="<?php echo strip_tags(get_the_excerpt($post->ID)); ?>">
 <meta name='twitter:site' content='@<?php if(get_theme_mod('ADKThemeSocialMedia-Twitter')) {echo get_theme_mod( 'ADKThemeSocialMedia-Twitter' );}; ?>'>
 <meta name='twitter:creator' content='@<?php if(the_author_meta( 'twitter' )){the_author_meta( 'twitter' );}; ?>'>
 
@@ -135,5 +135,6 @@
     var CategoryList = ["<?php echo getCatList('", "'); ?>"];
     var TagList = ["<?php echo getTagList('", "'); ?>"];
 </script>
+
 <!--Custom Theme Code-->
 <?php echo get_theme_mod('ADKThemeHeadCode-Additional'); ?>

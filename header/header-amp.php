@@ -1,7 +1,7 @@
 <head>
     <!--AMP Information-->
     <title><?php echo get_the_title(); ?> | <?php echo get_bloginfo('name'); ?></title>
-    <meta name='description' content='<?php echo(get_the_excerpt()); ?>'>
+    <meta name='description' content="<?php echo(get_the_excerpt()); ?>">
     <meta charset="utf-8">
     
     <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -30,15 +30,17 @@
             background-color: <?php echo get_theme_mod("ADKThemeDesign-BackgroundHex"); ?>;
         }
         h1, h2, h3, h4, h5, h6 {
-            font-family: 'Arimo', sans-serif;
+            margin: 8px 0;
+			color: #212121;
+			font-family: 'Arimo', sans-serif;
+    		font-weight: 400;
         }
         p, a, time {
             font-family: 'Open Sans', sans-serif;
         }
         a {
             height: 0;
-            text-decoration: none;
-            color: #484848;
+            color: #212121;
         }
         main {
             margin: 0 auto;
@@ -53,36 +55,43 @@
             margin: 12px 0 4px 0;
             color: #333333;
             font-size: 2em;
-            line-height: 1em;
+            line-height: 1.25em;
             font-family: 'Arimo', sans-serif;
+			font-weight: 700;
         }
         h2 {
             margin: 8px 0;
-            color: #757575;
-            font-size: 18px;
-            font-weight: 400;
+            font-size: 1.65em;
             font-family: 'Arimo', sans-serif;
+			font-weight: 400;
         }
         #post-author {
+			display: grid;
+			grid-template-rows: 1fr 1fr;
             margin: 16px 0;
-            padding: 6px 0;
-            border-top: #757575 1px solid;
-            border-bottom: #757575 1px solid;
-            font-weight: 600;
+            font-weight: 400;
         }
-        #post-author > a {
+		#post-author p {
+			margin: 4px 0;
+		}
+        #post-author a {
             color: #484848;
             text-decoration: none;
             }
         #post-date {
             margin: 0;
             color: #484848;
-            float: right;
         }
         article {
             color: #484848;
             font-weight: 400;
         }
+		article h3 {
+			font-size: 1.5em;
+		}
+		article p {
+			line-height: 1.5em;
+		}
         #ADK-PostSocialMedia {
             display: inline-block;
             padding: 8px 0 1px 0;
@@ -90,16 +99,12 @@
             width: 100%;
             text-align: center;
             }
-        .OV-RelatedCategoryIMG {
-            border-radius: 4px;
-        }
-        .OV-RelatedCategoryText {
-            margin: 8px 0 16px 0;
-            color: #757575;
-            font-size: 20px;
-            font-weight: 700;
-            
-        }
+
+		/*AMP Ads*/
+		amp-ad {
+			margin: 32px auto;
+		}
+		
         /*Footer IDs */
         footer {
             display: grid;
@@ -123,10 +128,12 @@
         }
         nav#menu-footer-menu {
             display: grid;
-            grid-auto-columns: max-content;
-            grid-column-gap: 16px;
-            grid-template-rows: auto auto auto;
-            grid-auto-flow: column dense;
+			font-size: 12px;
+			grid-auto-columns: max-content;
+			grid-column-gap: 8px;
+			grid-row-gap: 4px;
+			grid-auto-rows: 1.25em;
+			grid-auto-flow: row dense;
         }
         #alt-logo {
             max-height: 64px;
@@ -162,10 +169,109 @@
         .header-logo {
             margin: 0 auto;
             display: block;
+			max-width: 320px;
         }
         .featured-image {
             border-radius: 4px;
         }
+		
+		/*Related Category*/
+		.related-category {
+			display: grid;
+			margin: 0 16px;
+			grid-template-columns: 1fr 1fr;
+			grid-column-gap: 16px;
+			grid-row-gap: 16px;
+			overflow: auto;
+		}
+		.related-tag {
+			display: grid;
+			grid-gap: 16px 16px;
+			margin-bottom: 16px;
+		}
+		.post-title {
+			background-color: var(--text-bgc-alpha);
+			box-shadow: 0 0 0 0.25em var(--text-bgc-alpha);
+			line-height: 1.5em;
+			border-radius: 2px 0;
+		}
+		.post-categories {    
+			background-color: var(--text-bgc-omega);
+			box-shadow: 0 0 0 0.25em var(--text-bgc-omega);
+			margin-right: 0.75em;
+			padding: 0.25em;
+			border-radius: 0 8px;
+		}
+		
+		.related-content figure {
+			width: 100%;
+			margin: 0;
+			color: #ffffff;
+			font-size: 16px;
+			position: relative;
+			overflow: hidden;
+			text-align: left;
+			border-radius: 8px;
+		}
+		.related-content figure * {
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			-webkit-transition: all 0.55s ease;
+			transition: all 0.55s ease;
+		}
+		.related-content figure amp-img {
+			max-width: 100%;
+			height: 100%;
+			vertical-align: top;
+			position: relative;
+			object-fit: cover;
+		}
+		.related-content figure figcaption {
+			margin: 8px;
+			position: absolute;
+			font-weight: 700;
+			bottom: 0;
+			z-index: 1;
+		}
+		.related-content figure h3, .related-content figure h5 {
+			display: inline-block;
+			font-family: 'Arimo', sans-serif;
+			font-size: 1em;
+			font-weight: 700;
+			color: #fff;
+			margin: 0.25em;
+		}
+		.related-content figure p {
+			max-height: 3.2em;
+			font-size: 0.8em;
+			font-family: 'Noto Sans', Arial, sans-serif;
+			line-height: 1.6em;
+			margin: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.related-content figure a {
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			z-index: 1;
+		}
+		.related-content figure:hover amp-img {
+			-webkit-transform: scale(1.1);
+			transform: scale(1.1);
+		}
+		@media only screen and (max-width: 640px) {
+			.related-category {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		
         /*Social Media Classes*/
         .social-image {
             display: inline-block;

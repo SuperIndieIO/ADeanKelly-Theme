@@ -1,18 +1,53 @@
 <!--Custom Theme Code-->
 <?php echo get_theme_mod('ADKThemeFooterCode-Before'); ?>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110231473-2"></script>
+<!--Ad Blocking Test Script-->
 <script>
-    var UAID = '<?php echo get_theme_mod('ADKThemeHeadCode-GoogleAnalytics'); ?>';
+    let blocking = document.createElement('ins');
+	let GABlocking;
+
+    blocking.className = 'adsbygoogle';
+    blocking.id = 'GoogleAdsense';
+    blocking.style.display = 'block';
+    blocking.style.position = 'absolute';
+    blocking.style.top = '-1px';
+    blocking.style.height = '1px';
+
+    document.body.appendChild( blocking );
+    let isBlockingEnabled = !blocking.clientHeight;
+    document.body.removeChild( blocking );
+    console.log( isBlockingEnabled );
+    
+    if( isBlockingEnabled ) {
+        console.log('Blocking Enabled')
+		GABlocking = 'True'
+    } else {
+        console.log('Blocking Disabled');
+		GABlocking = 'False'
+    }
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script>
+    let UAID = '<?php echo get_theme_mod('ADKThemeHeadCode-GoogleAnalytics'); ?>';
+    let gaURL = 'https://www.googletagmanager.com/gtag/js?id=' + UAID;
+    let gaScript = document.createElement('script');    
+    
+    gaScript.async = true;
+    gaScript.src = gaURL;
+    document.getElementsByTagName('head')[0].appendChild( gaScript );
 </script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+	
+	gtag('set', {'content_group1': '<?php echo getCatList('/'); ?>'});
     
-  gtag('config', UAID);
+  gtag('config', UAID,  { 'custom_map': {'dimension1': 'Ad Blocking'}});
+  gtag('event', 'ad_blocking', {'Ad Blocking': GABlocking});
 </script>
+
 
 <!--Defer Image Load JS-->
 <script>
@@ -84,16 +119,14 @@
         });
   </script>
 
-<!--Load jQuery CDN-->
-
 <!--Load Page Analytics -->
 <script src='<?php bloginfo('template_url'); ?>/js/page.min.js'></script>
 
 <!--Load Ad Unit Variable Settings from Customizer-->
 <script>
-	var GlobalInArticle = '<?php echo get_theme_mod("ADKThemeAdvertising-InArticle"); ?>';
-	var GlobalSidebar = '<?php echo get_theme_mod("ADKThemeAdvertising-Sidebar"); ?>';
-    var AdsenseChannels = <?php echo get_theme_mod("ADKThemeAdvertising-AdsenseChannels"); ?>;
+	let GlobalInArticle = '<?php echo get_theme_mod("ADKThemeAdvertising-InArticle"); ?>';
+	let GlobalSidebar = '<?php echo get_theme_mod("ADKThemeAdvertising-Sidebar"); ?>';
+    let AdsenseChannels = <?php echo get_theme_mod("ADKThemeAdvertising-AdsenseChannels"); ?>;
 </script>
 
 <!--Bot Detection Script-->
@@ -101,9 +134,9 @@
 
 <script>
 	botDetect.onUser(function() {
-	  var script = document.createElement('script');
-	  script.src = '<?php bloginfo('template_url'); ?>/js/article.js';
-	  document.getElementsByTagName("head")[0].appendChild(script);
+        let script = document.createElement('script');    
+        script.src = '<?php bloginfo('template_url'); ?>/js/article.min.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
     });
 </script>
 
